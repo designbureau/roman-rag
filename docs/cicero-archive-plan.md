@@ -266,7 +266,13 @@ reconstructed Tiro/Atticus voices must be labelled as reconstruction.
 - ✅ Standalone repo created: **`designbureau/roman-rag`**.
 - ✅ Full scaffold landed (commit `86c8070`): monorepo skeleton, Layer-1 type/schema renames (`latin_text`, `cicero_ref`, addressee/genre, `SOURCES`, Roman `BuiltinPersona` set), `.env.example`.
 - ✅ **Phase-2 ingestion (production) — Letters to Atticus** is implemented and verified on live Perseus data (see below).
-- ⏭ **Next: embed the ad Atticum slice + rewrite Layer-3 personas** (`classicist` + `cicero`), then deploy `chat` for the grounded/cited/parallel-text proof.
+- ✅ **Supabase project provisioned** — `roman-rag`, ref **`zypnwehtzzwxlepyrbjh`**, org Swanky, region **eu-west-2**, Postgres 17 + pgvector. Data-plane migrations applied; corpus tables RLS-locked (service-role-only). URL/anon key written to gitignored `.env`.
+- ⏭ **Next: add the three secrets, then `pnpm embed` the ad Atticum slice + rewrite Layer-3 personas** (`classicist` + `cicero`), then deploy `chat`.
+
+**Supabase provisioning — applied vs deferred (this session):**
+- Applied (data plane): `initial` (stories, chunks, `search_chunks`, vector ext), `images` (empty table, kept so the RLS migration resolves), `search_chunks_cicero_ref`, `enable_rls_corpus_tables`, `pin_search_fn_search_path`.
+- **Deferred to Layer 3** (they depend on a `profiles` table + `handle_new_user()` trigger that NO migration creates — they were set up out-of-band in the original prod — and/or seed the *Bleek-Lloyd* personas): `language_groups` (also still carries |xam `UPDATE`s + entangled with chat's language filter), `dynamic_personas`, `persona_age_tiers`, and the `handle_new_user()` revoke from `harden_functions`. When adapting Layer 3: write the missing `profiles`/`handle_new_user` migration first, Cicero-ise `language_groups` (default `language='la'`, drop the |xam updates), and re-seed `persona_config` with the Roman ensemble instead of archivist/mantis/lloyd/bleek/earlyrace.
+- **Secrets still required** (not retrievable via MCP — add to `.env`): `SUPABASE_SERVICE_ROLE_KEY` (dashboard → Project Settings → API), `OPENAI_API_KEY`, `ANTHROPIC_API_KEY`. Embedding (`pnpm embed`) is blocked until the service-role + OpenAI keys are present.
 
 **Done in this session — ad Atticum ingestion (Layer 2):**
 - `scrape/sources/perseus-tei.ts` — TEI loader + `cleanText` (drops `<note>/<head>/<epigraph>/<argument>/<pb>`, turns `<milestone unit="para"/>` into paragraph breaks) + `scaifeUrl`.
