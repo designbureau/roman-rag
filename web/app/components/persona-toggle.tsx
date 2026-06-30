@@ -11,13 +11,12 @@ export type PersonaOption = { key: Persona; title: string };
  * before the persona_config fetch resolves, or if it fails. The source of
  * truth is the `persona_config` table (title + sort_order + enabled).
  */
+// Phase 1 ships two code-backed voices (classicist + cicero); the rest of the
+// Roman ensemble (tiro, atticus, caesar, interpreter, storyteller) arrives in
+// Phase 3 and will appear here and in persona_config then.
 export const FALLBACK_PERSONAS: PersonaOption[] = [
-  { key: "archivist", title: "The Archivist" },
-  { key: "mantis", title: "The Mantis" },
-  { key: "lloyd", title: "Lucy Lloyd" },
-  { key: "bleek", title: "Wilhelm Bleek" },
-  { key: "interpreter", title: "The Interpreter" },
-  { key: "storyteller", title: "The Storyteller" },
+  { key: "classicist", title: "The Classicist" },
+  { key: "cicero", title: "Cicero" },
 ];
 
 export function PersonaToggle({
