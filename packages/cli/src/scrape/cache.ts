@@ -48,7 +48,7 @@ export async function fetchCached(
   if (!headers.has("user-agent")) {
     headers.set(
       "user-agent",
-      "bleek-lloyd-rag/0.1 (private research prototype; +https://github.com/designbureau/bleek-lloyd-rag)",
+      "roman-rag/0.1 (private research prototype; +https://github.com/designbureau/roman-rag)",
     );
   }
   if (!headers.has("accept")) {

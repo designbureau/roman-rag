@@ -9,9 +9,12 @@ It is a standalone fork of the Bleek-Lloyd archive architecture, re-pointed at a
 new corpus. See **`docs/cicero-archive-plan.md`** for the full plan, the locked
 design decisions, and the validated Perseus parallel-text alignment findings.
 
-> **Status: scaffolding.** The monorepo skeleton is in place with the data model
-> adapted for Cicero. The Cicero corpus ingestion, persona rewrite, analytics,
-> and frontend re-theme are in progress per the plan.
+> **Status: vertical slice in progress.** The monorepo skeleton is in place with
+> the data model adapted for Cicero, and the **Letters to Atticus ingestion is
+> live** — `pnpm scrape --source=letters-att` pulls Perseus Latin (Purser) +
+> English (Shuckburgh) and aligns them at whole-letter granularity (414/446 =
+> 92.8% parallel). The persona rewrite, embedding/chat deploy, analytics, and
+> frontend re-theme are next per the plan.
 
 ## Docs
 
