@@ -1,0 +1,78 @@
+[
+  {
+    "query": "tell me about the eland",
+    "expect_story_ids": [
+      "dblc-stories__lucy-xam-819-doings-of-the-mantis-when-the-eland-has-been-wound",
+      "dblc-stories__lucy-xam-478-further-ceremonies-in-cutting-up-eland"
+    ],
+    "note": "thematic: eland / Mantis"
+  },
+  {
+    "query": "the moon and the hare, and the origin of death",
+    "expect_story_ids": [
+      "dblc-stories__wilhelm-114-moon-and-hare-the-origin-of-death",
+      "dblc-stories__lucy-xam-464-a-prayer-addressed-to-the-moon-and-another-version",
+      "dblc-stories__wilhelm-66-moon-and-little-hare-includes-the-moon-s-speech"
+    ],
+    "note": "thematic: moon / hare / death"
+  },
+  {
+    "query": "a woman of the early race carried off by the rain bull",
+    "expect_story_ids": [
+      "dblc-stories__lucy-xam-741-a-young-woman-of-the-early-race-of-people-carried-",
+      "specimens-1911__a-woman-of-the-early-race-and-the-rain-bull",
+      "dblc-stories__lucy-xam-809-notes-on-rock-painting-copy-no-8-the-rain-and-the-"
+    ],
+    "note": "thematic: rain bull"
+  },
+  {
+    "query": "a prayer to the new moon",
+    "expect_story_ids": [
+      "specimens-1911__prayer-to-the-young-moon",
+      "dblc-stories__lucy-xam-162-prayers-to-the-moon",
+      "dblc-stories__lucy-xam-464-a-prayer-addressed-to-the-moon-and-another-version"
+    ],
+    "note": "cross-source: Specimens + DBLC"
+  },
+  {
+    "query": "how do the people make rain",
+    "expect_story_ids": [
+      "dblc-stories__wilhelm-125-rainmaking",
+      "dblc-stories__lucy-xam-393-rainmaking-a-version-by-dia-kwain",
+      "dblc-stories__lucy-xam-580-an-account-of-the-rain-s-things-or-khoa-ka-kerri-s",
+      "dblc-stories__lucy-xam-591-rainmaking-when-the-wind-is-in-the-north"
+    ],
+    "note": "thematic: rainmaking"
+  },
+  {
+    "query": "the story of the wind",
+    "expect_story_ids": [
+      "dblc-stories__lucy-xam-646-notes-to-the-story-of-the-wind",
+      "dblc-stories__lucy-xam-694-names-for-certain-winds",
+      "dblc-stories__lucy-xam-760-clouds-and-wind"
+    ],
+    "note": "thematic: wind"
+  },
+  {
+    "query": "the wind blows away a dead person's footprints",
+    "expect_story_ids": [
+      "dblc-stories__lucy-xam-879-rain-washes-out-a-dead-man-s-footsteps"
+    ],
+    "note": "specific: death / footprints"
+  },
+  {
+    "query": "what did ǁkabbo say about the moon",
+    "expect_story_ids": [
+      "dblc-stories__lucy-xam-162-prayers-to-the-moon",
+      "dblc-stories__lucy-xam-302-jantje-tooren-told-by-his-father-not-to-look-towar"
+    ],
+    "note": "informant-shaped: ǁkabbo + moon (tests provenance retrieval)"
+  },
+  {
+    "query": "tobacco eats up your brains",
+    "expect_story_ids": [
+      "dblc-stories__lucy-xam-846-a-person-who-takes-snuff-tobacco-eats-up-his-brain"
+    ],
+    "note": "lexical: specific phrase"
+  }
+]

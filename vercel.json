@@ -1,0 +1,12 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "framework": "vite",
+  "buildCommand": "pnpm --filter @roman/web build",
+  "outputDirectory": "web/build/client",
+  "installCommand": "pnpm install --frozen-lockfile",
+  "git": {
+    "deploymentEnabled": {
+      "main": true
+    }
+  }
+}

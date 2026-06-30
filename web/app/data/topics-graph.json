@@ -1,0 +1,3444 @@
+{
+  "generated_at": "2026-05-23T12:04:04.657Z",
+  "top_n": 100,
+  "min_edge_weight": 5,
+  "nodes": [
+    {
+      "id": "names",
+      "count": 228,
+      "sources": {
+        "dblc-stories": 228
+      }
+    },
+    {
+      "id": "name",
+      "count": 193,
+      "sources": {
+        "dblc-stories": 193
+      }
+    },
+    {
+      "id": "hunting",
+      "count": 133,
+      "sources": {
+        "dblc-stories": 133
+      }
+    },
+    {
+      "id": "personal history",
+      "count": 131,
+      "sources": {
+        "dblc-stories": 131
+      }
+    },
+    {
+      "id": "food",
+      "count": 120,
+      "sources": {
+        "dblc-stories": 120
+      }
+    },
+    {
+      "id": "death",
+      "count": 99,
+      "sources": {
+        "dblc-stories": 99
+      }
+    },
+    {
+      "id": "early race",
+      "count": 85,
+      "sources": {
+        "dblc-stories": 85
+      }
+    },
+    {
+      "id": "springbok",
+      "count": 78,
+      "sources": {
+        "dblc-stories": 78
+      }
+    },
+    {
+      "id": "rain",
+      "count": 76,
+      "sources": {
+        "dblc-stories": 76
+      }
+    },
+    {
+      "id": "lion",
+      "count": 69,
+      "sources": {
+        "dblc-stories": 69
+      }
+    },
+    {
+      "id": "animals",
+      "count": 64,
+      "sources": {
+        "dblc-stories": 64
+      }
+    },
+    {
+      "id": "education",
+      "count": 63,
+      "sources": {
+        "dblc-stories": 63
+      }
+    },
+    {
+      "id": "|kaggen",
+      "count": 62,
+      "sources": {
+        "dblc-stories": 62
+      }
+    },
+    {
+      "id": "children",
+      "count": 61,
+      "sources": {
+        "dblc-stories": 61
+      }
+    },
+    {
+      "id": "words and sentences",
+      "count": 59,
+      "sources": {
+        "dblc-stories": 59
+      }
+    },
+    {
+      "id": "teaching",
+      "count": 54,
+      "sources": {
+        "dblc-stories": 54
+      }
+    },
+    {
+      "id": "transformation",
+      "count": 49,
+      "sources": {
+        "dblc-stories": 49
+      }
+    },
+    {
+      "id": "vocabulary",
+      "count": 47,
+      "sources": {
+        "dblc-stories": 47
+      }
+    },
+    {
+      "id": "wind",
+      "count": 47,
+      "sources": {
+        "dblc-stories": 47
+      }
+    },
+    {
+      "id": "song",
+      "count": 46,
+      "sources": {
+        "dblc-stories": 46
+      }
+    },
+    {
+      "id": "illness",
+      "count": 42,
+      "sources": {
+        "dblc-stories": 42
+      }
+    },
+    {
+      "id": "speech",
+      "count": 42,
+      "sources": {
+        "dblc-stories": 42
+      }
+    },
+    {
+      "id": "|hanǂkass'o",
+      "count": 41,
+      "sources": {
+        "dblc-stories": 41
+      }
+    },
+    {
+      "id": "stars",
+      "count": 41,
+      "sources": {
+        "dblc-stories": 41
+      }
+    },
+    {
+      "id": "moon",
+      "count": 38,
+      "sources": {
+        "dblc-stories": 38
+      }
+    },
+    {
+      "id": "sorcerers",
+      "count": 35,
+      "sources": {
+        "dblc-stories": 35
+      }
+    },
+    {
+      "id": "women",
+      "count": 35,
+      "sources": {
+        "dblc-stories": 35
+      }
+    },
+    {
+      "id": "fight",
+      "count": 34,
+      "sources": {
+        "dblc-stories": 34
+      }
+    },
+    {
+      "id": "game",
+      "count": 34,
+      "sources": {
+        "dblc-stories": 34
+      }
+    },
+    {
+      "id": "bird",
+      "count": 33,
+      "sources": {
+        "dblc-stories": 33
+      }
+    },
+    {
+      "id": "dia!kwain",
+      "count": 33,
+      "sources": {
+        "dblc-stories": 33
+      }
+    },
+    {
+      "id": "healing",
+      "count": 33,
+      "sources": {
+        "dblc-stories": 33
+      }
+    },
+    {
+      "id": "place",
+      "count": 33,
+      "sources": {
+        "dblc-stories": 33
+      }
+    },
+    {
+      "id": "sun",
+      "count": 32,
+      "sources": {
+        "dblc-stories": 32
+      }
+    },
+    {
+      "id": "water",
+      "count": 32,
+      "sources": {
+        "dblc-stories": 32
+      }
+    },
+    {
+      "id": "||kabbo",
+      "count": 31,
+      "sources": {
+        "dblc-stories": 31
+      }
+    },
+    {
+      "id": "genealogy",
+      "count": 31,
+      "sources": {
+        "dblc-stories": 31
+      }
+    },
+    {
+      "id": "ostrich",
+      "count": 31,
+      "sources": {
+        "dblc-stories": 31
+      }
+    },
+    {
+      "id": "|xam",
+      "count": 30,
+      "sources": {
+        "dblc-stories": 30
+      }
+    },
+    {
+      "id": "jackal",
+      "count": 30,
+      "sources": {
+        "dblc-stories": 30
+      }
+    },
+    {
+      "id": "work",
+      "count": 30,
+      "sources": {
+        "dblc-stories": 30
+      }
+    },
+    {
+      "id": "porcupine",
+      "count": 29,
+      "sources": {
+        "dblc-stories": 29
+      }
+    },
+    {
+      "id": "ichneumon",
+      "count": 28,
+      "sources": {
+        "dblc-stories": 28
+      }
+    },
+    {
+      "id": "places",
+      "count": 28,
+      "sources": {
+        "dblc-stories": 28
+      }
+    },
+    {
+      "id": "hyena",
+      "count": 27,
+      "sources": {
+        "dblc-stories": 27
+      }
+    },
+    {
+      "id": "respect",
+      "count": 26,
+      "sources": {
+        "dblc-stories": 26
+      }
+    },
+    {
+      "id": "fire",
+      "count": 23,
+      "sources": {
+        "dblc-stories": 23
+      }
+    },
+    {
+      "id": "marriage",
+      "count": 23,
+      "sources": {
+        "dblc-stories": 23
+      }
+    },
+    {
+      "id": "plant",
+      "count": 23,
+      "sources": {
+        "dblc-stories": 23
+      }
+    },
+    {
+      "id": "poison",
+      "count": 23,
+      "sources": {
+        "dblc-stories": 23
+      }
+    },
+    {
+      "id": "things",
+      "count": 23,
+      "sources": {
+        "dblc-stories": 23
+      }
+    },
+    {
+      "id": "child",
+      "count": 22,
+      "sources": {
+        "dblc-stories": 22
+      }
+    },
+    {
+      "id": "plants",
+      "count": 22,
+      "sources": {
+        "dblc-stories": 22
+      }
+    },
+    {
+      "id": "eland",
+      "count": 21,
+      "sources": {
+        "dblc-stories": 21
+      }
+    },
+    {
+      "id": "dream",
+      "count": 20,
+      "sources": {
+        "dblc-stories": 20
+      }
+    },
+    {
+      "id": "gemsbok",
+      "count": 20,
+      "sources": {
+        "dblc-stories": 20
+      }
+    },
+    {
+      "id": "hare",
+      "count": 20,
+      "sources": {
+        "dblc-stories": 20
+      }
+    },
+    {
+      "id": "weapons",
+      "count": 20,
+      "sources": {
+        "dblc-stories": 20
+      }
+    },
+    {
+      "id": "koranna",
+      "count": 18,
+      "sources": {
+        "dblc-stories": 18
+      }
+    },
+    {
+      "id": "lions",
+      "count": 18,
+      "sources": {
+        "dblc-stories": 18
+      }
+    },
+    {
+      "id": "lynx",
+      "count": 18,
+      "sources": {
+        "dblc-stories": 18
+      }
+    },
+    {
+      "id": "tree",
+      "count": 18,
+      "sources": {
+        "dblc-stories": 18
+      }
+    },
+    {
+      "id": "|kwammana",
+      "count": 17,
+      "sources": {
+        "dblc-stories": 17
+      }
+    },
+    {
+      "id": "language",
+      "count": 17,
+      "sources": {
+        "dblc-stories": 17
+      }
+    },
+    {
+      "id": "arrows",
+      "count": 16,
+      "sources": {
+        "dblc-stories": 16
+      }
+    },
+    {
+      "id": "creation",
+      "count": 16,
+      "sources": {
+        "dblc-stories": 16
+      }
+    },
+    {
+      "id": "dance",
+      "count": 16,
+      "sources": {
+        "dblc-stories": 16
+      }
+    },
+    {
+      "id": "feathers",
+      "count": 16,
+      "sources": {
+        "dblc-stories": 16
+      }
+    },
+    {
+      "id": "breakwater convict station",
+      "count": 15,
+      "sources": {
+        "dblc-stories": 15
+      }
+    },
+    {
+      "id": "clouds",
+      "count": 15,
+      "sources": {
+        "dblc-stories": 15
+      }
+    },
+    {
+      "id": "dutch",
+      "count": 15,
+      "sources": {
+        "dblc-stories": 15
+      }
+    },
+    {
+      "id": "hut",
+      "count": 15,
+      "sources": {
+        "dblc-stories": 15
+      }
+    },
+    {
+      "id": "kaross",
+      "count": 15,
+      "sources": {
+        "dblc-stories": 15
+      }
+    },
+    {
+      "id": "new maiden",
+      "count": 15,
+      "sources": {
+        "dblc-stories": 15
+      }
+    },
+    {
+      "id": "painting",
+      "count": 15,
+      "sources": {
+        "dblc-stories": 15
+      }
+    },
+    {
+      "id": "quagga",
+      "count": 15,
+      "sources": {
+        "dblc-stories": 15
+      }
+    },
+    {
+      "id": "tortoise",
+      "count": 15,
+      "sources": {
+        "dblc-stories": 15
+      }
+    },
+    {
+      "id": "wife",
+      "count": 15,
+      "sources": {
+        "dblc-stories": 15
+      }
+    },
+    {
+      "id": "bones",
+      "count": 14,
+      "sources": {
+        "dblc-stories": 14
+      }
+    },
+    {
+      "id": "bushman rice",
+      "count": 14,
+      "sources": {
+        "dblc-stories": 14
+      }
+    },
+    {
+      "id": "rock art",
+      "count": 14,
+      "sources": {
+        "dblc-stories": 14
+      }
+    },
+    {
+      "id": "star",
+      "count": 14,
+      "sources": {
+        "dblc-stories": 14
+      }
+    },
+    {
+      "id": "stone",
+      "count": 14,
+      "sources": {
+        "dblc-stories": 14
+      }
+    },
+    {
+      "id": "address",
+      "count": 13,
+      "sources": {
+        "dblc-stories": 13
+      }
+    },
+    {
+      "id": "arrow",
+      "count": 13,
+      "sources": {
+        "dblc-stories": 13
+      }
+    },
+    {
+      "id": "beast of prey",
+      "count": 13,
+      "sources": {
+        "dblc-stories": 13
+      }
+    },
+    {
+      "id": "beasts of prey",
+      "count": 13,
+      "sources": {
+        "dblc-stories": 13
+      }
+    },
+    {
+      "id": "blue crane",
+      "count": 13,
+      "sources": {
+        "dblc-stories": 13
+      }
+    },
+    {
+      "id": "insect",
+      "count": 13,
+      "sources": {
+        "dblc-stories": 13
+      }
+    },
+    {
+      "id": "lizard",
+      "count": 13,
+      "sources": {
+        "dblc-stories": 13
+      }
+    },
+    {
+      "id": "sneezing",
+      "count": 13,
+      "sources": {
+        "dblc-stories": 13
+      }
+    },
+    {
+      "id": "sorcerer",
+      "count": 13,
+      "sources": {
+        "dblc-stories": 13
+      }
+    },
+    {
+      "id": "anteater's laws",
+      "count": 12,
+      "sources": {
+        "dblc-stories": 12
+      }
+    },
+    {
+      "id": "baboons",
+      "count": 12,
+      "sources": {
+        "dblc-stories": 12
+      }
+    },
+    {
+      "id": "blank pages",
+      "count": 12,
+      "sources": {
+        "dblc-stories": 12
+      }
+    },
+    {
+      "id": "curse",
+      "count": 12,
+      "sources": {
+        "dblc-stories": 12
+      }
+    },
+    {
+      "id": "cutting",
+      "count": 12,
+      "sources": {
+        "dblc-stories": 12
+      }
+    },
+    {
+      "id": "digging",
+      "count": 12,
+      "sources": {
+        "dblc-stories": 12
+      }
+    },
+    {
+      "id": "dog",
+      "count": 12,
+      "sources": {
+        "dblc-stories": 12
+      }
+    },
+    {
+      "id": "dress",
+      "count": 12,
+      "sources": {
+        "dblc-stories": 12
+      }
+    }
+  ],
+  "edges": [
+    {
+      "source": "names",
+      "target": "personal history",
+      "weight": 56
+    },
+    {
+      "source": "education",
+      "target": "teaching",
+      "weight": 47
+    },
+    {
+      "source": "vocabulary",
+      "target": "words and sentences",
+      "weight": 46
+    },
+    {
+      "source": "food",
+      "target": "hunting",
+      "weight": 43
+    },
+    {
+      "source": "hunting",
+      "target": "names",
+      "weight": 40
+    },
+    {
+      "source": "hunting",
+      "target": "springbok",
+      "weight": 40
+    },
+    {
+      "source": "food",
+      "target": "names",
+      "weight": 39
+    },
+    {
+      "source": "early race",
+      "target": "name",
+      "weight": 37
+    },
+    {
+      "source": "personal history",
+      "target": "|hanǂkass'o",
+      "weight": 32
+    },
+    {
+      "source": "names",
+      "target": "words and sentences",
+      "weight": 31
+    },
+    {
+      "source": "genealogy",
+      "target": "names",
+      "weight": 31
+    },
+    {
+      "source": "name",
+      "target": "personal history",
+      "weight": 31
+    },
+    {
+      "source": "hunting",
+      "target": "name",
+      "weight": 30
+    },
+    {
+      "source": "death",
+      "target": "personal history",
+      "weight": 28
+    },
+    {
+      "source": "names",
+      "target": "springbok",
+      "weight": 28
+    },
+    {
+      "source": "death",
+      "target": "name",
+      "weight": 28
+    },
+    {
+      "source": "food",
+      "target": "name",
+      "weight": 28
+    },
+    {
+      "source": "genealogy",
+      "target": "personal history",
+      "weight": 27
+    },
+    {
+      "source": "dia!kwain",
+      "target": "personal history",
+      "weight": 27
+    },
+    {
+      "source": "names",
+      "target": "vocabulary",
+      "weight": 26
+    },
+    {
+      "source": "animals",
+      "target": "names",
+      "weight": 26
+    },
+    {
+      "source": "names",
+      "target": "places",
+      "weight": 26
+    },
+    {
+      "source": "name",
+      "target": "rain",
+      "weight": 26
+    },
+    {
+      "source": "children",
+      "target": "name",
+      "weight": 25
+    },
+    {
+      "source": "ichneumon",
+      "target": "|kaggen",
+      "weight": 25
+    },
+    {
+      "source": "education",
+      "target": "name",
+      "weight": 25
+    },
+    {
+      "source": "names",
+      "target": "rain",
+      "weight": 24
+    },
+    {
+      "source": "bird",
+      "target": "name",
+      "weight": 24
+    },
+    {
+      "source": "personal history",
+      "target": "||kabbo",
+      "weight": 22
+    },
+    {
+      "source": "names",
+      "target": "|xam",
+      "weight": 22
+    },
+    {
+      "source": "death",
+      "target": "hunting",
+      "weight": 22
+    },
+    {
+      "source": "death",
+      "target": "names",
+      "weight": 22
+    },
+    {
+      "source": "things",
+      "target": "|kaggen",
+      "weight": 21
+    },
+    {
+      "source": "food",
+      "target": "rain",
+      "weight": 21
+    },
+    {
+      "source": "game",
+      "target": "hunting",
+      "weight": 21
+    },
+    {
+      "source": "name",
+      "target": "teaching",
+      "weight": 21
+    },
+    {
+      "source": "names",
+      "target": "|hanǂkass'o",
+      "weight": 21
+    },
+    {
+      "source": "children",
+      "target": "education",
+      "weight": 20
+    },
+    {
+      "source": "names",
+      "target": "stars",
+      "weight": 19
+    },
+    {
+      "source": "food",
+      "target": "springbok",
+      "weight": 19
+    },
+    {
+      "source": "name",
+      "target": "springbok",
+      "weight": 19
+    },
+    {
+      "source": "death",
+      "target": "sorcerers",
+      "weight": 19
+    },
+    {
+      "source": "names",
+      "target": "plants",
+      "weight": 18
+    },
+    {
+      "source": "early race",
+      "target": "transformation",
+      "weight": 18
+    },
+    {
+      "source": "name",
+      "target": "sorcerers",
+      "weight": 18
+    },
+    {
+      "source": "animals",
+      "target": "food",
+      "weight": 17
+    },
+    {
+      "source": "hunting",
+      "target": "personal history",
+      "weight": 17
+    },
+    {
+      "source": "lion",
+      "target": "name",
+      "weight": 17
+    },
+    {
+      "source": "early race",
+      "target": "names",
+      "weight": 17
+    },
+    {
+      "source": "name",
+      "target": "wind",
+      "weight": 17
+    },
+    {
+      "source": "illness",
+      "target": "name",
+      "weight": 17
+    },
+    {
+      "source": "children",
+      "target": "teaching",
+      "weight": 17
+    },
+    {
+      "source": "death",
+      "target": "education",
+      "weight": 17
+    },
+    {
+      "source": "personal history",
+      "target": "places",
+      "weight": 17
+    },
+    {
+      "source": "early race",
+      "target": "song",
+      "weight": 17
+    },
+    {
+      "source": "name",
+      "target": "song",
+      "weight": 16
+    },
+    {
+      "source": "names",
+      "target": "||kabbo",
+      "weight": 16
+    },
+    {
+      "source": "names",
+      "target": "place",
+      "weight": 16
+    },
+    {
+      "source": "fight",
+      "target": "|kaggen",
+      "weight": 16
+    },
+    {
+      "source": "rain",
+      "target": "wind",
+      "weight": 16
+    },
+    {
+      "source": "rain",
+      "target": "water",
+      "weight": 16
+    },
+    {
+      "source": "personal history",
+      "target": "teaching",
+      "weight": 16
+    },
+    {
+      "source": "education",
+      "target": "personal history",
+      "weight": 16
+    },
+    {
+      "source": "education",
+      "target": "food",
+      "weight": 16
+    },
+    {
+      "source": "food",
+      "target": "teaching",
+      "weight": 16
+    },
+    {
+      "source": "education",
+      "target": "hunting",
+      "weight": 16
+    },
+    {
+      "source": "food",
+      "target": "ostrich",
+      "weight": 15
+    },
+    {
+      "source": "food",
+      "target": "personal history",
+      "weight": 15
+    },
+    {
+      "source": "early race",
+      "target": "food",
+      "weight": 15
+    },
+    {
+      "source": "ichneumon",
+      "target": "things",
+      "weight": 15
+    },
+    {
+      "source": "children",
+      "target": "food",
+      "weight": 15
+    },
+    {
+      "source": "hunting",
+      "target": "wind",
+      "weight": 15
+    },
+    {
+      "source": "game",
+      "target": "name",
+      "weight": 15
+    },
+    {
+      "source": "hunting",
+      "target": "teaching",
+      "weight": 15
+    },
+    {
+      "source": "breakwater convict station",
+      "target": "personal history",
+      "weight": 14
+    },
+    {
+      "source": "hunting",
+      "target": "women",
+      "weight": 14
+    },
+    {
+      "source": "food",
+      "target": "women",
+      "weight": 14
+    },
+    {
+      "source": "death",
+      "target": "moon",
+      "weight": 14
+    },
+    {
+      "source": "eland",
+      "target": "|kaggen",
+      "weight": 14
+    },
+    {
+      "source": "|kaggen",
+      "target": "|kwammana",
+      "weight": 14
+    },
+    {
+      "source": "fight",
+      "target": "ichneumon",
+      "weight": 14
+    },
+    {
+      "source": "names",
+      "target": "|kaggen",
+      "weight": 14
+    },
+    {
+      "source": "death",
+      "target": "healing",
+      "weight": 14
+    },
+    {
+      "source": "death",
+      "target": "rain",
+      "weight": 14
+    },
+    {
+      "source": "hunting",
+      "target": "stars",
+      "weight": 14
+    },
+    {
+      "source": "name",
+      "target": "work",
+      "weight": 14
+    },
+    {
+      "source": "names",
+      "target": "wind",
+      "weight": 14
+    },
+    {
+      "source": "education",
+      "target": "respect",
+      "weight": 14
+    },
+    {
+      "source": "name",
+      "target": "|kaggen",
+      "weight": 14
+    },
+    {
+      "source": "animals",
+      "target": "words and sentences",
+      "weight": 13
+    },
+    {
+      "source": "animals",
+      "target": "vocabulary",
+      "weight": 13
+    },
+    {
+      "source": "lion",
+      "target": "transformation",
+      "weight": 13
+    },
+    {
+      "source": "lion",
+      "target": "names",
+      "weight": 13
+    },
+    {
+      "source": "early race",
+      "target": "lion",
+      "weight": 13
+    },
+    {
+      "source": "hunting",
+      "target": "lion",
+      "weight": 13
+    },
+    {
+      "source": "food",
+      "target": "porcupine",
+      "weight": 13
+    },
+    {
+      "source": "hunting",
+      "target": "|kaggen",
+      "weight": 13
+    },
+    {
+      "source": "death",
+      "target": "food",
+      "weight": 13
+    },
+    {
+      "source": "death",
+      "target": "springbok",
+      "weight": 13
+    },
+    {
+      "source": "food",
+      "target": "stars",
+      "weight": 13
+    },
+    {
+      "source": "name",
+      "target": "water",
+      "weight": 13
+    },
+    {
+      "source": "food",
+      "target": "game",
+      "weight": 13
+    },
+    {
+      "source": "death",
+      "target": "illness",
+      "weight": 13
+    },
+    {
+      "source": "name",
+      "target": "respect",
+      "weight": 13
+    },
+    {
+      "source": "dia!kwain",
+      "target": "name",
+      "weight": 13
+    },
+    {
+      "source": "food",
+      "target": "plants",
+      "weight": 12
+    },
+    {
+      "source": "hunting",
+      "target": "ostrich",
+      "weight": 12
+    },
+    {
+      "source": "personal history",
+      "target": "place",
+      "weight": 12
+    },
+    {
+      "source": "breakwater convict station",
+      "target": "names",
+      "weight": 12
+    },
+    {
+      "source": "hunting",
+      "target": "hyena",
+      "weight": 12
+    },
+    {
+      "source": "ichneumon",
+      "target": "|kwammana",
+      "weight": 12
+    },
+    {
+      "source": "fight",
+      "target": "things",
+      "weight": 12
+    },
+    {
+      "source": "hunting",
+      "target": "poison",
+      "weight": 12
+    },
+    {
+      "source": "hunting",
+      "target": "speech",
+      "weight": 12
+    },
+    {
+      "source": "healing",
+      "target": "illness",
+      "weight": 12
+    },
+    {
+      "source": "animals",
+      "target": "rain",
+      "weight": 12
+    },
+    {
+      "source": "lion",
+      "target": "teaching",
+      "weight": 12
+    },
+    {
+      "source": "education",
+      "target": "illness",
+      "weight": 12
+    },
+    {
+      "source": "death",
+      "target": "dia!kwain",
+      "weight": 12
+    },
+    {
+      "source": "respect",
+      "target": "teaching",
+      "weight": 12
+    },
+    {
+      "source": "death",
+      "target": "teaching",
+      "weight": 12
+    },
+    {
+      "source": "game",
+      "target": "teaching",
+      "weight": 12
+    },
+    {
+      "source": "rain",
+      "target": "sorcerers",
+      "weight": 12
+    },
+    {
+      "source": "animals",
+      "target": "marriage",
+      "weight": 11
+    },
+    {
+      "source": "animals",
+      "target": "name",
+      "weight": 11
+    },
+    {
+      "source": "hunting",
+      "target": "jackal",
+      "weight": 11
+    },
+    {
+      "source": "personal history",
+      "target": "springbok",
+      "weight": 11
+    },
+    {
+      "source": "lion",
+      "target": "personal history",
+      "weight": 11
+    },
+    {
+      "source": "moon",
+      "target": "sun",
+      "weight": 11
+    },
+    {
+      "source": "children",
+      "target": "sun",
+      "weight": 11
+    },
+    {
+      "source": "children",
+      "target": "death",
+      "weight": 11
+    },
+    {
+      "source": "hunting",
+      "target": "porcupine",
+      "weight": 11
+    },
+    {
+      "source": "feathers",
+      "target": "|kaggen",
+      "weight": 11
+    },
+    {
+      "source": "speech",
+      "target": "|kaggen",
+      "weight": 11
+    },
+    {
+      "source": "names",
+      "target": "poison",
+      "weight": 11
+    },
+    {
+      "source": "children",
+      "target": "hunting",
+      "weight": 11
+    },
+    {
+      "source": "arrows",
+      "target": "hunting",
+      "weight": 11
+    },
+    {
+      "source": "rain",
+      "target": "work",
+      "weight": 11
+    },
+    {
+      "source": "rain",
+      "target": "springbok",
+      "weight": 11
+    },
+    {
+      "source": "name",
+      "target": "speech",
+      "weight": 11
+    },
+    {
+      "source": "fight",
+      "target": "speech",
+      "weight": 11
+    },
+    {
+      "source": "children",
+      "target": "names",
+      "weight": 11
+    },
+    {
+      "source": "food",
+      "target": "water",
+      "weight": 11
+    },
+    {
+      "source": "healing",
+      "target": "name",
+      "weight": 11
+    },
+    {
+      "source": "education",
+      "target": "rain",
+      "weight": 11
+    },
+    {
+      "source": "education",
+      "target": "game",
+      "weight": 11
+    },
+    {
+      "source": "genealogy",
+      "target": "places",
+      "weight": 11
+    },
+    {
+      "source": "name",
+      "target": "|hanǂkass'o",
+      "weight": 11
+    },
+    {
+      "source": "anteater's laws",
+      "target": "marriage",
+      "weight": 10
+    },
+    {
+      "source": "animals",
+      "target": "anteater's laws",
+      "weight": 10
+    },
+    {
+      "source": "marriage",
+      "target": "names",
+      "weight": 10
+    },
+    {
+      "source": "creation",
+      "target": "moon",
+      "weight": 10
+    },
+    {
+      "source": "feathers",
+      "target": "ichneumon",
+      "weight": 10
+    },
+    {
+      "source": "feathers",
+      "target": "things",
+      "weight": 10
+    },
+    {
+      "source": "death",
+      "target": "lion",
+      "weight": 10
+    },
+    {
+      "source": "death",
+      "target": "speech",
+      "weight": 10
+    },
+    {
+      "source": "arrows",
+      "target": "springbok",
+      "weight": 10
+    },
+    {
+      "source": "hunting",
+      "target": "weapons",
+      "weight": 10
+    },
+    {
+      "source": "death",
+      "target": "wind",
+      "weight": 10
+    },
+    {
+      "source": "clouds",
+      "target": "rain",
+      "weight": 10
+    },
+    {
+      "source": "personal history",
+      "target": "|xam",
+      "weight": 10
+    },
+    {
+      "source": "death",
+      "target": "stars",
+      "weight": 10
+    },
+    {
+      "source": "children",
+      "target": "early race",
+      "weight": 10
+    },
+    {
+      "source": "death",
+      "target": "fight",
+      "weight": 10
+    },
+    {
+      "source": "arrows",
+      "target": "names",
+      "weight": 10
+    },
+    {
+      "source": "rain",
+      "target": "transformation",
+      "weight": 10
+    },
+    {
+      "source": "names",
+      "target": "women",
+      "weight": 10
+    },
+    {
+      "source": "name",
+      "target": "transformation",
+      "weight": 10
+    },
+    {
+      "source": "hunting",
+      "target": "respect",
+      "weight": 10
+    },
+    {
+      "source": "education",
+      "target": "sorcerers",
+      "weight": 10
+    },
+    {
+      "source": "dia!kwain",
+      "target": "names",
+      "weight": 10
+    },
+    {
+      "source": "painting",
+      "target": "rock art",
+      "weight": 10
+    },
+    {
+      "source": "personal history",
+      "target": "words and sentences",
+      "weight": 9
+    },
+    {
+      "source": "dutch",
+      "target": "personal history",
+      "weight": 9
+    },
+    {
+      "source": "dutch",
+      "target": "names",
+      "weight": 9
+    },
+    {
+      "source": "names",
+      "target": "sun",
+      "weight": 9
+    },
+    {
+      "source": "animals",
+      "target": "hunting",
+      "weight": 9
+    },
+    {
+      "source": "koranna",
+      "target": "names",
+      "weight": 9
+    },
+    {
+      "source": "names",
+      "target": "transformation",
+      "weight": 9
+    },
+    {
+      "source": "death",
+      "target": "sun",
+      "weight": 9
+    },
+    {
+      "source": "animals",
+      "target": "lynx",
+      "weight": 9
+    },
+    {
+      "source": "early race",
+      "target": "hunting",
+      "weight": 9
+    },
+    {
+      "source": "names",
+      "target": "ostrich",
+      "weight": 9
+    },
+    {
+      "source": "gemsbok",
+      "target": "hunting",
+      "weight": 9
+    },
+    {
+      "source": "gemsbok",
+      "target": "names",
+      "weight": 9
+    },
+    {
+      "source": "eland",
+      "target": "hunting",
+      "weight": 9
+    },
+    {
+      "source": "hyena",
+      "target": "jackal",
+      "weight": 9
+    },
+    {
+      "source": "wife",
+      "target": "|kaggen",
+      "weight": 9
+    },
+    {
+      "source": "dream",
+      "target": "|kaggen",
+      "weight": 9
+    },
+    {
+      "source": "hare",
+      "target": "moon",
+      "weight": 9
+    },
+    {
+      "source": "death",
+      "target": "hare",
+      "weight": 9
+    },
+    {
+      "source": "moon",
+      "target": "speech",
+      "weight": 9
+    },
+    {
+      "source": "food",
+      "target": "|kaggen",
+      "weight": 9
+    },
+    {
+      "source": "ichneumon",
+      "target": "names",
+      "weight": 9
+    },
+    {
+      "source": "children",
+      "target": "springbok",
+      "weight": 9
+    },
+    {
+      "source": "names",
+      "target": "work",
+      "weight": 9
+    },
+    {
+      "source": "names",
+      "target": "weapons",
+      "weight": 9
+    },
+    {
+      "source": "hunting",
+      "target": "rain",
+      "weight": 9
+    },
+    {
+      "source": "lions",
+      "target": "name",
+      "weight": 9
+    },
+    {
+      "source": "personal history",
+      "target": "work",
+      "weight": 9
+    },
+    {
+      "source": "springbok",
+      "target": "wind",
+      "weight": 9
+    },
+    {
+      "source": "game",
+      "target": "springbok",
+      "weight": 9
+    },
+    {
+      "source": "bushman rice",
+      "target": "food",
+      "weight": 9
+    },
+    {
+      "source": "name",
+      "target": "place",
+      "weight": 9
+    },
+    {
+      "source": "name",
+      "target": "plant",
+      "weight": 9
+    },
+    {
+      "source": "education",
+      "target": "lion",
+      "weight": 9
+    },
+    {
+      "source": "death",
+      "target": "transformation",
+      "weight": 9
+    },
+    {
+      "source": "sorcerers",
+      "target": "teaching",
+      "weight": 9
+    },
+    {
+      "source": "sorcerers",
+      "target": "work",
+      "weight": 9
+    },
+    {
+      "source": "illness",
+      "target": "sorcerers",
+      "weight": 9
+    },
+    {
+      "source": "names",
+      "target": "song",
+      "weight": 9
+    },
+    {
+      "source": "genealogy",
+      "target": "||kabbo",
+      "weight": 8
+    },
+    {
+      "source": "food",
+      "target": "moon",
+      "weight": 8
+    },
+    {
+      "source": "food",
+      "target": "hare",
+      "weight": 8
+    },
+    {
+      "source": "animals",
+      "target": "ostrich",
+      "weight": 8
+    },
+    {
+      "source": "animals",
+      "target": "springbok",
+      "weight": 8
+    },
+    {
+      "source": "names",
+      "target": "star",
+      "weight": 8
+    },
+    {
+      "source": "animals",
+      "target": "early race",
+      "weight": 8
+    },
+    {
+      "source": "lynx",
+      "target": "names",
+      "weight": 8
+    },
+    {
+      "source": "food",
+      "target": "gemsbok",
+      "weight": 8
+    },
+    {
+      "source": "name",
+      "target": "sun",
+      "weight": 8
+    },
+    {
+      "source": "children",
+      "target": "|kaggen",
+      "weight": 8
+    },
+    {
+      "source": "things",
+      "target": "|kwammana",
+      "weight": 8
+    },
+    {
+      "source": "place",
+      "target": "rain",
+      "weight": 8
+    },
+    {
+      "source": "genealogy",
+      "target": "|xam",
+      "weight": 8
+    },
+    {
+      "source": "speech",
+      "target": "things",
+      "weight": 8
+    },
+    {
+      "source": "animals",
+      "target": "speech",
+      "weight": 8
+    },
+    {
+      "source": "ichneumon",
+      "target": "speech",
+      "weight": 8
+    },
+    {
+      "source": "gemsbok",
+      "target": "springbok",
+      "weight": 8
+    },
+    {
+      "source": "fire",
+      "target": "names",
+      "weight": 8
+    },
+    {
+      "source": "dream",
+      "target": "name",
+      "weight": 8
+    },
+    {
+      "source": "children",
+      "target": "rain",
+      "weight": 8
+    },
+    {
+      "source": "rain",
+      "target": "stars",
+      "weight": 8
+    },
+    {
+      "source": "fire",
+      "target": "name",
+      "weight": 8
+    },
+    {
+      "source": "fight",
+      "target": "names",
+      "weight": 8
+    },
+    {
+      "source": "death",
+      "target": "women",
+      "weight": 8
+    },
+    {
+      "source": "healing",
+      "target": "personal history",
+      "weight": 8
+    },
+    {
+      "source": "places",
+      "target": "||kabbo",
+      "weight": 8
+    },
+    {
+      "source": "insect",
+      "target": "name",
+      "weight": 8
+    },
+    {
+      "source": "name",
+      "target": "sneezing",
+      "weight": 8
+    },
+    {
+      "source": "illness",
+      "target": "personal history",
+      "weight": 8
+    },
+    {
+      "source": "names",
+      "target": "water",
+      "weight": 8
+    },
+    {
+      "source": "death",
+      "target": "game",
+      "weight": 8
+    },
+    {
+      "source": "personal history",
+      "target": "sorcerers",
+      "weight": 8
+    },
+    {
+      "source": "name",
+      "target": "ostrich",
+      "weight": 8
+    },
+    {
+      "source": "breakwater convict station",
+      "target": "genealogy",
+      "weight": 8
+    },
+    {
+      "source": "early race",
+      "target": "|kaggen",
+      "weight": 8
+    },
+    {
+      "source": "food",
+      "target": "|hanǂkass'o",
+      "weight": 8
+    },
+    {
+      "source": "early race",
+      "target": "lizard",
+      "weight": 8
+    },
+    {
+      "source": "animals",
+      "target": "plants",
+      "weight": 7
+    },
+    {
+      "source": "stars",
+      "target": "sun",
+      "weight": 7
+    },
+    {
+      "source": "hunting",
+      "target": "moon",
+      "weight": 7
+    },
+    {
+      "source": "moon",
+      "target": "names",
+      "weight": 7
+    },
+    {
+      "source": "food",
+      "target": "jackal",
+      "weight": 7
+    },
+    {
+      "source": "ostrich",
+      "target": "springbok",
+      "weight": 7
+    },
+    {
+      "source": "springbok",
+      "target": "women",
+      "weight": 7
+    },
+    {
+      "source": "new maiden",
+      "target": "transformation",
+      "weight": 7
+    },
+    {
+      "source": "koranna",
+      "target": "personal history",
+      "weight": 7
+    },
+    {
+      "source": "hyena",
+      "target": "lion",
+      "weight": 7
+    },
+    {
+      "source": "children",
+      "target": "moon",
+      "weight": 7
+    },
+    {
+      "source": "child",
+      "target": "names",
+      "weight": 7
+    },
+    {
+      "source": "lynx",
+      "target": "springbok",
+      "weight": 7
+    },
+    {
+      "source": "bird",
+      "target": "early race",
+      "weight": 7
+    },
+    {
+      "source": "hunting",
+      "target": "transformation",
+      "weight": 7
+    },
+    {
+      "source": "hunting",
+      "target": "lynx",
+      "weight": 7
+    },
+    {
+      "source": "gemsbok",
+      "target": "ostrich",
+      "weight": 7
+    },
+    {
+      "source": "hyena",
+      "target": "names",
+      "weight": 7
+    },
+    {
+      "source": "jackal",
+      "target": "names",
+      "weight": 7
+    },
+    {
+      "source": "names",
+      "target": "porcupine",
+      "weight": 7
+    },
+    {
+      "source": "hunting",
+      "target": "plants",
+      "weight": 7
+    },
+    {
+      "source": "moon",
+      "target": "name",
+      "weight": 7
+    },
+    {
+      "source": "fight",
+      "target": "|kwammana",
+      "weight": 7
+    },
+    {
+      "source": "feathers",
+      "target": "fight",
+      "weight": 7
+    },
+    {
+      "source": "arrow",
+      "target": "hunting",
+      "weight": 7
+    },
+    {
+      "source": "food",
+      "target": "poison",
+      "weight": 7
+    },
+    {
+      "source": "lion",
+      "target": "speech",
+      "weight": 7
+    },
+    {
+      "source": "hunting",
+      "target": "|xam",
+      "weight": 7
+    },
+    {
+      "source": "names",
+      "target": "speech",
+      "weight": 7
+    },
+    {
+      "source": "child",
+      "target": "moon",
+      "weight": 7
+    },
+    {
+      "source": "hunting",
+      "target": "sun",
+      "weight": 7
+    },
+    {
+      "source": "food",
+      "target": "sun",
+      "weight": 7
+    },
+    {
+      "source": "children",
+      "target": "lion",
+      "weight": 7
+    },
+    {
+      "source": "fight",
+      "target": "ostrich",
+      "weight": 7
+    },
+    {
+      "source": "personal history",
+      "target": "rain",
+      "weight": 7
+    },
+    {
+      "source": "beasts of prey",
+      "target": "hunting",
+      "weight": 7
+    },
+    {
+      "source": "early race",
+      "target": "springbok",
+      "weight": 7
+    },
+    {
+      "source": "children",
+      "target": "personal history",
+      "weight": 7
+    },
+    {
+      "source": "healing",
+      "target": "plant",
+      "weight": 7
+    },
+    {
+      "source": "early race",
+      "target": "new maiden",
+      "weight": 7
+    },
+    {
+      "source": "new maiden",
+      "target": "rain",
+      "weight": 7
+    },
+    {
+      "source": "healing",
+      "target": "work",
+      "weight": 7
+    },
+    {
+      "source": "illness",
+      "target": "names",
+      "weight": 7
+    },
+    {
+      "source": "fight",
+      "target": "moon",
+      "weight": 7
+    },
+    {
+      "source": "illness",
+      "target": "rain",
+      "weight": 7
+    },
+    {
+      "source": "name",
+      "target": "sorcerer",
+      "weight": 7
+    },
+    {
+      "source": "dia!kwain",
+      "target": "education",
+      "weight": 7
+    },
+    {
+      "source": "rain",
+      "target": "teaching",
+      "weight": 7
+    },
+    {
+      "source": "education",
+      "target": "names",
+      "weight": 7
+    },
+    {
+      "source": "education",
+      "target": "springbok",
+      "weight": 7
+    },
+    {
+      "source": "respect",
+      "target": "sorcerers",
+      "weight": 7
+    },
+    {
+      "source": "curse",
+      "target": "early race",
+      "weight": 7
+    },
+    {
+      "source": "name",
+      "target": "porcupine",
+      "weight": 7
+    },
+    {
+      "source": "death",
+      "target": "song",
+      "weight": 7
+    },
+    {
+      "source": "address",
+      "target": "name",
+      "weight": 7
+    },
+    {
+      "source": "names",
+      "target": "painting",
+      "weight": 7
+    },
+    {
+      "source": "places",
+      "target": "|xam",
+      "weight": 7
+    },
+    {
+      "source": "bones",
+      "target": "hunting",
+      "weight": 7
+    },
+    {
+      "source": "blue crane",
+      "target": "early race",
+      "weight": 7
+    },
+    {
+      "source": "personal history",
+      "target": "vocabulary",
+      "weight": 6
+    },
+    {
+      "source": "dog",
+      "target": "hunting",
+      "weight": 6
+    },
+    {
+      "source": "hare",
+      "target": "hunting",
+      "weight": 6
+    },
+    {
+      "source": "animals",
+      "target": "hare",
+      "weight": 6
+    },
+    {
+      "source": "animals",
+      "target": "jackal",
+      "weight": 6
+    },
+    {
+      "source": "jackal",
+      "target": "springbok",
+      "weight": 6
+    },
+    {
+      "source": "stars",
+      "target": "transformation",
+      "weight": 6
+    },
+    {
+      "source": "food",
+      "target": "hyena",
+      "weight": 6
+    },
+    {
+      "source": "names",
+      "target": "tortoise",
+      "weight": 6
+    },
+    {
+      "source": "animals",
+      "target": "hyena",
+      "weight": 6
+    },
+    {
+      "source": "animals",
+      "target": "transformation",
+      "weight": 6
+    },
+    {
+      "source": "springbok",
+      "target": "transformation",
+      "weight": 6
+    },
+    {
+      "source": "early race",
+      "target": "quagga",
+      "weight": 6
+    },
+    {
+      "source": "early race",
+      "target": "ostrich",
+      "weight": 6
+    },
+    {
+      "source": "bird",
+      "target": "transformation",
+      "weight": 6
+    },
+    {
+      "source": "food",
+      "target": "transformation",
+      "weight": 6
+    },
+    {
+      "source": "food",
+      "target": "quagga",
+      "weight": 6
+    },
+    {
+      "source": "hyena",
+      "target": "lynx",
+      "weight": 6
+    },
+    {
+      "source": "gemsbok",
+      "target": "lion",
+      "weight": 6
+    },
+    {
+      "source": "jackal",
+      "target": "lion",
+      "weight": 6
+    },
+    {
+      "source": "beast of prey",
+      "target": "lion",
+      "weight": 6
+    },
+    {
+      "source": "food",
+      "target": "lion",
+      "weight": 6
+    },
+    {
+      "source": "bird",
+      "target": "food",
+      "weight": 6
+    },
+    {
+      "source": "moon",
+      "target": "|kaggen",
+      "weight": 6
+    },
+    {
+      "source": "porcupine",
+      "target": "|kaggen",
+      "weight": 6
+    },
+    {
+      "source": "eland",
+      "target": "ichneumon",
+      "weight": 6
+    },
+    {
+      "source": "dream",
+      "target": "ichneumon",
+      "weight": 6
+    },
+    {
+      "source": "dream",
+      "target": "names",
+      "weight": 6
+    },
+    {
+      "source": "|xam",
+      "target": "||kabbo",
+      "weight": 6
+    },
+    {
+      "source": "ostrich",
+      "target": "|kaggen",
+      "weight": 6
+    },
+    {
+      "source": "hunting",
+      "target": "ichneumon",
+      "weight": 6
+    },
+    {
+      "source": "food",
+      "target": "ichneumon",
+      "weight": 6
+    },
+    {
+      "source": "transformation",
+      "target": "|kaggen",
+      "weight": 6
+    },
+    {
+      "source": "lion",
+      "target": "springbok",
+      "weight": 6
+    },
+    {
+      "source": "speech",
+      "target": "springbok",
+      "weight": 6
+    },
+    {
+      "source": "death",
+      "target": "place",
+      "weight": 6
+    },
+    {
+      "source": "healing",
+      "target": "hunting",
+      "weight": 6
+    },
+    {
+      "source": "food",
+      "target": "healing",
+      "weight": 6
+    },
+    {
+      "source": "death",
+      "target": "work",
+      "weight": 6
+    },
+    {
+      "source": "food",
+      "target": "work",
+      "weight": 6
+    },
+    {
+      "source": "springbok",
+      "target": "weapons",
+      "weight": 6
+    },
+    {
+      "source": "moon",
+      "target": "stars",
+      "weight": 6
+    },
+    {
+      "source": "creation",
+      "target": "sun",
+      "weight": 6
+    },
+    {
+      "source": "name",
+      "target": "||kabbo",
+      "weight": 6
+    },
+    {
+      "source": "ichneumon",
+      "target": "wife",
+      "weight": 6
+    },
+    {
+      "source": "ostrich",
+      "target": "speech",
+      "weight": 6
+    },
+    {
+      "source": "fire",
+      "target": "food",
+      "weight": 6
+    },
+    {
+      "source": "food",
+      "target": "wind",
+      "weight": 6
+    },
+    {
+      "source": "fire",
+      "target": "hunting",
+      "weight": 6
+    },
+    {
+      "source": "children",
+      "target": "wind",
+      "weight": 6
+    },
+    {
+      "source": "hunting",
+      "target": "water",
+      "weight": 6
+    },
+    {
+      "source": "name",
+      "target": "stars",
+      "weight": 6
+    },
+    {
+      "source": "blue crane",
+      "target": "name",
+      "weight": 6
+    },
+    {
+      "source": "hunting",
+      "target": "hut",
+      "weight": 6
+    },
+    {
+      "source": "hut",
+      "target": "name",
+      "weight": 6
+    },
+    {
+      "source": "healing",
+      "target": "sneezing",
+      "weight": 6
+    },
+    {
+      "source": "creation",
+      "target": "name",
+      "weight": 6
+    },
+    {
+      "source": "cutting",
+      "target": "hunting",
+      "weight": 6
+    },
+    {
+      "source": "digging",
+      "target": "names",
+      "weight": 6
+    },
+    {
+      "source": "illness",
+      "target": "women",
+      "weight": 6
+    },
+    {
+      "source": "digging",
+      "target": "food",
+      "weight": 6
+    },
+    {
+      "source": "bushman rice",
+      "target": "names",
+      "weight": 6
+    },
+    {
+      "source": "early race",
+      "target": "rain",
+      "weight": 6
+    },
+    {
+      "source": "language",
+      "target": "speech",
+      "weight": 6
+    },
+    {
+      "source": "name",
+      "target": "poison",
+      "weight": 6
+    },
+    {
+      "source": "illness",
+      "target": "work",
+      "weight": 6
+    },
+    {
+      "source": "fight",
+      "target": "hare",
+      "weight": 6
+    },
+    {
+      "source": "death",
+      "target": "plant",
+      "weight": 6
+    },
+    {
+      "source": "creation",
+      "target": "death",
+      "weight": 6
+    },
+    {
+      "source": "hare",
+      "target": "speech",
+      "weight": 6
+    },
+    {
+      "source": "name",
+      "target": "new maiden",
+      "weight": 6
+    },
+    {
+      "source": "children",
+      "target": "illness",
+      "weight": 6
+    },
+    {
+      "source": "name",
+      "target": "|kwammana",
+      "weight": 6
+    },
+    {
+      "source": "rain",
+      "target": "respect",
+      "weight": 6
+    },
+    {
+      "source": "food",
+      "target": "respect",
+      "weight": 6
+    },
+    {
+      "source": "education",
+      "target": "work",
+      "weight": 6
+    },
+    {
+      "source": "beasts of prey",
+      "target": "education",
+      "weight": 6
+    },
+    {
+      "source": "fight",
+      "target": "name",
+      "weight": 6
+    },
+    {
+      "source": "animals",
+      "target": "fight",
+      "weight": 6
+    },
+    {
+      "source": "dia!kwain",
+      "target": "lion",
+      "weight": 6
+    },
+    {
+      "source": "porcupine",
+      "target": "rain",
+      "weight": 6
+    },
+    {
+      "source": "porcupine",
+      "target": "teaching",
+      "weight": 6
+    },
+    {
+      "source": "education",
+      "target": "porcupine",
+      "weight": 6
+    },
+    {
+      "source": "names",
+      "target": "teaching",
+      "weight": 6
+    },
+    {
+      "source": "illness",
+      "target": "teaching",
+      "weight": 6
+    },
+    {
+      "source": "illness",
+      "target": "respect",
+      "weight": 6
+    },
+    {
+      "source": "children",
+      "target": "respect",
+      "weight": 6
+    },
+    {
+      "source": "springbok",
+      "target": "teaching",
+      "weight": 6
+    },
+    {
+      "source": "sorcerers",
+      "target": "transformation",
+      "weight": 6
+    },
+    {
+      "source": "bones",
+      "target": "names",
+      "weight": 6
+    },
+    {
+      "source": "bones",
+      "target": "springbok",
+      "weight": 6
+    },
+    {
+      "source": "dia!kwain",
+      "target": "sorcerers",
+      "weight": 6
+    },
+    {
+      "source": "dia!kwain",
+      "target": "teaching",
+      "weight": 6
+    },
+    {
+      "source": "food",
+      "target": "stone",
+      "weight": 6
+    },
+    {
+      "source": "death",
+      "target": "early race",
+      "weight": 6
+    },
+    {
+      "source": "address",
+      "target": "rain",
+      "weight": 6
+    },
+    {
+      "source": "education",
+      "target": "stars",
+      "weight": 6
+    },
+    {
+      "source": "game",
+      "target": "respect",
+      "weight": 6
+    },
+    {
+      "source": "song",
+      "target": "stars",
+      "weight": 6
+    },
+    {
+      "source": "names",
+      "target": "rock art",
+      "weight": 6
+    },
+    {
+      "source": "dance",
+      "target": "name",
+      "weight": 6
+    },
+    {
+      "source": "name",
+      "target": "tree",
+      "weight": 6
+    },
+    {
+      "source": "names",
+      "target": "plant",
+      "weight": 6
+    },
+    {
+      "source": "transformation",
+      "target": "wind",
+      "weight": 6
+    },
+    {
+      "source": "lizard",
+      "target": "name",
+      "weight": 6
+    },
+    {
+      "source": "teaching",
+      "target": "|hanǂkass'o",
+      "weight": 6
+    },
+    {
+      "source": "education",
+      "target": "|hanǂkass'o",
+      "weight": 6
+    },
+    {
+      "source": "rain",
+      "target": "|hanǂkass'o",
+      "weight": 6
+    },
+    {
+      "source": "dutch",
+      "target": "genealogy",
+      "weight": 5
+    },
+    {
+      "source": "food",
+      "target": "marriage",
+      "weight": 5
+    },
+    {
+      "source": "hyena",
+      "target": "song",
+      "weight": 5
+    },
+    {
+      "source": "animals",
+      "target": "personal history",
+      "weight": 5
+    },
+    {
+      "source": "jackal",
+      "target": "ostrich",
+      "weight": 5
+    },
+    {
+      "source": "ostrich",
+      "target": "personal history",
+      "weight": 5
+    },
+    {
+      "source": "healing",
+      "target": "lion",
+      "weight": 5
+    },
+    {
+      "source": "blue crane",
+      "target": "names",
+      "weight": 5
+    },
+    {
+      "source": "marriage",
+      "target": "transformation",
+      "weight": 5
+    },
+    {
+      "source": "names",
+      "target": "tree",
+      "weight": 5
+    },
+    {
+      "source": "lion",
+      "target": "tortoise",
+      "weight": 5
+    },
+    {
+      "source": "lynx",
+      "target": "marriage",
+      "weight": 5
+    },
+    {
+      "source": "lynx",
+      "target": "name",
+      "weight": 5
+    },
+    {
+      "source": "marriage",
+      "target": "springbok",
+      "weight": 5
+    },
+    {
+      "source": "animals",
+      "target": "quagga",
+      "weight": 5
+    },
+    {
+      "source": "hunting",
+      "target": "marriage",
+      "weight": 5
+    },
+    {
+      "source": "early race",
+      "target": "lynx",
+      "weight": 5
+    },
+    {
+      "source": "gemsbok",
+      "target": "quagga",
+      "weight": 5
+    },
+    {
+      "source": "names",
+      "target": "quagga",
+      "weight": 5
+    },
+    {
+      "source": "food",
+      "target": "lynx",
+      "weight": 5
+    },
+    {
+      "source": "hyena",
+      "target": "ostrich",
+      "weight": 5
+    },
+    {
+      "source": "lion",
+      "target": "ostrich",
+      "weight": 5
+    },
+    {
+      "source": "eland",
+      "target": "names",
+      "weight": 5
+    },
+    {
+      "source": "beast of prey",
+      "target": "hunting",
+      "weight": 5
+    },
+    {
+      "source": "beast of prey",
+      "target": "food",
+      "weight": 5
+    },
+    {
+      "source": "creation",
+      "target": "|kaggen",
+      "weight": 5
+    },
+    {
+      "source": "porcupine",
+      "target": "|kwammana",
+      "weight": 5
+    },
+    {
+      "source": "ichneumon",
+      "target": "porcupine",
+      "weight": 5
+    },
+    {
+      "source": "names",
+      "target": "wife",
+      "weight": 5
+    },
+    {
+      "source": "feathers",
+      "target": "|kwammana",
+      "weight": 5
+    },
+    {
+      "source": "song",
+      "target": "|kaggen",
+      "weight": 5
+    },
+    {
+      "source": "dream",
+      "target": "things",
+      "weight": 5
+    },
+    {
+      "source": "things",
+      "target": "wife",
+      "weight": 5
+    },
+    {
+      "source": "speech",
+      "target": "wife",
+      "weight": 5
+    },
+    {
+      "source": "feathers",
+      "target": "names",
+      "weight": 5
+    },
+    {
+      "source": "speech",
+      "target": "|xam",
+      "weight": 5
+    },
+    {
+      "source": "arrows",
+      "target": "death",
+      "weight": 5
+    },
+    {
+      "source": "food",
+      "target": "speech",
+      "weight": 5
+    },
+    {
+      "source": "place",
+      "target": "work",
+      "weight": 5
+    },
+    {
+      "source": "names",
+      "target": "things",
+      "weight": 5
+    },
+    {
+      "source": "food",
+      "target": "weapons",
+      "weight": 5
+    },
+    {
+      "source": "animals",
+      "target": "moon",
+      "weight": 5
+    },
+    {
+      "source": "beasts of prey",
+      "target": "springbok",
+      "weight": 5
+    },
+    {
+      "source": "dream",
+      "target": "speech",
+      "weight": 5
+    },
+    {
+      "source": "name",
+      "target": "|xam",
+      "weight": 5
+    },
+    {
+      "source": "springbok",
+      "target": "|xam",
+      "weight": 5
+    },
+    {
+      "source": "dream",
+      "target": "springbok",
+      "weight": 5
+    },
+    {
+      "source": "dream",
+      "target": "lion",
+      "weight": 5
+    },
+    {
+      "source": "hunting",
+      "target": "||kabbo",
+      "weight": 5
+    },
+    {
+      "source": "personal history",
+      "target": "speech",
+      "weight": 5
+    },
+    {
+      "source": "fight",
+      "target": "food",
+      "weight": 5
+    },
+    {
+      "source": "feathers",
+      "target": "wife",
+      "weight": 5
+    },
+    {
+      "source": "women",
+      "target": "work",
+      "weight": 5
+    },
+    {
+      "source": "fight",
+      "target": "hunting",
+      "weight": 5
+    },
+    {
+      "source": "wife",
+      "target": "|kwammana",
+      "weight": 5
+    },
+    {
+      "source": "springbok",
+      "target": "|kaggen",
+      "weight": 5
+    },
+    {
+      "source": "plants",
+      "target": "rain",
+      "weight": 5
+    },
+    {
+      "source": "fire",
+      "target": "springbok",
+      "weight": 5
+    },
+    {
+      "source": "springbok",
+      "target": "stars",
+      "weight": 5
+    },
+    {
+      "source": "stars",
+      "target": "wind",
+      "weight": 5
+    },
+    {
+      "source": "weapons",
+      "target": "|xam",
+      "weight": 5
+    },
+    {
+      "source": "death",
+      "target": "water",
+      "weight": 5
+    },
+    {
+      "source": "early race",
+      "target": "stars",
+      "weight": 5
+    },
+    {
+      "source": "early race",
+      "target": "sun",
+      "weight": 5
+    },
+    {
+      "source": "early race",
+      "target": "hut",
+      "weight": 5
+    },
+    {
+      "source": "hut",
+      "target": "new maiden",
+      "weight": 5
+    },
+    {
+      "source": "illness",
+      "target": "sneezing",
+      "weight": 5
+    },
+    {
+      "source": "water",
+      "target": "|kaggen",
+      "weight": 5
+    },
+    {
+      "source": "ichneumon",
+      "target": "water",
+      "weight": 5
+    },
+    {
+      "source": "fight",
+      "target": "water",
+      "weight": 5
+    },
+    {
+      "source": "things",
+      "target": "water",
+      "weight": 5
+    },
+    {
+      "source": "language",
+      "target": "name",
+      "weight": 5
+    },
+    {
+      "source": "healing",
+      "target": "names",
+      "weight": 5
+    },
+    {
+      "source": "plants",
+      "target": "women",
+      "weight": 5
+    },
+    {
+      "source": "education",
+      "target": "healing",
+      "weight": 5
+    },
+    {
+      "source": "bushman rice",
+      "target": "name",
+      "weight": 5
+    },
+    {
+      "source": "address",
+      "target": "food",
+      "weight": 5
+    },
+    {
+      "source": "game",
+      "target": "names",
+      "weight": 5
+    },
+    {
+      "source": "koranna",
+      "target": "weapons",
+      "weight": 5
+    },
+    {
+      "source": "rain",
+      "target": "tortoise",
+      "weight": 5
+    },
+    {
+      "source": "food",
+      "target": "tortoise",
+      "weight": 5
+    },
+    {
+      "source": "animals",
+      "target": "tortoise",
+      "weight": 5
+    },
+    {
+      "source": "creation",
+      "target": "hare",
+      "weight": 5
+    },
+    {
+      "source": "creation",
+      "target": "fight",
+      "weight": 5
+    },
+    {
+      "source": "creation",
+      "target": "speech",
+      "weight": 5
+    },
+    {
+      "source": "illness",
+      "target": "water",
+      "weight": 5
+    },
+    {
+      "source": "name",
+      "target": "things",
+      "weight": 5
+    },
+    {
+      "source": "name",
+      "target": "stone",
+      "weight": 5
+    },
+    {
+      "source": "kaross",
+      "target": "name",
+      "weight": 5
+    },
+    {
+      "source": "early race",
+      "target": "teaching",
+      "weight": 5
+    },
+    {
+      "source": "name",
+      "target": "tortoise",
+      "weight": 5
+    },
+    {
+      "source": "respect",
+      "target": "water",
+      "weight": 5
+    },
+    {
+      "source": "rain",
+      "target": "sorcerer",
+      "weight": 5
+    },
+    {
+      "source": "education",
+      "target": "transformation",
+      "weight": 5
+    },
+    {
+      "source": "dia!kwain",
+      "target": "food",
+      "weight": 5
+    },
+    {
+      "source": "animals",
+      "target": "teaching",
+      "weight": 5
+    },
+    {
+      "source": "children",
+      "target": "porcupine",
+      "weight": 5
+    },
+    {
+      "source": "early race",
+      "target": "lions",
+      "weight": 5
+    },
+    {
+      "source": "beast of prey",
+      "target": "name",
+      "weight": 5
+    },
+    {
+      "source": "name",
+      "target": "quagga",
+      "weight": 5
+    },
+    {
+      "source": "beasts of prey",
+      "target": "teaching",
+      "weight": 5
+    },
+    {
+      "source": "dia!kwain",
+      "target": "springbok",
+      "weight": 5
+    },
+    {
+      "source": "gemsbok",
+      "target": "name",
+      "weight": 5
+    },
+    {
+      "source": "dance",
+      "target": "sorcerers",
+      "weight": 5
+    },
+    {
+      "source": "rock art",
+      "target": "sorcerers",
+      "weight": 5
+    },
+    {
+      "source": "personal history",
+      "target": "respect",
+      "weight": 5
+    },
+    {
+      "source": "dutch",
+      "target": "place",
+      "weight": 5
+    },
+    {
+      "source": "respect",
+      "target": "springbok",
+      "weight": 5
+    },
+    {
+      "source": "food",
+      "target": "sorcerers",
+      "weight": 5
+    },
+    {
+      "source": "education",
+      "target": "women",
+      "weight": 5
+    },
+    {
+      "source": "early race",
+      "target": "plant",
+      "weight": 5
+    },
+    {
+      "source": "early race",
+      "target": "speech",
+      "weight": 5
+    },
+    {
+      "source": "curse",
+      "target": "death",
+      "weight": 5
+    },
+    {
+      "source": "animals",
+      "target": "death",
+      "weight": 5
+    },
+    {
+      "source": "place",
+      "target": "wind",
+      "weight": 5
+    },
+    {
+      "source": "sorcerers",
+      "target": "stars",
+      "weight": 5
+    },
+    {
+      "source": "poison",
+      "target": "springbok",
+      "weight": 5
+    },
+    {
+      "source": "language",
+      "target": "names",
+      "weight": 5
+    },
+    {
+      "source": "death",
+      "target": "genealogy",
+      "weight": 5
+    },
+    {
+      "source": "healing",
+      "target": "sorcerers",
+      "weight": 5
+    },
+    {
+      "source": "genealogy",
+      "target": "|hanǂkass'o",
+      "weight": 5
+    },
+    {
+      "source": "names",
+      "target": "|kwammana",
+      "weight": 5
+    },
+    {
+      "source": "ichneumon",
+      "target": "name",
+      "weight": 5
+    },
+    {
+      "source": "springbok",
+      "target": "|hanǂkass'o",
+      "weight": 5
+    },
+    {
+      "source": "early race",
+      "target": "wind",
+      "weight": 5
+    },
+    {
+      "source": "bird",
+      "target": "|hanǂkass'o",
+      "weight": 5
+    },
+    {
+      "source": "address",
+      "target": "hunting",
+      "weight": 5
+    },
+    {
+      "source": "lizard",
+      "target": "names",
+      "weight": 5
+    },
+    {
+      "source": "clouds",
+      "target": "names",
+      "weight": 5
+    },
+    {
+      "source": "bones",
+      "target": "respect",
+      "weight": 5
+    },
+    {
+      "source": "children",
+      "target": "|hanǂkass'o",
+      "weight": 5
+    }
+  ]
+}

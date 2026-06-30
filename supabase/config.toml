@@ -1,0 +1,10 @@
+project_id = "bleek-lloyd-rag"
+
+[functions.chat]
+verify_jwt = true
+
+[functions.search]
+verify_jwt = true
+
+[functions.speak]
+verify_jwt = true
