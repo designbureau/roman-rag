@@ -60,7 +60,6 @@ async function main() {
       filter_category: null,
       filter_source: null,
       filter_mantis: null,
-      filter_language: "xam",
     });
     if (error) throw new Error(`search_chunks: ${error.message}`);
 
