@@ -47,8 +47,14 @@ export const TRANSCRIBE_FN_URL =
  * All the auth plumbing (Supabase client, AuthProvider, sign-in
  * methods) stays mounted and live regardless — this only controls
  * whether the gate component blocks rendering.
+ *
+ * Currently FALSE for the vertical slice: there is no auth/profiles
+ * setup yet (the profiles + persona_config migrations are deferred),
+ * so the site is open and the /admin route stays effectively disabled
+ * (it needs a signed-in is_admin user). Flip back to `true` once the
+ * auth layer lands.
  */
-export const AUTH_ENABLED = true;
+export const AUTH_ENABLED = false;
 
 /**
  * Skip the auth gate when running under `pnpm dev` (Vite sets
