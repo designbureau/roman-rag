@@ -267,7 +267,8 @@ reconstructed Tiro/Atticus voices must be labelled as reconstruction.
 - ✅ Full scaffold landed (commit `86c8070`): monorepo skeleton, Layer-1 type/schema renames (`latin_text`, `cicero_ref`, addressee/genre, `SOURCES`, Roman `BuiltinPersona` set), `.env.example`.
 - ✅ **Phase-2 ingestion (production) — Letters to Atticus** is implemented and verified on live Perseus data (see below).
 - ✅ **Supabase project provisioned** — `roman-rag`, ref **`zypnwehtzzwxlepyrbjh`**, org Swanky, region **eu-west-2**, Postgres 17 + pgvector. Data-plane migrations applied; corpus tables RLS-locked (service-role-only). URL/anon key written to gitignored `.env`.
-- ⏭ **Next: add the three secrets, then `pnpm embed` the ad Atticum slice + rewrite Layer-3 personas** (`classicist` + `cicero`), then deploy `chat`.
+- ✅ **ad Atticum embedded + retrieval verified** — `pnpm embed` loaded 460 stories / **1214 chunks** (OpenAI `text-embedding-3-small`). Cicero eval fixture (`packages/cli/src/eval/queries.json`) scores **Recall@10 = 1.000, MRR@10 = 1.000** (5/5, all rank 1): e.g. "death of my cousin Lucius" → `Att. 1.5`, "conspiracy of Catiline" → `Att. 1.16`. **The vertical-slice data path (scrape → embed → pgvector) is proven end-to-end.**
+- ⏭ **Next: rewrite Layer-3 personas** (`classicist` + `cicero`), write the deferred `profiles`/`handle_new_user` + Cicero `language_groups` + Roman-ensemble `persona_config` migrations, then deploy `chat` for the grounded/cited/in-voice proof.
 
 **Supabase provisioning — applied vs deferred (this session):**
 - Applied (data plane): `initial` (stories, chunks, `search_chunks`, vector ext), `images` (empty table, kept so the RLS migration resolves), `search_chunks_cicero_ref`, `enable_rls_corpus_tables`, `pin_search_fn_search_path`.
