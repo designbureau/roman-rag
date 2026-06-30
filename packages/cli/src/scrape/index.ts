@@ -8,11 +8,13 @@ import { fileURLToPath } from "node:url";
 
 import type { Source, Story } from "@roman/shared";
 
+import { scrapeLettersAtt } from "./sources/cicero-letters-att.js";
+
 // Cicero source modules are added here as they are implemented. The Perseus
 // `canonical-latinLit` (phi0474) corpus is the primary source; each module
 // parses paired Latin/English TEI editions and aligns them by canonical
 // citation ref (see docs/cicero-archive-plan.md, §4). Expected modules:
-//   ./sources/cicero-letters-att.js  → "letters-att"
+//   ./sources/cicero-letters-att.js  → "letters-att"  (DONE — vertical slice)
 //   ./sources/cicero-letters-fam.js  → "letters-fam"
 //   ./sources/cicero-orations.js     → "orations"
 //   ./sources/cicero-philosophica.js → per-work treatise sources
@@ -21,7 +23,7 @@ import type { Source, Story } from "@roman/shared";
 type Scraper = () => Promise<Story[]>;
 
 const SCRAPERS: Record<string, Scraper> = {
-  // populated as Cicero source modules land
+  "letters-att": scrapeLettersAtt,
 };
 
 const DATA_DIR = path.resolve(
