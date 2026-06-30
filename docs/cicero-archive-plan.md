@@ -264,12 +264,25 @@ reconstructed Tiro/Atticus voices must be labelled as reconstruction.
 - ✅ Architecture mapped; plan approved; key design decisions locked (§2).
 - ✅ Linchpin de-risked on real data — Perseus parallel-text alignment works (§4): 92.8% coverage on ad Atticum, with the production refinements identified.
 - ✅ Standalone repo created: **`designbureau/roman-rag`**.
-- ⏭ **Next: full scaffold** into `designbureau/roman-rag`.
+- ✅ Full scaffold landed (commit `86c8070`): monorepo skeleton, Layer-1 type/schema renames (`latin_text`, `cicero_ref`, addressee/genre, `SOURCES`, Roman `BuiltinPersona` set), `.env.example`.
+- ✅ **Phase-2 ingestion (production) — Letters to Atticus** is implemented and verified on live Perseus data (see below).
+- ⏭ **Next: embed the ad Atticum slice + rewrite Layer-3 personas** (`classicist` + `cicero`), then deploy `chat` for the grounded/cited/parallel-text proof.
+
+**Done in this session — ad Atticum ingestion (Layer 2):**
+- `scrape/sources/perseus-tei.ts` — TEI loader + `cleanText` (drops `<note>/<head>/<epigraph>/<argument>/<pb>`, turns `<milestone unit="para"/>` into paragraph breaks) + `scaifeUrl`.
+- `scrape/sources/work-registry.ts` — edition discovery from `__cts__.xml` (no hardcoded `lat2/eng1`; derives TEI filenames from the `<ti:edition>`/`<ti:translation>` URNs). `ATTICUS` work descriptor.
+- `scrape/sources/cicero-letters-att.ts` — whole-letter alignment on `(book, case-normalised letter)`; "never drop a side" (union of both editions); emits parallel `Story` records with `latin_text`/`english_text`/`cicero_ref`/addressee/genre/translator/edition.
+- Registered as `letters-att` in `scrape/index.ts`; unit-tested in `cicero-letters-att.test.ts` (10 tests).
+- **Verified:** `pnpm scrape --source=letters-att` → `Latin 446  English 428  aligned 414 (92.8%)`; `data/stories.json` has 460 unique stories (414 fully parallel), 0 empty, no leaked editorial argument/headnote, sub-letters (`Att. 10.12A`) handled.
+
+**Known pre-existing scaffold debt (NOT from this slice; in not-yet-adapted layers):**
+- `packages/cli/src/db/migrate.ts` fails typecheck — it uses a `postgres`-style tagged-template `sql` but `db/client.ts` was ported to the Supabase REST client. It is a local-dev convenience only (prod migrations go via the Supabase MCP `apply_migration`); decide later whether to delete it or reimplement against a direct PG connection.
+- `packages/cli/src/topics/build.ts` fails typecheck — still Bleek-Lloyd Layer-4 analytics (parses `"Indexed under:"`/notebook text absent from the Cicero corpus). Will be replaced by the LLM theme-tagging pass (Layer 4).
 
 **Immediate next step:**
-1. Add `designbureau/roman-rag` to the session and clone it.
-2. **Scaffold the full monorepo** into it: copy `packages/`, `supabase/`, `web/`, `docs/` from `bleek-lloyd-rag/`; apply the Layer-1 type/schema renames (§3); set up `package.json` workspaces and `.env.example`; drop |xam-specific data/scrapers; commit & push.
-3. Proceed to the ad Atticum vertical slice (Phase 2) using the validated alignment (§4).
+1. Provision the Supabase project + `OPENAI_API_KEY`/`ANTHROPIC_API_KEY`; run the forked migrations (Supabase MCP `apply_migration`).
+2. `pnpm embed` the ad Atticum `stories.json`; spot-check `search_chunks` (e.g. "death of my cousin Lucius" → `Att. 1.5`).
+3. Rewrite Layer-3 personas to the Roman ensemble (start with `classicist` + `cicero`; rewrite `SHARED_RULES`), replace the Bleek-Lloyd built-ins in `supabase/functions/chat/index.ts`, deploy `chat`, and confirm grounded, in-voice, parallel-text answers (§5 verification).
 
 > Reference: the long-form approved plan also lives at
 > `/root/.claude/plans/i-d-like-to-create-cosmic-rainbow.md` in the originating
