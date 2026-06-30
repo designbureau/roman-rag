@@ -1,78 +1,27 @@
 [
   {
-    "query": "tell me about the eland",
-    "expect_story_ids": [
-      "dblc-stories__lucy-xam-819-doings-of-the-mantis-when-the-eland-has-been-wound",
-      "dblc-stories__lucy-xam-478-further-ceremonies-in-cutting-up-eland"
-    ],
-    "note": "thematic: eland / Mantis"
+    "query": "the death of my cousin Lucius",
+    "expect_story_ids": ["letters-att__1-5"],
+    "note": "specific: Att. 1.5 opens on the death of Lucius Cicero"
   },
   {
-    "query": "the moon and the hare, and the origin of death",
-    "expect_story_ids": [
-      "dblc-stories__wilhelm-114-moon-and-hare-the-origin-of-death",
-      "dblc-stories__lucy-xam-464-a-prayer-addressed-to-the-moon-and-another-version",
-      "dblc-stories__wilhelm-66-moon-and-little-hare-includes-the-moon-s-speech"
-    ],
-    "note": "thematic: moon / hare / death"
+    "query": "the conspiracy of Catiline and my consulship",
+    "expect_story_ids": ["letters-att__1-16", "letters-att__1-14", "letters-att__1-19"],
+    "note": "thematic: consular-era political letters"
   },
   {
-    "query": "a woman of the early race carried off by the rain bull",
-    "expect_story_ids": [
-      "dblc-stories__lucy-xam-741-a-young-woman-of-the-early-race-of-people-carried-",
-      "specimens-1911__a-woman-of-the-early-race-and-the-rain-bull",
-      "dblc-stories__lucy-xam-809-notes-on-rock-painting-copy-no-8-the-rain-and-the-"
-    ],
-    "note": "thematic: rain bull"
+    "query": "I am thinking of buying books for my library",
+    "expect_story_ids": ["letters-att__1-7", "letters-att__1-10", "letters-att__4-5"],
+    "note": "thematic: the early book-buying letters to Atticus"
   },
   {
-    "query": "a prayer to the new moon",
-    "expect_story_ids": [
-      "specimens-1911__prayer-to-the-young-moon",
-      "dblc-stories__lucy-xam-162-prayers-to-the-moon",
-      "dblc-stories__lucy-xam-464-a-prayer-addressed-to-the-moon-and-another-version"
-    ],
-    "note": "cross-source: Specimens + DBLC"
+    "query": "my brother Quintus and his wife Pomponia are quarrelling",
+    "expect_story_ids": ["letters-att__1-6", "letters-att__14-10", "letters-att__15-29"],
+    "note": "thematic: Quintus / Pomponia domestic friction"
   },
   {
-    "query": "how do the people make rain",
-    "expect_story_ids": [
-      "dblc-stories__wilhelm-125-rainmaking",
-      "dblc-stories__lucy-xam-393-rainmaking-a-version-by-dia-kwain",
-      "dblc-stories__lucy-xam-580-an-account-of-the-rain-s-things-or-khoa-ka-kerri-s",
-      "dblc-stories__lucy-xam-591-rainmaking-when-the-wind-is-in-the-north"
-    ],
-    "note": "thematic: rainmaking"
-  },
-  {
-    "query": "the story of the wind",
-    "expect_story_ids": [
-      "dblc-stories__lucy-xam-646-notes-to-the-story-of-the-wind",
-      "dblc-stories__lucy-xam-694-names-for-certain-winds",
-      "dblc-stories__lucy-xam-760-clouds-and-wind"
-    ],
-    "note": "thematic: wind"
-  },
-  {
-    "query": "the wind blows away a dead person's footprints",
-    "expect_story_ids": [
-      "dblc-stories__lucy-xam-879-rain-washes-out-a-dead-man-s-footsteps"
-    ],
-    "note": "specific: death / footprints"
-  },
-  {
-    "query": "what did ǁkabbo say about the moon",
-    "expect_story_ids": [
-      "dblc-stories__lucy-xam-162-prayers-to-the-moon",
-      "dblc-stories__lucy-xam-302-jantje-tooren-told-by-his-father-not-to-look-towar"
-    ],
-    "note": "informant-shaped: ǁkabbo + moon (tests provenance retrieval)"
-  },
-  {
-    "query": "tobacco eats up your brains",
-    "expect_story_ids": [
-      "dblc-stories__lucy-xam-846-a-person-who-takes-snuff-tobacco-eats-up-his-brain"
-    ],
-    "note": "lexical: specific phrase"
+    "query": "send me news from Rome, I am desperate for letters",
+    "expect_story_ids": ["letters-att__6-3", "letters-att__5-20", "letters-att__3-11"],
+    "note": "thematic: requests for news / correspondence"
   }
 ]
