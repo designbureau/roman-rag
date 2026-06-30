@@ -1,0 +1,32 @@
+{
+  "name": "@roman/cli",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "scrape": "tsx src/scrape/index.ts",
+    "embed": "tsx src/embed/index.ts",
+    "topics": "tsx src/topics/build.ts",
+    "eval": "tsx src/eval/run.ts",
+    "voice-profiles": "tsx src/topics/voice-profiles.ts",
+    "migrate": "tsx src/db/migrate.ts",
+    "test": "vitest run",
+    "typecheck": "tsc --noEmit"
+  },
+  "//scripts": "migrate is for local dev parity (e.g. against supabase start). Production migrations are applied via the Supabase MCP apply_migration call.",
+  "dependencies": {
+    "@roman/shared": "workspace:*",
+    "@supabase/supabase-js": "^2.45.4",
+    "cheerio": "^1.0.0",
+    "dotenv": "^16.4.5",
+    "openai": "^4.68.0",
+    "undici": "^6.20.1",
+    "zod": "^3.23.8"
+  },
+  "devDependencies": {
+    "@types/node": "^22.7.5",
+    "tsx": "^4.19.1",
+    "typescript": "^5.6.3",
+    "vitest": "^2.1.2"
+  }
+}

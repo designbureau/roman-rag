@@ -1,0 +1,28 @@
+{
+  "name": "roman-rag",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "packageManager": "pnpm@9.12.0",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "scrape": "pnpm --filter @roman/cli scrape",
+    "embed": "pnpm --filter @roman/cli embed",
+    "topics": "pnpm --filter @roman/cli topics",
+    "eval": "pnpm --filter @roman/cli eval",
+    "voice-profiles": "pnpm --filter @roman/cli voice-profiles",
+    "test": "pnpm --filter @roman/cli test",
+    "dev": "pnpm --filter @roman/web dev",
+    "build:web": "pnpm --filter @roman/web build",
+    "functions:serve": "supabase functions serve",
+    "functions:deploy:chat": "supabase functions deploy chat",
+    "functions:deploy:search": "supabase functions deploy search",
+    "typecheck": "pnpm -r typecheck"
+  },
+  "devDependencies": {
+    "typescript": "^5.6.3",
+    "@types/node": "^22.7.5"
+  }
+}

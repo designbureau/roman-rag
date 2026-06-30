@@ -1,0 +1,1232 @@
+{
+  "generated_at": "2026-05-23T12:04:04.682Z",
+  "total_stories": 1263,
+  "informants": [
+    {
+      "id": "ǀhanǂkass'o",
+      "count": 331
+    },
+    {
+      "id": "Diaǃkwain",
+      "count": 161
+    },
+    {
+      "id": "ǁkabbo",
+      "count": 164
+    },
+    {
+      "id": "ǀa!kunta",
+      "count": 37
+    },
+    {
+      "id": "ǂkasin",
+      "count": 30
+    },
+    {
+      "id": "ǃkweiten ta ǁken",
+      "count": 20
+    }
+  ],
+  "terms": [
+    {
+      "term": "names",
+      "count": 228,
+      "byInformant": {
+        "ǀhanǂkass'o": 116,
+        "Diaǃkwain": 23,
+        "ǁkabbo": 49,
+        "ǀa!kunta": 11,
+        "ǂkasin": 13,
+        "ǃkweiten ta ǁken": 3
+      }
+    },
+    {
+      "term": "name",
+      "count": 193,
+      "byInformant": {
+        "ǀhanǂkass'o": 107,
+        "Diaǃkwain": 52,
+        "ǁkabbo": 21,
+        "ǀa!kunta": 0,
+        "ǂkasin": 3,
+        "ǃkweiten ta ǁken": 6
+      }
+    },
+    {
+      "term": "hunting",
+      "count": 133,
+      "byInformant": {
+        "ǀhanǂkass'o": 51,
+        "Diaǃkwain": 32,
+        "ǁkabbo": 42,
+        "ǀa!kunta": 3,
+        "ǂkasin": 4,
+        "ǃkweiten ta ǁken": 1
+      }
+    },
+    {
+      "term": "personal history",
+      "count": 131,
+      "byInformant": {
+        "ǀhanǂkass'o": 38,
+        "Diaǃkwain": 40,
+        "ǁkabbo": 21,
+        "ǀa!kunta": 5,
+        "ǂkasin": 8,
+        "ǃkweiten ta ǁken": 4
+      }
+    },
+    {
+      "term": "food",
+      "count": 120,
+      "byInformant": {
+        "ǀhanǂkass'o": 54,
+        "Diaǃkwain": 27,
+        "ǁkabbo": 28,
+        "ǀa!kunta": 6,
+        "ǂkasin": 3,
+        "ǃkweiten ta ǁken": 2
+      }
+    },
+    {
+      "term": "death",
+      "count": 99,
+      "byInformant": {
+        "ǀhanǂkass'o": 26,
+        "Diaǃkwain": 42,
+        "ǁkabbo": 18,
+        "ǀa!kunta": 4,
+        "ǂkasin": 6,
+        "ǃkweiten ta ǁken": 1
+      }
+    },
+    {
+      "term": "early race",
+      "count": 85,
+      "byInformant": {
+        "ǀhanǂkass'o": 53,
+        "Diaǃkwain": 12,
+        "ǁkabbo": 12,
+        "ǀa!kunta": 2,
+        "ǂkasin": 0,
+        "ǃkweiten ta ǁken": 5
+      }
+    },
+    {
+      "term": "springbok",
+      "count": 78,
+      "byInformant": {
+        "ǀhanǂkass'o": 40,
+        "Diaǃkwain": 11,
+        "ǁkabbo": 21,
+        "ǀa!kunta": 4,
+        "ǂkasin": 1,
+        "ǃkweiten ta ǁken": 1
+      }
+    },
+    {
+      "term": "rain",
+      "count": 76,
+      "byInformant": {
+        "ǀhanǂkass'o": 42,
+        "Diaǃkwain": 20,
+        "ǁkabbo": 9,
+        "ǀa!kunta": 0,
+        "ǂkasin": 2,
+        "ǃkweiten ta ǁken": 3
+      }
+    },
+    {
+      "term": "lion",
+      "count": 69,
+      "byInformant": {
+        "ǀhanǂkass'o": 18,
+        "Diaǃkwain": 15,
+        "ǁkabbo": 17,
+        "ǀa!kunta": 11,
+        "ǂkasin": 4,
+        "ǃkweiten ta ǁken": 4
+      }
+    },
+    {
+      "term": "animals",
+      "count": 64,
+      "byInformant": {
+        "ǀhanǂkass'o": 17,
+        "Diaǃkwain": 15,
+        "ǁkabbo": 23,
+        "ǀa!kunta": 6,
+        "ǂkasin": 3,
+        "ǃkweiten ta ǁken": 0
+      }
+    },
+    {
+      "term": "education",
+      "count": 63,
+      "byInformant": {
+        "ǀhanǂkass'o": 15,
+        "Diaǃkwain": 43,
+        "ǁkabbo": 2,
+        "ǀa!kunta": 0,
+        "ǂkasin": 0,
+        "ǃkweiten ta ǁken": 2
+      }
+    },
+    {
+      "term": "|kaggen",
+      "count": 62,
+      "byInformant": {
+        "ǀhanǂkass'o": 24,
+        "Diaǃkwain": 12,
+        "ǁkabbo": 23,
+        "ǀa!kunta": 2,
+        "ǂkasin": 0,
+        "ǃkweiten ta ǁken": 1
+      }
+    },
+    {
+      "term": "children",
+      "count": 61,
+      "byInformant": {
+        "ǀhanǂkass'o": 29,
+        "Diaǃkwain": 14,
+        "ǁkabbo": 14,
+        "ǀa!kunta": 1,
+        "ǂkasin": 0,
+        "ǃkweiten ta ǁken": 1
+      }
+    },
+    {
+      "term": "words and sentences",
+      "count": 59,
+      "byInformant": {
+        "ǀhanǂkass'o": 19,
+        "Diaǃkwain": 4,
+        "ǁkabbo": 7,
+        "ǀa!kunta": 8,
+        "ǂkasin": 5,
+        "ǃkweiten ta ǁken": 3
+      }
+    },
+    {
+      "term": "teaching",
+      "count": 54,
+      "byInformant": {
+        "ǀhanǂkass'o": 14,
+        "Diaǃkwain": 37,
+        "ǁkabbo": 0,
+        "ǀa!kunta": 0,
+        "ǂkasin": 0,
+        "ǃkweiten ta ǁken": 2
+      }
+    },
+    {
+      "term": "transformation",
+      "count": 49,
+      "byInformant": {
+        "ǀhanǂkass'o": 21,
+        "Diaǃkwain": 12,
+        "ǁkabbo": 11,
+        "ǀa!kunta": 5,
+        "ǂkasin": 0,
+        "ǃkweiten ta ǁken": 0
+      }
+    },
+    {
+      "term": "vocabulary",
+      "count": 47,
+      "byInformant": {
+        "ǀhanǂkass'o": 18,
+        "Diaǃkwain": 1,
+        "ǁkabbo": 7,
+        "ǀa!kunta": 8,
+        "ǂkasin": 6,
+        "ǃkweiten ta ǁken": 1
+      }
+    },
+    {
+      "term": "wind",
+      "count": 47,
+      "byInformant": {
+        "ǀhanǂkass'o": 29,
+        "Diaǃkwain": 8,
+        "ǁkabbo": 8,
+        "ǀa!kunta": 1,
+        "ǂkasin": 1,
+        "ǃkweiten ta ǁken": 0
+      }
+    },
+    {
+      "term": "song",
+      "count": 46,
+      "byInformant": {
+        "ǀhanǂkass'o": 23,
+        "Diaǃkwain": 7,
+        "ǁkabbo": 10,
+        "ǀa!kunta": 4,
+        "ǂkasin": 0,
+        "ǃkweiten ta ǁken": 0
+      }
+    },
+    {
+      "term": "illness",
+      "count": 42,
+      "byInformant": {
+        "ǀhanǂkass'o": 17,
+        "Diaǃkwain": 18,
+        "ǁkabbo": 2,
+        "ǀa!kunta": 0,
+        "ǂkasin": 1,
+        "ǃkweiten ta ǁken": 3
+      }
+    },
+    {
+      "term": "speech",
+      "count": 42,
+      "byInformant": {
+        "ǀhanǂkass'o": 4,
+        "Diaǃkwain": 13,
+        "ǁkabbo": 20,
+        "ǀa!kunta": 2,
+        "ǂkasin": 2,
+        "ǃkweiten ta ǁken": 1
+      }
+    },
+    {
+      "term": "|hanǂkass'o",
+      "count": 41,
+      "byInformant": {
+        "ǀhanǂkass'o": 40,
+        "Diaǃkwain": 0,
+        "ǁkabbo": 1,
+        "ǀa!kunta": 0,
+        "ǂkasin": 0,
+        "ǃkweiten ta ǁken": 0
+      }
+    },
+    {
+      "term": "stars",
+      "count": 41,
+      "byInformant": {
+        "ǀhanǂkass'o": 9,
+        "Diaǃkwain": 15,
+        "ǁkabbo": 14,
+        "ǀa!kunta": 1,
+        "ǂkasin": 1,
+        "ǃkweiten ta ǁken": 0
+      }
+    },
+    {
+      "term": "moon",
+      "count": 38,
+      "byInformant": {
+        "ǀhanǂkass'o": 6,
+        "Diaǃkwain": 8,
+        "ǁkabbo": 17,
+        "ǀa!kunta": 2,
+        "ǂkasin": 4,
+        "ǃkweiten ta ǁken": 1
+      }
+    },
+    {
+      "term": "sorcerers",
+      "count": 35,
+      "byInformant": {
+        "ǀhanǂkass'o": 10,
+        "Diaǃkwain": 25,
+        "ǁkabbo": 0,
+        "ǀa!kunta": 0,
+        "ǂkasin": 0,
+        "ǃkweiten ta ǁken": 0
+      }
+    },
+    {
+      "term": "women",
+      "count": 35,
+      "byInformant": {
+        "ǀhanǂkass'o": 16,
+        "Diaǃkwain": 7,
+        "ǁkabbo": 10,
+        "ǀa!kunta": 1,
+        "ǂkasin": 1,
+        "ǃkweiten ta ǁken": 0
+      }
+    },
+    {
+      "term": "fight",
+      "count": 34,
+      "byInformant": {
+        "ǀhanǂkass'o": 8,
+        "Diaǃkwain": 9,
+        "ǁkabbo": 11,
+        "ǀa!kunta": 1,
+        "ǂkasin": 5,
+        "ǃkweiten ta ǁken": 0
+      }
+    },
+    {
+      "term": "game",
+      "count": 34,
+      "byInformant": {
+        "ǀhanǂkass'o": 11,
+        "Diaǃkwain": 20,
+        "ǁkabbo": 2,
+        "ǀa!kunta": 0,
+        "ǂkasin": 1,
+        "ǃkweiten ta ǁken": 0
+      }
+    },
+    {
+      "term": "bird",
+      "count": 33,
+      "byInformant": {
+        "ǀhanǂkass'o": 28,
+        "Diaǃkwain": 3,
+        "ǁkabbo": 2,
+        "ǀa!kunta": 0,
+        "ǂkasin": 0,
+        "ǃkweiten ta ǁken": 0
+      }
+    },
+    {
+      "term": "dia!kwain",
+      "count": 33,
+      "byInformant": {
+        "ǀhanǂkass'o": 1,
+        "Diaǃkwain": 30,
+        "ǁkabbo": 0,
+        "ǀa!kunta": 0,
+        "ǂkasin": 0,
+        "ǃkweiten ta ǁken": 0
+      }
+    },
+    {
+      "term": "healing",
+      "count": 33,
+      "byInformant": {
+        "ǀhanǂkass'o": 7,
+        "Diaǃkwain": 9,
+        "ǁkabbo": 11,
+        "ǀa!kunta": 1,
+        "ǂkasin": 2,
+        "ǃkweiten ta ǁken": 2
+      }
+    },
+    {
+      "term": "place",
+      "count": 33,
+      "byInformant": {
+        "ǀhanǂkass'o": 13,
+        "Diaǃkwain": 6,
+        "ǁkabbo": 6,
+        "ǀa!kunta": 0,
+        "ǂkasin": 3,
+        "ǃkweiten ta ǁken": 1
+      }
+    },
+    {
+      "term": "sun",
+      "count": 32,
+      "byInformant": {
+        "ǀhanǂkass'o": 5,
+        "Diaǃkwain": 5,
+        "ǁkabbo": 19,
+        "ǀa!kunta": 1,
+        "ǂkasin": 0,
+        "ǃkweiten ta ǁken": 0
+      }
+    },
+    {
+      "term": "water",
+      "count": 32,
+      "byInformant": {
+        "ǀhanǂkass'o": 16,
+        "Diaǃkwain": 8,
+        "ǁkabbo": 4,
+        "ǀa!kunta": 2,
+        "ǂkasin": 0,
+        "ǃkweiten ta ǁken": 2
+      }
+    },
+    {
+      "term": "||kabbo",
+      "count": 31,
+      "byInformant": {
+        "ǀhanǂkass'o": 5,
+        "Diaǃkwain": 1,
+        "ǁkabbo": 23,
+        "ǀa!kunta": 0,
+        "ǂkasin": 0,
+        "ǃkweiten ta ǁken": 0
+      }
+    },
+    {
+      "term": "genealogy",
+      "count": 31,
+      "byInformant": {
+        "ǀhanǂkass'o": 7,
+        "Diaǃkwain": 3,
+        "ǁkabbo": 8,
+        "ǀa!kunta": 3,
+        "ǂkasin": 3,
+        "ǃkweiten ta ǁken": 0
+      }
+    },
+    {
+      "term": "ostrich",
+      "count": 31,
+      "byInformant": {
+        "ǀhanǂkass'o": 7,
+        "Diaǃkwain": 9,
+        "ǁkabbo": 10,
+        "ǀa!kunta": 5,
+        "ǂkasin": 0,
+        "ǃkweiten ta ǁken": 0
+      }
+    },
+    {
+      "term": "|xam",
+      "count": 30,
+      "byInformant": {
+        "ǀhanǂkass'o": 11,
+        "Diaǃkwain": 1,
+        "ǁkabbo": 15,
+        "ǀa!kunta": 0,
+        "ǂkasin": 2,
+        "ǃkweiten ta ǁken": 0
+      }
+    },
+    {
+      "term": "jackal",
+      "count": 30,
+      "byInformant": {
+        "ǀhanǂkass'o": 7,
+        "Diaǃkwain": 2,
+        "ǁkabbo": 14,
+        "ǀa!kunta": 3,
+        "ǂkasin": 3,
+        "ǃkweiten ta ǁken": 1
+      }
+    },
+    {
+      "term": "work",
+      "count": 30,
+      "byInformant": {
+        "ǀhanǂkass'o": 9,
+        "Diaǃkwain": 14,
+        "ǁkabbo": 4,
+        "ǀa!kunta": 1,
+        "ǂkasin": 1,
+        "ǃkweiten ta ǁken": 0
+      }
+    },
+    {
+      "term": "porcupine",
+      "count": 29,
+      "byInformant": {
+        "ǀhanǂkass'o": 16,
+        "Diaǃkwain": 9,
+        "ǁkabbo": 4,
+        "ǀa!kunta": 0,
+        "ǂkasin": 0,
+        "ǃkweiten ta ǁken": 0
+      }
+    },
+    {
+      "term": "ichneumon",
+      "count": 28,
+      "byInformant": {
+        "ǀhanǂkass'o": 8,
+        "Diaǃkwain": 2,
+        "ǁkabbo": 17,
+        "ǀa!kunta": 0,
+        "ǂkasin": 1,
+        "ǃkweiten ta ǁken": 0
+      }
+    },
+    {
+      "term": "places",
+      "count": 28,
+      "byInformant": {
+        "ǀhanǂkass'o": 11,
+        "Diaǃkwain": 5,
+        "ǁkabbo": 7,
+        "ǀa!kunta": 0,
+        "ǂkasin": 3,
+        "ǃkweiten ta ǁken": 0
+      }
+    },
+    {
+      "term": "hyena",
+      "count": 27,
+      "byInformant": {
+        "ǀhanǂkass'o": 4,
+        "Diaǃkwain": 2,
+        "ǁkabbo": 14,
+        "ǀa!kunta": 5,
+        "ǂkasin": 2,
+        "ǃkweiten ta ǁken": 0
+      }
+    },
+    {
+      "term": "respect",
+      "count": 26,
+      "byInformant": {
+        "ǀhanǂkass'o": 11,
+        "Diaǃkwain": 15,
+        "ǁkabbo": 0,
+        "ǀa!kunta": 0,
+        "ǂkasin": 0,
+        "ǃkweiten ta ǁken": 0
+      }
+    },
+    {
+      "term": "fire",
+      "count": 23,
+      "byInformant": {
+        "ǀhanǂkass'o": 9,
+        "Diaǃkwain": 7,
+        "ǁkabbo": 7,
+        "ǀa!kunta": 0,
+        "ǂkasin": 0,
+        "ǃkweiten ta ǁken": 0
+      }
+    },
+    {
+      "term": "marriage",
+      "count": 23,
+      "byInformant": {
+        "ǀhanǂkass'o": 7,
+        "Diaǃkwain": 1,
+        "ǁkabbo": 14,
+        "ǀa!kunta": 1,
+        "ǂkasin": 0,
+        "ǃkweiten ta ǁken": 0
+      }
+    },
+    {
+      "term": "plant",
+      "count": 23,
+      "byInformant": {
+        "ǀhanǂkass'o": 13,
+        "Diaǃkwain": 4,
+        "ǁkabbo": 5,
+        "ǀa!kunta": 0,
+        "ǂkasin": 1,
+        "ǃkweiten ta ǁken": 0
+      }
+    },
+    {
+      "term": "poison",
+      "count": 23,
+      "byInformant": {
+        "ǀhanǂkass'o": 11,
+        "Diaǃkwain": 4,
+        "ǁkabbo": 8,
+        "ǀa!kunta": 0,
+        "ǂkasin": 0,
+        "ǃkweiten ta ǁken": 0
+      }
+    },
+    {
+      "term": "things",
+      "count": 23,
+      "byInformant": {
+        "ǀhanǂkass'o": 6,
+        "Diaǃkwain": 1,
+        "ǁkabbo": 15,
+        "ǀa!kunta": 0,
+        "ǂkasin": 0,
+        "ǃkweiten ta ǁken": 1
+      }
+    },
+    {
+      "term": "child",
+      "count": 22,
+      "byInformant": {
+        "ǀhanǂkass'o": 5,
+        "Diaǃkwain": 4,
+        "ǁkabbo": 8,
+        "ǀa!kunta": 4,
+        "ǂkasin": 0,
+        "ǃkweiten ta ǁken": 1
+      }
+    },
+    {
+      "term": "plants",
+      "count": 22,
+      "byInformant": {
+        "ǀhanǂkass'o": 8,
+        "Diaǃkwain": 3,
+        "ǁkabbo": 8,
+        "ǀa!kunta": 0,
+        "ǂkasin": 3,
+        "ǃkweiten ta ǁken": 0
+      }
+    },
+    {
+      "term": "eland",
+      "count": 21,
+      "byInformant": {
+        "ǀhanǂkass'o": 5,
+        "Diaǃkwain": 7,
+        "ǁkabbo": 5,
+        "ǀa!kunta": 0,
+        "ǂkasin": 4,
+        "ǃkweiten ta ǁken": 0
+      }
+    },
+    {
+      "term": "dream",
+      "count": 20,
+      "byInformant": {
+        "ǀhanǂkass'o": 7,
+        "Diaǃkwain": 4,
+        "ǁkabbo": 8,
+        "ǀa!kunta": 1,
+        "ǂkasin": 0,
+        "ǃkweiten ta ǁken": 0
+      }
+    },
+    {
+      "term": "gemsbok",
+      "count": 20,
+      "byInformant": {
+        "ǀhanǂkass'o": 5,
+        "Diaǃkwain": 7,
+        "ǁkabbo": 6,
+        "ǀa!kunta": 2,
+        "ǂkasin": 0,
+        "ǃkweiten ta ǁken": 0
+      }
+    },
+    {
+      "term": "hare",
+      "count": 20,
+      "byInformant": {
+        "ǀhanǂkass'o": 5,
+        "Diaǃkwain": 4,
+        "ǁkabbo": 4,
+        "ǀa!kunta": 1,
+        "ǂkasin": 5,
+        "ǃkweiten ta ǁken": 0
+      }
+    },
+    {
+      "term": "weapons",
+      "count": 20,
+      "byInformant": {
+        "ǀhanǂkass'o": 5,
+        "Diaǃkwain": 3,
+        "ǁkabbo": 6,
+        "ǀa!kunta": 0,
+        "ǂkasin": 5,
+        "ǃkweiten ta ǁken": 0
+      }
+    },
+    {
+      "term": "koranna",
+      "count": 18,
+      "byInformant": {
+        "ǀhanǂkass'o": 5,
+        "Diaǃkwain": 0,
+        "ǁkabbo": 6,
+        "ǀa!kunta": 2,
+        "ǂkasin": 5,
+        "ǃkweiten ta ǁken": 0
+      }
+    },
+    {
+      "term": "lions",
+      "count": 18,
+      "byInformant": {
+        "ǀhanǂkass'o": 5,
+        "Diaǃkwain": 3,
+        "ǁkabbo": 7,
+        "ǀa!kunta": 0,
+        "ǂkasin": 0,
+        "ǃkweiten ta ǁken": 1
+      }
+    },
+    {
+      "term": "lynx",
+      "count": 18,
+      "byInformant": {
+        "ǀhanǂkass'o": 5,
+        "Diaǃkwain": 2,
+        "ǁkabbo": 10,
+        "ǀa!kunta": 0,
+        "ǂkasin": 0,
+        "ǃkweiten ta ǁken": 1
+      }
+    },
+    {
+      "term": "tree",
+      "count": 18,
+      "byInformant": {
+        "ǀhanǂkass'o": 7,
+        "Diaǃkwain": 1,
+        "ǁkabbo": 8,
+        "ǀa!kunta": 2,
+        "ǂkasin": 0,
+        "ǃkweiten ta ǁken": 0
+      }
+    },
+    {
+      "term": "|kwammana",
+      "count": 17,
+      "byInformant": {
+        "ǀhanǂkass'o": 9,
+        "Diaǃkwain": 0,
+        "ǁkabbo": 7,
+        "ǀa!kunta": 0,
+        "ǂkasin": 0,
+        "ǃkweiten ta ǁken": 1
+      }
+    },
+    {
+      "term": "language",
+      "count": 17,
+      "byInformant": {
+        "ǀhanǂkass'o": 4,
+        "Diaǃkwain": 3,
+        "ǁkabbo": 7,
+        "ǀa!kunta": 0,
+        "ǂkasin": 1,
+        "ǃkweiten ta ǁken": 0
+      }
+    },
+    {
+      "term": "arrows",
+      "count": 16,
+      "byInformant": {
+        "ǀhanǂkass'o": 13,
+        "Diaǃkwain": 0,
+        "ǁkabbo": 2,
+        "ǀa!kunta": 0,
+        "ǂkasin": 1,
+        "ǃkweiten ta ǁken": 0
+      }
+    },
+    {
+      "term": "creation",
+      "count": 16,
+      "byInformant": {
+        "ǀhanǂkass'o": 4,
+        "Diaǃkwain": 1,
+        "ǁkabbo": 6,
+        "ǀa!kunta": 1,
+        "ǂkasin": 3,
+        "ǃkweiten ta ǁken": 0
+      }
+    },
+    {
+      "term": "dance",
+      "count": 16,
+      "byInformant": {
+        "ǀhanǂkass'o": 11,
+        "Diaǃkwain": 5,
+        "ǁkabbo": 0,
+        "ǀa!kunta": 0,
+        "ǂkasin": 0,
+        "ǃkweiten ta ǁken": 0
+      }
+    },
+    {
+      "term": "feathers",
+      "count": 16,
+      "byInformant": {
+        "ǀhanǂkass'o": 4,
+        "Diaǃkwain": 0,
+        "ǁkabbo": 12,
+        "ǀa!kunta": 0,
+        "ǂkasin": 0,
+        "ǃkweiten ta ǁken": 0
+      }
+    },
+    {
+      "term": "breakwater convict station",
+      "count": 15,
+      "byInformant": {
+        "ǀhanǂkass'o": 3,
+        "Diaǃkwain": 1,
+        "ǁkabbo": 5,
+        "ǀa!kunta": 1,
+        "ǂkasin": 0,
+        "ǃkweiten ta ǁken": 0
+      }
+    },
+    {
+      "term": "clouds",
+      "count": 15,
+      "byInformant": {
+        "ǀhanǂkass'o": 10,
+        "Diaǃkwain": 3,
+        "ǁkabbo": 1,
+        "ǀa!kunta": 1,
+        "ǂkasin": 0,
+        "ǃkweiten ta ǁken": 0
+      }
+    },
+    {
+      "term": "dutch",
+      "count": 15,
+      "byInformant": {
+        "ǀhanǂkass'o": 3,
+        "Diaǃkwain": 6,
+        "ǁkabbo": 2,
+        "ǀa!kunta": 2,
+        "ǂkasin": 1,
+        "ǃkweiten ta ǁken": 0
+      }
+    },
+    {
+      "term": "hut",
+      "count": 15,
+      "byInformant": {
+        "ǀhanǂkass'o": 5,
+        "Diaǃkwain": 6,
+        "ǁkabbo": 4,
+        "ǀa!kunta": 0,
+        "ǂkasin": 0,
+        "ǃkweiten ta ǁken": 0
+      }
+    },
+    {
+      "term": "kaross",
+      "count": 15,
+      "byInformant": {
+        "ǀhanǂkass'o": 5,
+        "Diaǃkwain": 5,
+        "ǁkabbo": 4,
+        "ǀa!kunta": 0,
+        "ǂkasin": 0,
+        "ǃkweiten ta ǁken": 1
+      }
+    },
+    {
+      "term": "new maiden",
+      "count": 15,
+      "byInformant": {
+        "ǀhanǂkass'o": 3,
+        "Diaǃkwain": 7,
+        "ǁkabbo": 4,
+        "ǀa!kunta": 0,
+        "ǂkasin": 0,
+        "ǃkweiten ta ǁken": 1
+      }
+    },
+    {
+      "term": "painting",
+      "count": 15,
+      "byInformant": {
+        "ǀhanǂkass'o": 9,
+        "Diaǃkwain": 4,
+        "ǁkabbo": 0,
+        "ǀa!kunta": 0,
+        "ǂkasin": 0,
+        "ǃkweiten ta ǁken": 2
+      }
+    },
+    {
+      "term": "quagga",
+      "count": 15,
+      "byInformant": {
+        "ǀhanǂkass'o": 2,
+        "Diaǃkwain": 9,
+        "ǁkabbo": 3,
+        "ǀa!kunta": 0,
+        "ǂkasin": 0,
+        "ǃkweiten ta ǁken": 1
+      }
+    },
+    {
+      "term": "tortoise",
+      "count": 15,
+      "byInformant": {
+        "ǀhanǂkass'o": 5,
+        "Diaǃkwain": 4,
+        "ǁkabbo": 2,
+        "ǀa!kunta": 1,
+        "ǂkasin": 1,
+        "ǃkweiten ta ǁken": 2
+      }
+    },
+    {
+      "term": "wife",
+      "count": 15,
+      "byInformant": {
+        "ǀhanǂkass'o": 6,
+        "Diaǃkwain": 0,
+        "ǁkabbo": 7,
+        "ǀa!kunta": 0,
+        "ǂkasin": 1,
+        "ǃkweiten ta ǁken": 1
+      }
+    },
+    {
+      "term": "bones",
+      "count": 14,
+      "byInformant": {
+        "ǀhanǂkass'o": 12,
+        "Diaǃkwain": 2,
+        "ǁkabbo": 0,
+        "ǀa!kunta": 0,
+        "ǂkasin": 0,
+        "ǃkweiten ta ǁken": 0
+      }
+    },
+    {
+      "term": "bushman rice",
+      "count": 14,
+      "byInformant": {
+        "ǀhanǂkass'o": 7,
+        "Diaǃkwain": 0,
+        "ǁkabbo": 6,
+        "ǀa!kunta": 0,
+        "ǂkasin": 0,
+        "ǃkweiten ta ǁken": 1
+      }
+    },
+    {
+      "term": "rock art",
+      "count": 14,
+      "byInformant": {
+        "ǀhanǂkass'o": 7,
+        "Diaǃkwain": 7,
+        "ǁkabbo": 0,
+        "ǀa!kunta": 0,
+        "ǂkasin": 0,
+        "ǃkweiten ta ǁken": 0
+      }
+    },
+    {
+      "term": "star",
+      "count": 14,
+      "byInformant": {
+        "ǀhanǂkass'o": 2,
+        "Diaǃkwain": 1,
+        "ǁkabbo": 8,
+        "ǀa!kunta": 2,
+        "ǂkasin": 1,
+        "ǃkweiten ta ǁken": 0
+      }
+    },
+    {
+      "term": "stone",
+      "count": 14,
+      "byInformant": {
+        "ǀhanǂkass'o": 7,
+        "Diaǃkwain": 3,
+        "ǁkabbo": 2,
+        "ǀa!kunta": 0,
+        "ǂkasin": 1,
+        "ǃkweiten ta ǁken": 1
+      }
+    },
+    {
+      "term": "address",
+      "count": 13,
+      "byInformant": {
+        "ǀhanǂkass'o": 9,
+        "Diaǃkwain": 2,
+        "ǁkabbo": 1,
+        "ǀa!kunta": 1,
+        "ǂkasin": 0,
+        "ǃkweiten ta ǁken": 0
+      }
+    },
+    {
+      "term": "arrow",
+      "count": 13,
+      "byInformant": {
+        "ǀhanǂkass'o": 7,
+        "Diaǃkwain": 3,
+        "ǁkabbo": 2,
+        "ǀa!kunta": 0,
+        "ǂkasin": 1,
+        "ǃkweiten ta ǁken": 0
+      }
+    },
+    {
+      "term": "beast of prey",
+      "count": 13,
+      "byInformant": {
+        "ǀhanǂkass'o": 4,
+        "Diaǃkwain": 5,
+        "ǁkabbo": 3,
+        "ǀa!kunta": 0,
+        "ǂkasin": 0,
+        "ǃkweiten ta ǁken": 1
+      }
+    },
+    {
+      "term": "beasts of prey",
+      "count": 13,
+      "byInformant": {
+        "ǀhanǂkass'o": 2,
+        "Diaǃkwain": 6,
+        "ǁkabbo": 4,
+        "ǀa!kunta": 1,
+        "ǂkasin": 0,
+        "ǃkweiten ta ǁken": 0
+      }
+    },
+    {
+      "term": "blue crane",
+      "count": 13,
+      "byInformant": {
+        "ǀhanǂkass'o": 7,
+        "Diaǃkwain": 0,
+        "ǁkabbo": 6,
+        "ǀa!kunta": 0,
+        "ǂkasin": 0,
+        "ǃkweiten ta ǁken": 0
+      }
+    },
+    {
+      "term": "insect",
+      "count": 13,
+      "byInformant": {
+        "ǀhanǂkass'o": 7,
+        "Diaǃkwain": 4,
+        "ǁkabbo": 0,
+        "ǀa!kunta": 0,
+        "ǂkasin": 2,
+        "ǃkweiten ta ǁken": 0
+      }
+    },
+    {
+      "term": "lizard",
+      "count": 13,
+      "byInformant": {
+        "ǀhanǂkass'o": 12,
+        "Diaǃkwain": 0,
+        "ǁkabbo": 1,
+        "ǀa!kunta": 0,
+        "ǂkasin": 0,
+        "ǃkweiten ta ǁken": 0
+      }
+    },
+    {
+      "term": "sneezing",
+      "count": 13,
+      "byInformant": {
+        "ǀhanǂkass'o": 5,
+        "Diaǃkwain": 6,
+        "ǁkabbo": 2,
+        "ǀa!kunta": 0,
+        "ǂkasin": 0,
+        "ǃkweiten ta ǁken": 0
+      }
+    },
+    {
+      "term": "sorcerer",
+      "count": 13,
+      "byInformant": {
+        "ǀhanǂkass'o": 6,
+        "Diaǃkwain": 6,
+        "ǁkabbo": 1,
+        "ǀa!kunta": 0,
+        "ǂkasin": 0,
+        "ǃkweiten ta ǁken": 0
+      }
+    },
+    {
+      "term": "anteater's laws",
+      "count": 12,
+      "byInformant": {
+        "ǀhanǂkass'o": 1,
+        "Diaǃkwain": 1,
+        "ǁkabbo": 9,
+        "ǀa!kunta": 1,
+        "ǂkasin": 0,
+        "ǃkweiten ta ǁken": 0
+      }
+    },
+    {
+      "term": "baboons",
+      "count": 12,
+      "byInformant": {
+        "ǀhanǂkass'o": 1,
+        "Diaǃkwain": 9,
+        "ǁkabbo": 1,
+        "ǀa!kunta": 1,
+        "ǂkasin": 0,
+        "ǃkweiten ta ǁken": 0
+      }
+    },
+    {
+      "term": "blank pages",
+      "count": 12,
+      "byInformant": {
+        "ǀhanǂkass'o": 0,
+        "Diaǃkwain": 0,
+        "ǁkabbo": 0,
+        "ǀa!kunta": 0,
+        "ǂkasin": 0,
+        "ǃkweiten ta ǁken": 0
+      }
+    },
+    {
+      "term": "curse",
+      "count": 12,
+      "byInformant": {
+        "ǀhanǂkass'o": 6,
+        "Diaǃkwain": 5,
+        "ǁkabbo": 0,
+        "ǀa!kunta": 0,
+        "ǂkasin": 0,
+        "ǃkweiten ta ǁken": 1
+      }
+    },
+    {
+      "term": "cutting",
+      "count": 12,
+      "byInformant": {
+        "ǀhanǂkass'o": 5,
+        "Diaǃkwain": 2,
+        "ǁkabbo": 4,
+        "ǀa!kunta": 0,
+        "ǂkasin": 1,
+        "ǃkweiten ta ǁken": 0
+      }
+    },
+    {
+      "term": "digging",
+      "count": 12,
+      "byInformant": {
+        "ǀhanǂkass'o": 7,
+        "Diaǃkwain": 0,
+        "ǁkabbo": 5,
+        "ǀa!kunta": 0,
+        "ǂkasin": 0,
+        "ǃkweiten ta ǁken": 0
+      }
+    },
+    {
+      "term": "dog",
+      "count": 12,
+      "byInformant": {
+        "ǀhanǂkass'o": 5,
+        "Diaǃkwain": 2,
+        "ǁkabbo": 3,
+        "ǀa!kunta": 0,
+        "ǂkasin": 1,
+        "ǃkweiten ta ǁken": 0
+      }
+    },
+    {
+      "term": "dress",
+      "count": 12,
+      "byInformant": {
+        "ǀhanǂkass'o": 6,
+        "Diaǃkwain": 3,
+        "ǁkabbo": 1,
+        "ǀa!kunta": 1,
+        "ǂkasin": 0,
+        "ǃkweiten ta ǁken": 0
+      }
+    }
+  ]
+}

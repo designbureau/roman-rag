@@ -1,0 +1,73 @@
+import {
+  Links,
+  Meta,
+  Outlet,
+  Scripts,
+  ScrollRestoration,
+} from "react-router";
+import { AuthProvider } from "./lib/auth";
+import { AuthGate } from "./components/auth-gate";
+import "./globals.css";
+
+export function Layout({ children }: { children: React.ReactNode }) {
+  return (
+    <html lang="en">
+      <head>
+        <meta charSet="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        {/* Private experimental prototype — keep it out of search
+            engines and AI training crawlers. `noindex,nofollow` covers
+            Google/Bing; the explicit user-agent lines below cover the
+            major LLM scrapers that ignore the generic robots tag. */}
+        <meta name="robots" content="noindex, nofollow, noarchive, nosnippet" />
+        <meta name="googlebot" content="noindex, nofollow" />
+        <meta name="GPTBot" content="noindex, nofollow" />
+        <meta name="ChatGPT-User" content="noindex, nofollow" />
+        <meta name="ClaudeBot" content="noindex, nofollow" />
+        <meta name="Google-Extended" content="noindex, nofollow" />
+        <meta name="CCBot" content="noindex, nofollow" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link
+          rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossOrigin=""
+        />
+        <link
+          rel="stylesheet"
+          href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
+        />
+        <Meta />
+        <Links />
+      </head>
+      <body>
+        {children}
+        <ScrollRestoration />
+        <Scripts />
+      </body>
+    </html>
+  );
+}
+
+export default function App() {
+  // AuthProvider sits OUTSIDE the gate so children (and the gate
+  // itself) can read auth state. The gate decides whether to render
+  // the Outlet or the sign-in card.
+  return (
+    <AuthProvider>
+      <AuthGate>
+        <Outlet />
+      </AuthGate>
+    </AuthProvider>
+  );
+}
+
+export function meta() {
+  return [
+    { title: "Bleek-Lloyd Archive" },
+    {
+      name: "description",
+      content:
+        "A reading interface for the public-domain Bleek-Lloyd archive of |xam folklore.",
+    },
+  ];
+}
