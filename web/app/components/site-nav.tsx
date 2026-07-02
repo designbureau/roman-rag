@@ -1,14 +1,15 @@
 import { NavLink } from "react-router";
+import { AUTH_ENABLED } from "~/lib/config";
 
 // The site-wide section nav. Kept in one place so every template renders
 // the same links, in the same order, in the same position.
+// Only the sections with real Cicero data are linked. The thematic
+// analytics (/topics, /graph, /heatmap) and the Latin /glossary need the
+// theme-tagging pass over a fuller corpus; they stay routable (with empty
+// states) but unlinked until that data lands, then re-add them here.
 const NAV_LINKS: { to: string; label: string }[] = [
   { to: "/", label: "chat" },
   { to: "/library", label: "library" },
-  { to: "/topics", label: "topics" },
-  { to: "/graph", label: "graph" },
-  { to: "/heatmap", label: "by informant" },
-  { to: "/glossary", label: "glossary" },
   { to: "/papers", label: "papers" },
 ];
 
@@ -32,7 +33,7 @@ export function SiteNav({ isAdmin = false }: { isAdmin?: boolean }) {
           {l.label}
         </NavLink>
       ))}
-      {isAdmin && (
+      {(isAdmin || !AUTH_ENABLED) && (
         <NavLink to="/admin" className={linkClass}>
           admin
         </NavLink>

@@ -63,11 +63,11 @@ export default function App() {
 
 export function meta() {
   return [
-    { title: "Bleek-Lloyd Archive" },
+    { title: "The Roman Archive" },
     {
       name: "description",
       content:
-        "A reading interface for the public-domain Bleek-Lloyd archive of |xam folklore.",
+        "A retrieval-augmented reading interface for the voices of ancient Rome — its figures speaking in the first person from their own surviving writings, in English with the original Latin or Greek where it survives.",
     },
   ];
 }

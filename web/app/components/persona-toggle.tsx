@@ -11,12 +11,20 @@ export type PersonaOption = { key: Persona; title: string };
  * before the persona_config fetch resolves, or if it fails. The source of
  * truth is the `persona_config` table (title + sort_order + enabled).
  */
-// Phase 1 ships two code-backed voices (classicist + cicero); the rest of the
-// Roman ensemble (tiro, atticus, caesar, interpreter, storyteller) arrives in
-// Phase 3 and will appear here and in persona_config then.
+// The Roman ensemble — the seven code-backed voices, in canonical order.
+// Mirrors PERSONA_PROMPTS in supabase/functions/chat/index.ts; persona_config
+// (title + sort_order + enabled) is the live source of truth once it loads.
 export const FALLBACK_PERSONAS: PersonaOption[] = [
   { key: "classicist", title: "The Classicist" },
   { key: "cicero", title: "Cicero" },
+  { key: "tiro", title: "Tiro" },
+  { key: "atticus", title: "Atticus" },
+  { key: "caesar", title: "Caesar" },
+  { key: "marcus-aurelius", title: "Marcus Aurelius" },
+  { key: "augustus", title: "Augustus" },
+  { key: "seneca", title: "Seneca" },
+  { key: "pliny-younger", title: "Pliny the Younger" },
+  { key: "quintilian", title: "Quintilian" },
 ];
 
 export function PersonaToggle({
@@ -35,16 +43,16 @@ export function PersonaToggle({
   if (!options.length) return null;
   return (
     <Tabs value={value} onValueChange={(v) => onChange(v as Persona)}>
-      <TabsList className={fullWidth ? "flex w-full flex-wrap" : "flex flex-wrap"}>
+      <TabsList
+        className={
+          fullWidth ? "flex w-full flex-wrap justify-start" : "flex flex-wrap justify-start"
+        }
+      >
         {options.map((o) => (
           <TabsTrigger
             key={o.key}
             value={o.key}
-            className={
-              fullWidth
-                ? "flex-1 cursor-pointer whitespace-nowrap text-xs sm:text-sm"
-                : "cursor-pointer whitespace-nowrap text-xs sm:text-sm"
-            }
+            className="cursor-pointer whitespace-nowrap text-xs sm:text-sm"
           >
             {o.title}
           </TabsTrigger>

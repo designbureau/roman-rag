@@ -20,16 +20,11 @@ type TopicsPayload = {
 const data = topicsData as TopicsPayload;
 
 const SOURCE_LABELS: Record<string, string> = {
-  "specimens-1911": "Specimens (1911)",
-  "mantis-friends-1924": "Mantis & Friends (1924)",
-  "first-report-1873": "First Report (1873)",
-  "second-report-1875": "Second Report (1875)",
-  "third-report-1889": "Third Report (1889)",
-  "dblc-stories": "Digital Bleek & Lloyd",
+  "ad-atticum": "Letters to Atticus (ad Atticum)",
 };
 
 export function meta() {
-  return [{ title: "Topics — Bleek-Lloyd Archive" }];
+  return [{ title: "Themes — The Roman Archive" }];
 }
 
 export default function Topics() {
@@ -66,19 +61,28 @@ export default function Topics() {
     return MIN_REM + t * (MAX_REM - MIN_REM);
   };
 
+  const empty = data.terms.length === 0;
+
   return (
     <main className="mx-auto max-w-6xl px-4 py-8 lg:py-12">
       <header className="mb-6">
-        <h1 className="font-display text-5xl">Topics</h1>
+        <h1 className="font-display text-5xl">Themes</h1>
         <p className="mt-2 max-w-xl text-sm text-[color:var(--muted-foreground)]">
-          {data.total_terms} recurring terms drawn from the Digital Bleek &amp; Lloyd
-          transcribers' subject index across {data.total_stories} stories.
-          Click a term to ask about it.
+          Recurring themes drawn from Cicero's correspondence. Click a theme
+          to ask about it.
         </p>
       </header>
 
       <SiteNav />
 
+      {empty ? (
+        <p className="rounded-md border border-dashed border-[color:var(--border)] p-6 text-sm text-[color:var(--muted-foreground)]">
+          Thematic analytics will appear once the full corpus is ingested and
+          theme-tagged. The current slice is the Letters to Atticus
+          (<em>ad Atticum</em>) only.
+        </p>
+      ) : (
+      <>
       <div className="mb-6 flex flex-wrap items-center gap-3 rounded-md border border-[color:var(--border)] bg-[color:var(--muted)] p-3 text-sm">
         <input
           type="search"
@@ -113,7 +117,7 @@ export default function Topics() {
             <Link
               key={t.term}
               to={`/?ask=${encodeURIComponent(askAboutTerm(t.term))}`}
-              title={`${t.count} stories — ${breakdown}`}
+              title={`${t.count} letters — ${breakdown}`}
               className="font-corpus text-[color:var(--foreground)] hover:underline focus-visible:outline-none focus-visible:underline"
               style={{ fontSize: `${sizeFor(t.count)}rem` }}
             >
@@ -126,15 +130,19 @@ export default function Topics() {
         })}
         {rows.length === 0 && (
           <p className="text-sm text-[color:var(--muted-foreground)]">
-            No terms match.
+            No themes match.
           </p>
         )}
       </div>
 
       <footer className="mt-12 border-t border-[color:var(--border)] pt-6 text-xs text-[color:var(--muted-foreground)]">
-        Topic index regenerated from <code>data/stories.json</code> via{" "}
-        <code>pnpm topics</code>. Last refreshed {data.generated_at.slice(0, 10)}.
+        Theme index built over the corpus. Source: Cicero, Letters to Atticus
+        (<em>ad Atticum</em>), Latin ed. Tyrrell–Purser, Eng. trans.
+        Shuckburgh, via the Perseus Digital Library. Last refreshed{" "}
+        {data.generated_at.slice(0, 10)}.
       </footer>
+      </>
+      )}
     </main>
   );
 }

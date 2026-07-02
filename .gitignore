@@ -19,3 +19,4 @@ coverage
 .vercel
 .supabase
 supabase/.temp/
+.claude/settings.local.json

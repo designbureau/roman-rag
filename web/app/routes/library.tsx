@@ -30,12 +30,12 @@ type LibraryPayload = {
 
 const data = libraryData as LibraryPayload;
 
-// Default-collapsed sections (the long DBLC tail). The smaller print
-// volumes are open by default since they're scannable.
-const DEFAULT_COLLAPSED = new Set(["dblc-stories"]);
+// All book sections open by default — the corpus is currently one
+// collection (the Letters to Atticus), grouped into its sixteen books.
+const DEFAULT_COLLAPSED = new Set<string>();
 
 export function meta() {
-  return [{ title: "Library — Bleek-Lloyd Archive" }];
+  return [{ title: "Library — The Roman Archive" }];
 }
 
 function readPrompt(title: string): string {
@@ -132,9 +132,9 @@ export default function Library() {
       <header className="mb-4">
         <h1 className="font-display text-5xl">Library</h1>
         <p className="mt-2 max-w-2xl text-sm text-[color:var(--muted-foreground)]">
-          All {data.total_stories} accounts in the archive. Group by source
-          volume or by year of recording. Click a title to ask the chat
-          to read the account; the external link goes to bal2.cs.uct.ac.za.
+          All {data.total_stories} letters in the archive — Cicero's
+          correspondence to Atticus, in its sixteen books. Click a letter to
+          ask the chat to read it; the external link goes to Perseus.
         </p>
       </header>
 
@@ -145,7 +145,7 @@ export default function Library() {
           type="search"
           value={filter}
           onChange={(e) => setFilter(e.target.value)}
-          placeholder="filter title, informant, or text…"
+          placeholder="filter title, reference, or text…"
           className="flex-1 min-w-[14rem] rounded border border-[color:var(--border)] bg-[color:var(--background)] px-2 py-1"
         />
         <label className="flex items-center gap-2">
@@ -155,12 +155,12 @@ export default function Library() {
             value={groupBy}
             onChange={(e) => setGroupBy(e.target.value as "source" | "year")}
           >
-            <option value="source">source</option>
+            <option value="source">book</option>
             <option value="year">year (chronological)</option>
           </select>
         </label>
         <span className="text-xs text-[color:var(--muted-foreground)]">
-          {totalShown} {totalShown === 1 ? "account" : "accounts"} shown
+          {totalShown} {totalShown === 1 ? "letter" : "letters"} shown
         </span>
       </div>
 
@@ -183,7 +183,7 @@ export default function Library() {
                 <h2 className="font-corpus text-lg">{sec.label}</h2>
                 <span className="ml-auto text-xs text-[color:var(--muted-foreground)]">
                   {sec.entries.length}{" "}
-                  {sec.entries.length === 1 ? "account" : "accounts"}
+                  {sec.entries.length === 1 ? "letter" : "letters"}
                 </span>
               </button>
               {opened && <SectionEntries entries={sec.entries} groupBy={groupBy} />}
@@ -192,13 +192,14 @@ export default function Library() {
         })}
         {sections.length === 0 && (
           <p className="rounded-md border border-dashed border-[color:var(--border)] p-6 text-sm text-[color:var(--muted-foreground)]">
-            No accounts match.
+            No letters match.
           </p>
         )}
       </div>
 
       <footer className="mt-6 text-xs text-[color:var(--muted-foreground)]">
-        Generated {data.generated_at.slice(0, 10)} from <code>data/stories.json</code>.
+        Generated {data.generated_at.slice(0, 10)} from the corpus
+        (<code>stories</code>).
       </footer>
     </main>
   );
@@ -252,7 +253,7 @@ function SectionEntries({
                     href={e.source_url}
                     target="_blank"
                     rel="noreferrer"
-                    title="View on bal2.cs.uct.ac.za"
+                    title="View on Perseus"
                     className="shrink-0 text-xs text-[color:var(--muted-foreground)] hover:text-[color:var(--foreground)] hover:underline"
                   >
                     source ↗

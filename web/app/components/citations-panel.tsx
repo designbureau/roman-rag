@@ -1,12 +1,16 @@
 import { Badge } from "./ui/badge";
 
 const PERSONA_NAMES: Record<string, string> = {
-  archivist: "the Archivist",
-  mantis: "the Mantis",
-  lloyd: "Lucy Lloyd",
-  bleek: "Doctor Bleek",
-  interpreter: "the Interpreter",
-  storyteller: "the Storyteller",
+  classicist: "the Classicist",
+  cicero: "Cicero",
+  tiro: "Tiro",
+  atticus: "Atticus",
+  caesar: "Caesar",
+  "marcus-aurelius": "Marcus Aurelius",
+  augustus: "Augustus",
+  seneca: "Seneca",
+  "pliny-younger": "Pliny the Younger",
+  quintilian: "Quintilian",
 };
 
 export type RetrievedChunk = {
@@ -200,7 +204,7 @@ export function CitationsPanel({
             {c.latin_text ? (
               <details className="mt-2">
                 <summary className="cursor-pointer text-xs text-[color:var(--muted-foreground)] hover:text-[color:var(--foreground)]">
-                  Show |xam
+                  Show Latin
                 </summary>
                 <p className="mt-1 font-corpus text-sm">{c.latin_text}</p>
               </details>

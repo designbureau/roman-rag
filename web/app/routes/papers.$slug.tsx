@@ -12,8 +12,8 @@ export function meta({ params }: Route.MetaArgs) {
   return [
     {
       title: paper
-        ? `${paper.title} — Bleek-Lloyd Archive`
-        : "Paper not found — Bleek-Lloyd Archive",
+        ? `${paper.title} — The Roman Archive`
+        : "Paper not found — The Roman Archive",
     },
   ];
 }

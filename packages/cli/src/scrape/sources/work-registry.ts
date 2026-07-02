@@ -18,6 +18,11 @@ import { fetchCached } from "../cache.js";
 const RAW_BASE =
   "https://raw.githubusercontent.com/PerseusDL/canonical-latinLit/master/data/phi0474";
 
+/** Perseus `canonical-latinLit` base for a given author code, e.g. "phi0448" (Caesar). */
+export function perseusAuthorBase(authorCode: string): string {
+  return `https://raw.githubusercontent.com/PerseusDL/canonical-latinLit/master/data/${authorCode}`;
+}
+
 /** A Cicero work: its Perseus folder plus the domain metadata we stamp on every Story. */
 export type Work = {
   /** Perseus folder under phi0474, e.g. "phi057". */
@@ -68,8 +73,8 @@ function firstMatch(re: RegExp, s: string): string | null {
  * is present; a missing English translation is allowed (engUrl/engUrn null) so
  * callers can fall back to another source.
  */
-export async function discoverEditions(workDir: string): Promise<Editions> {
-  const cts = await fetchCached(`${RAW_BASE}/${workDir}/__cts__.xml`);
+export async function discoverEditions(workDir: string, rawBase: string = RAW_BASE): Promise<Editions> {
+  const cts = await fetchCached(`${rawBase}/${workDir}/__cts__.xml`);
 
   const title = firstMatch(/<ti:title[^>]*>([^<]+)<\/ti:title>/, cts) ?? workDir;
 
@@ -86,14 +91,14 @@ export async function discoverEditions(workDir: string): Promise<Editions> {
   let translator: string | null = null;
   if (trBlock && trBlock[1]) {
     engUrn = trBlock[1];
-    engUrl = `${RAW_BASE}/${workDir}/${urnToFile(engUrn)}`;
+    engUrl = `${rawBase}/${workDir}/${urnToFile(engUrn)}`;
     translator = firstMatch(/<ti:description[^>]*>([\s\S]*?)<\/ti:description>/, trBlock[2] ?? "");
   }
 
   return {
     title,
     latUrn,
-    latUrl: `${RAW_BASE}/${workDir}/${urnToFile(latUrn)}`,
+    latUrl: `${rawBase}/${workDir}/${urnToFile(latUrn)}`,
     latEdition,
     engUrn,
     engUrl,

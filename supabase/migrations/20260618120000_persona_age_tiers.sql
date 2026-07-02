@@ -18,14 +18,7 @@
 alter table persona_config
   add column if not exists age_tiers jsonb not null default '[]'::jsonb;
 
--- Seed the Storyteller with its three built-in tiers (blank prompts =
--- track the code defaults). Only when it hasn't already been authored,
--- so a re-run never clobbers later admin edits.
-update persona_config
-set age_tiers = $tiers$[
-  {"key":"young","label":"Young","hint":"≈ 5–8 years","prompt":"","is_default":false},
-  {"key":"standard","label":"Standard","hint":"≈ 9–12 years","prompt":"","is_default":true},
-  {"key":"teen","label":"Teen","hint":"13+","prompt":"","is_default":false}
-]$tiers$::jsonb
-where persona = 'storyteller'
-  and (age_tiers is null or age_tiers = '[]'::jsonb);
+-- No built-in ships with code age-tiers in the Roman ensemble (the
+-- Storyteller, which carried the canonical young/standard/teen set, was
+-- dropped). The column + machinery remain for admin-authored personas that
+-- want their own tier selector; there is nothing to seed here.

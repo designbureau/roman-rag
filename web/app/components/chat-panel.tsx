@@ -23,7 +23,7 @@ export function ChatPanel({
   personaTitle: string;
   retrievalFilters: RetrievalFilters;
   initialInput?: string;
-  /** Selected persona tier key (e.g. the Storyteller age tier). */
+  /** Selected persona tier key (a reader-selectable variant of a voice). */
   tier?: string;
 }) {
   const { messages, input, handleInputChange, handleSubmit, isLoading, data, setMessages, setInput, append } =
@@ -126,9 +126,9 @@ export function ChatPanel({
           {messages.length === 0 && !configIssue && (
             <div className="rounded-md border border-dashed border-[color:var(--border)] p-6 text-sm text-[color:var(--muted-foreground)]">
               Ask {personaTitle} something.{" "}
-              Try: <em className="font-corpus">tell me about the eland</em>,{" "}
-              <em className="font-corpus">what does the archive say about the moon</em>,{" "}
-              <em className="font-corpus">who was ǁkabbo</em>.
+              Try: <em className="font-corpus">tell me about the exile</em>,{" "}
+              <em className="font-corpus">what does the archive say about Pompey</em>,{" "}
+              <em className="font-corpus">who was Atticus</em>.
             </div>
           )}
           {messages.map((m) => {
@@ -226,13 +226,12 @@ export function ChatPanel({
   );
 }
 
-// Thinking indicator: cycle through the |xam click symbols (ǀ ǁ ǃ ǂ) in
-// the warm accent while a reply is pending (retrieval + first token),
-// then replaced by the streaming text. The `key` remount replays a small
-// pop on each glyph change.
-// The five clicks of the Bleek-Lloyd notation: dental, lateral, alveolar,
-// palatal, and the bilabial ʘ ("sounds like a kiss").
-const CLICK_GLYPHS = ["ǀ", "ǁ", "ǃ", "ǂ", "ʘ"] as const;
+// Thinking indicator: cycle through a small set of marks in the warm
+// accent while a reply is pending (retrieval + first token), then
+// replaced by the streaming text. The `key` remount replays a small pop
+// on each glyph change. The interpunct (·) is the mark Roman inscriptions
+// set between words, so it reads naturally against the Latin corpus.
+const CLICK_GLYPHS = ["·", "··", "···", "··", "·"] as const;
 function ThinkingIndicator() {
   const [i, setI] = useState(0);
   useEffect(() => {
@@ -323,8 +322,8 @@ function Message({
             rehypePlugins={[rehypeWordSpans, rehypeGlossaryTooltip]}
             // Pass through our custom `story:` scheme — ReactMarkdown's
             // default urlTransform strips anything that isn't http(s),
-            // mailto, etc., which would silently zero out the storyteller's
-            // suggested-next-story links.
+            // mailto, etc., which would silently zero out a voice's
+            // suggested-next-reading links.
             urlTransform={(url) =>
               url.startsWith("story:") ? url : defaultUrlTransform(url)
             }

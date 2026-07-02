@@ -17,20 +17,20 @@ import { AUTH_ENABLED } from "~/lib/config";
 import { supabase } from "~/lib/supabase";
 
 export function meta(_: Route.MetaArgs) {
-  return [{ title: "Bleek-Lloyd Archive" }];
+  return [{ title: "The Roman Archive" }];
 }
 
-const PERSONA_STORAGE_KEY = "bleek-lloyd-persona";
-// Selected tier is remembered per persona (the Storyteller's age tier, and
-// any other persona's tiers), keyed by `${prefix}${persona}`.
-const TIER_STORAGE_PREFIX = "bleek-lloyd-tier:";
+const PERSONA_STORAGE_KEY = "cicero-persona";
+// Selected tier is remembered per persona (any persona's admin-authored
+// tiers), keyed by `${prefix}${persona}`.
+const TIER_STORAGE_PREFIX = "cicero-tier:";
 // Reserved persona_config row holding the editable shared rules — never a
 // selectable persona.
 const SHARED_RULES_KEY = "__shared__";
 
 // Personas are open strings now (authored in /admin). A value is usable as
 // a persona if it's a non-empty string other than the reserved key; the
-// chat function validates it server-side and falls back to the Archivist.
+// chat function validates it server-side and falls back to the Classicist.
 function isPersona(v: unknown): v is Persona {
   return typeof v === "string" && v.length > 0 && v !== SHARED_RULES_KEY;
 }
@@ -55,9 +55,9 @@ function parseTiers(v: unknown): LoadedTier[] {
 }
 
 function readStoredPersona(): Persona {
-  if (typeof window === "undefined") return "archivist";
+  if (typeof window === "undefined") return "classicist";
   const v = window.localStorage.getItem(PERSONA_STORAGE_KEY);
-  return isPersona(v) ? v : "archivist";
+  return isPersona(v) ? v : "classicist";
 }
 
 function readStoredTier(persona: string): string {
@@ -172,7 +172,7 @@ export default function Index() {
       window.localStorage.setItem(PERSONA_STORAGE_KEY, p);
     }
     const next = new URLSearchParams(params);
-    if (p === "archivist") next.delete("persona");
+    if (p === "classicist") next.delete("persona");
     else next.set("persona", p);
     setParams(next, { replace: true });
   };
@@ -182,12 +182,15 @@ export default function Index() {
       <header className="mb-8 flex flex-col gap-5 lg:mb-10">
         <div>
           <h1 className="font-display text-4xl sm:text-5xl lg:text-6xl">
-            The Bleek-Lloyd Archive
+            The Roman Archive
           </h1>
           <p className="mt-3 max-w-xl text-sm text-[color:var(--muted-foreground)]">
-            A reading interface for the public-domain |xam archive collected by
-            Wilhelm Bleek and Lucy Lloyd. Multiple voices speak from the same
-            notebooks.
+            A reading interface for the voices of ancient Rome — its orators
+            and emperors, and those who served them. Each figure speaks in the
+            first person from their own surviving writings, bounded to what they
+            knew; a modern Classicist reads across the whole archive. English
+            throughout, with the original Latin or Greek alongside where it
+            survives.
           </p>
           {AUTH_ENABLED && user?.email && (
             <p className="mt-2 text-xs text-[color:var(--muted-foreground)]">
@@ -259,61 +262,28 @@ export default function Index() {
       />
 
       <footer className="mt-16 border-t border-[color:var(--border)] pt-6 text-xs text-[color:var(--muted-foreground)]">
-        Private experimental prototype. Sources:{" "}
+        Private experimental prototype. Text from the public-domain editions
+        via the{" "}
         <a
-          href="https://www.sacred-texts.com/afr/sbf/"
+          href="https://www.perseus.tufts.edu/hopper/"
           className="underline"
           target="_blank"
           rel="noreferrer"
         >
-          Specimens of Bushman Folklore (1911)
-        </a>{" "}
-        ·{" "}
-        <a
-          href="https://archive.org/details/bleek-mantis-friends-1924"
-          className="underline"
-          target="_blank"
-          rel="noreferrer"
-        >
-          The Mantis and His Friends (1924)
-        </a>{" "}
-        ·{" "}
-        <a
-          href="https://archive.org/details/briefaccountofbu00blee"
-          className="underline"
-          target="_blank"
-          rel="noreferrer"
-        >
-          A Brief Account of Bushman Folk-lore (Second Report, 1875)
-        </a>{" "}
-        ·{" "}
-        <a
-          href="https://cudl.lib.cam.ac.uk/view/PR-RCS-PAM-00005-E-REPORT/1"
-          className="underline"
-          target="_blank"
-          rel="noreferrer"
-        >
-          Report of Dr. Bleek (First Report, 1873)
-        </a>{" "}
-        ·{" "}
-        <a
-          href="https://cudl.lib.cam.ac.uk/view/PR-RCS-PAM-00005-E-SHORT/1"
-          className="underline"
-          target="_blank"
-          rel="noreferrer"
-        >
-          A Short Account of Further Bushman Material (Third Report, Lloyd, 1889)
-        </a>{" "}
-        ·{" "}
-        <a
-          href="https://lloydbleekcollection.cs.uct.ac.za/"
-          className="underline"
-          target="_blank"
-          rel="noreferrer"
-        >
-          The Digital Bleek &amp; Lloyd
+          Perseus Digital Library
         </a>
-        .
+        : Cicero,{" "}
+        <a
+          href="https://www.perseus.tufts.edu/hopper/text?doc=Perseus:text:1999.02.0008"
+          className="underline"
+          target="_blank"
+          rel="noreferrer"
+        >
+          Letters to Atticus
+        </a>{" "}
+        — Latin ed. Tyrrell &amp; Purser (1904–06), English trans. E. S.
+        Shuckburgh (1908). Retrieval and generation are experimental; quoted
+        translations are the translators' words, not Cicero's Latin verbatim.
       </footer>
     </main>
   );

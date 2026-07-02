@@ -6,7 +6,7 @@
  *
  *  - Warm ivory page (#faf9f5), near-black text (#141413). No pure
  *    white, no pure black.
- *  - Single warm-terracotta accent (#d97757) held in reserve.
+ *  - Single imperial-purple accent (#7a2e57) held in reserve.
  *  - Three-typeface system: serif at display scale (already on EB
  *    Garamond, repurposed as both corpus voice and editorial display);
  *    grotesque sans for UI chrome; mono for structured-data labels.
@@ -45,8 +45,11 @@
   --color-cloud-dark: #87867f;
   --color-slate-light: #5e5d59;
   --color-slate-medium: #3d3d3a;
-  --color-clay: #d97757;
-  --color-accent-ember: #c6613f;
+  /* Roman register: imperial/Tyrian purple — the laticlave of the
+     senatorial order, apt for a consular's archive — over the same
+     warm-stone page. Replaces the original terracotta accent. */
+  --color-tyrian: #7a2e57;
+  --color-tyrian-strong: #5b1f40;
 
   /* Semantic aliases — the rest of the app keeps consuming these */
   --background: var(--color-ivory-light);
@@ -54,8 +57,8 @@
   --muted: var(--color-ivory-medium);
   --muted-foreground: var(--color-cloud-dark);
   --border: var(--color-cloud-light);
-  --accent: var(--color-clay);
-  --accent-strong: var(--color-accent-ember);
+  --accent: var(--color-tyrian);
+  --accent-strong: var(--color-tyrian-strong);
 
   /* Dark editorial surface, e.g. inverted feature cards */
   --surface-dark: var(--color-slate-dark);

@@ -1,7 +1,7 @@
 /**
- * GlossaryPopover — click-driven popover that shows the |xam term's
- * gloss. Replaces the previous native-`title` tooltip, which was OK
- * on desktop hover but unusable on touch.
+ * GlossaryPopover — click-driven popover that shows a term's gloss.
+ * Replaces the previous native-`title` tooltip, which was OK on desktop
+ * hover but unusable on touch.
  *
  * Built on Radix Popover so we get:
  *   - keyboard activation (Enter / Space on the trigger, Esc to close)

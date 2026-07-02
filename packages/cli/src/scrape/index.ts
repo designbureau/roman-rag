@@ -9,6 +9,14 @@ import { fileURLToPath } from "node:url";
 import type { Source, Story } from "@roman/shared";
 
 import { scrapeLettersAtt } from "./sources/cicero-letters-att.js";
+import { scrapeMeditations } from "./sources/marcus-meditations.js";
+import { scrapeResGestae } from "./sources/augustus-res-gestae.js";
+import { scrapeFowler } from "./sources/fowler-social-life.js";
+import { scrapeSmith } from "./sources/smith-antiquities.js";
+import { scrapeCaesarGallicWar, scrapeCaesarCivilWar } from "./sources/caesar-works.js";
+import { scrapeSenecaEpistulae } from "./sources/seneca-epistulae.js";
+import { scrapePliny } from "./sources/pliny-letters.js";
+import { scrapeQuintilian } from "./sources/quintilian-institutio.js";
 
 // Cicero source modules are added here as they are implemented. The Perseus
 // `canonical-latinLit` (phi0474) corpus is the primary source; each module
@@ -24,6 +32,15 @@ type Scraper = () => Promise<Story[]>;
 
 const SCRAPERS: Record<string, Scraper> = {
   "letters-att": scrapeLettersAtt,
+  meditations: scrapeMeditations,
+  "res-gestae": scrapeResGestae,
+  "fowler-social-life": scrapeFowler,
+  "smith-antiquities": scrapeSmith,
+  "caesar-gallic-war": scrapeCaesarGallicWar,
+  "caesar-civil-war": scrapeCaesarCivilWar,
+  "seneca-epistulae": scrapeSenecaEpistulae,
+  "pliny-letters": scrapePliny,
+  "quintilian-institutio": scrapeQuintilian,
 };
 
 const DATA_DIR = path.resolve(

@@ -20,30 +20,23 @@ type GlossaryPayload = {
 
 const data = glossaryData as GlossaryPayload;
 
-// Show only terms mined from the |xam texts themselves (the corpus's
-// own glosses, the 1924 Mantis & Friends appendix, the DBLC
-// indexed-under structure). Dorothea Bleek's 1956 *Bushman Dictionary*
-// entries are withheld: that dictionary spans 27 languages and dialects
-// with no per-entry language tag, and our OCR of it mangles the click
-// consonants and diacritics (e.g. "ǁkabba" → "ilkabba"). Surfacing it
-// as |xam vocabulary would mislead anyone trying to learn words —
-// flagged by Pippa Skotnes, June 2026. It can return once properly
-// transcribed and language-tagged. See docs/skotnes-feedback-remediation.md.
+// The Latin glossary is built from the corpus itself. Restrict to terms
+// drawn from the current sources so stray or untagged entries don't leak
+// in before the fuller lemma-based glossing pass is run.
 const CORPUS_SOURCES = new Set([
-  "dblc-stories",
-  "mantis-friends-1924",
-  "specimens-1911",
+  "ad-atticum",
 ]);
-const xamTerms = data.terms.filter((t) =>
+const corpusTerms = data.terms.filter((t) =>
   t.sources.some((s) => CORPUS_SOURCES.has(s)),
 );
 
 export function meta() {
-  return [{ title: "Glossary — Bleek-Lloyd Archive" }];
+  return [{ title: "Glossary — The Roman Archive" }];
 }
 
-// Sort key: click-stripped lowercase, so alphabetical ordering ignores
-// the leading click consonant. !haken sits with `h`, |kaggen sits with `k`.
+// Sort key: lowercased, punctuation-stripped, so alphabetical ordering
+// ignores leading marks. Harmless for Latin lemmata; retained so the
+// ordering stays stable across scripts.
 function sortKey(term: string): string {
   return term.replace(/[ǀǁǃǂ|!]/g, "").toLowerCase();
 }
@@ -59,12 +52,12 @@ export default function Glossary() {
   const rows = useMemo(() => {
     const q = filter.trim().toLowerCase();
     const list = q
-      ? xamTerms.filter(
+      ? corpusTerms.filter(
           (t) =>
             t.term.toLowerCase().includes(q) ||
             t.glosses.some((g) => g.toLowerCase().includes(q)),
         )
-      : xamTerms;
+      : corpusTerms;
     return list;
   }, [filter]);
 
@@ -88,15 +81,21 @@ export default function Glossary() {
       <header className="mb-4">
         <h1 className="font-display text-5xl">Glossary</h1>
         <p className="mt-2 max-w-2xl text-sm text-[color:var(--muted-foreground)]">
-          {xamTerms.length} |xam terms mined from the texts themselves:
-          the corpus's own parenthetical glosses, Dorothea Bleek's 1924
-          <em> Mantis &amp; Friends</em> appendix, and the DBLC
-          indexed-under structure. Click a term to ask the chat what it
-          means.
+          Latin terms mined from the corpus itself — names, offices, and
+          recurring vocabulary from the correspondence. Click a term to ask
+          the chat what it means.
         </p>
       </header>
 
       <SiteNav />
+
+      {corpusTerms.length === 0 && (
+        <p className="mt-4 rounded-md border border-dashed border-[color:var(--border)] p-6 text-sm text-[color:var(--muted-foreground)]">
+          The Latin glossary will appear once the full corpus is ingested and
+          lemma-tagged. The current slice is the Letters to Atticus
+          (<em>ad Atticum</em>) only.
+        </p>
+      )}
 
       <div className="mb-6 flex flex-wrap items-center gap-3 rounded-md border border-[color:var(--border)] bg-[color:var(--muted)] p-3 text-sm">
         <input
@@ -180,19 +179,16 @@ export default function Glossary() {
 
       <footer className="mt-8 space-y-2 text-xs text-[color:var(--muted-foreground)]">
         <p>
-          Glosses are harvested from the |xam corpus and may be
-          imperfect — Lucy and Wilhelm wrote in 19th-century English, and
-          the same |xam word can carry several translations depending on
-          context. Multiple glosses are kept where they recur.
+          Glosses are harvested from the corpus and may be imperfect — the
+          same Latin word can carry several senses depending on context, and
+          the English is that of the public-domain translation. Multiple
+          glosses are kept where they recur.
         </p>
         <p>
-          Dorothea Bleek's 1956 <em>Bushman Dictionary</em> is
-          deliberately withheld here. It covers 27 languages and dialects
-          with no per-entry language marker, and our optical
-          transcription of it corrupts the click consonants and
-          diacritics. Presenting it as |xam vocabulary would mislead. It
-          can be reinstated once it has been properly transcribed and
-          tagged by language.
+          Source: Cicero, Letters to Atticus (<em>ad Atticum</em>), Latin ed.
+          R.Y. Tyrrell &amp; L.C. Purser, English translation E.S.
+          Shuckburgh, via the Perseus Digital Library. A fuller lemma-based
+          glossary will follow once the wider corpus is ingested.
         </p>
       </footer>
     </main>

@@ -20,7 +20,7 @@ type HeatmapPayload = {
 const data = heatmapData as HeatmapPayload;
 
 export function meta() {
-  return [{ title: "Topic × informant — Bleek-Lloyd Archive" }];
+  return [{ title: "Theme × addressee — The Roman Archive" }];
 }
 
 export default function Heatmap() {
@@ -29,9 +29,9 @@ export default function Heatmap() {
   const [sort, setSort] = useState<"count" | "alpha">("count");
 
   // Normalisation toggle:
-  //  - "raw":     opacity scales to the global max cell (any informant, any term)
-  //  - "row":     opacity scales within each row (who told this story most)
-  //  - "column":  opacity scales within each informant column (signature topics)
+  //  - "raw":     opacity scales to the global max cell (any addressee, any theme)
+  //  - "row":     opacity scales within each row (which addressee draws this theme most)
+  //  - "column":  opacity scales within each addressee column (signature themes)
   const [norm, setNorm] = useState<"raw" | "row" | "column">("raw");
 
   const { rows, opacityFor } = useMemo(() => {
@@ -80,26 +80,37 @@ export default function Heatmap() {
   const onCellClick = (term: string, informant: string) =>
     navigate(`/?ask=${encodeURIComponent(askInformantAboutTerm(informant, term))}`);
 
+  const empty = data.terms.length === 0 || data.informants.length === 0;
+
   return (
     <main className="mx-auto max-w-6xl px-4 py-8 lg:py-12">
       <header className="mb-4">
-        <h1 className="font-display text-5xl">Topic × informant</h1>
+        <h1 className="font-display text-5xl">Theme × addressee</h1>
         <p className="mt-2 max-w-2xl text-sm text-[color:var(--muted-foreground)]">
-          Each row is a recurring DBLC head term; each column is one of
-          the named |xam contributors. Cell intensity scales with how
-          many of that informant's stories carry that tag — the
-          signature of each voice in the archive.
+          Each row is a recurring theme; each column is one of the
+          addressees of the correspondence. Cell intensity scales with how
+          many of the letters to that addressee touch on that theme — the
+          signature of each thread in the archive.
         </p>
       </header>
 
       <SiteNav />
 
+      {empty ? (
+        <p className="rounded-md border border-dashed border-[color:var(--border)] p-6 text-sm text-[color:var(--muted-foreground)]">
+          Thematic analytics will appear once the full corpus is ingested and
+          theme-tagged. The current slice is a single addressee — the Letters
+          to Atticus (<em>ad Atticum</em>) — so there is nothing to compare
+          across addressees yet.
+        </p>
+      ) : (
+      <>
       <div className="mb-4 flex flex-wrap items-center gap-3 rounded-md border border-[color:var(--border)] bg-[color:var(--muted)] p-3 text-sm">
         <input
           type="search"
           value={filter}
           onChange={(e) => setFilter(e.target.value)}
-          placeholder="filter terms…"
+          placeholder="filter themes…"
           className="flex-1 min-w-[12rem] rounded border border-[color:var(--border)] bg-[color:var(--background)] px-2 py-1"
         />
         <label className="flex items-center gap-2">
@@ -119,15 +130,15 @@ export default function Heatmap() {
             className="rounded border border-[color:var(--border)] bg-[color:var(--background)] px-2 py-1"
             value={norm}
             onChange={(e) => setNorm(e.target.value as typeof norm)}
-            title="raw: absolute cell counts · row: who owns each topic · column: each informant's signature topics"
+            title="raw: absolute cell counts · row: which addressee draws each theme · column: each addressee's signature themes"
           >
             <option value="raw">raw counts</option>
-            <option value="row">row (who owns each topic)</option>
-            <option value="column">column (signature topics)</option>
+            <option value="row">row (which addressee draws each theme)</option>
+            <option value="column">column (signature themes)</option>
           </select>
         </label>
         <span className="text-xs text-[color:var(--muted-foreground)]">
-          {rows.length} terms shown
+          {rows.length} themes shown
         </span>
       </div>
 
@@ -136,16 +147,16 @@ export default function Heatmap() {
           <thead className="sticky top-0 bg-[color:var(--background)]">
             <tr className="border-b border-[color:var(--border)]">
               <th className="px-3 py-2 text-left font-medium text-[color:var(--muted-foreground)]">
-                term
+                theme
               </th>
               <th className="px-2 py-2 text-right font-medium text-[color:var(--muted-foreground)]">
-                stories
+                letters
               </th>
               {data.informants.map((i) => (
                 <th
                   key={i.id}
                   className="px-2 py-2 text-center font-medium text-[color:var(--muted-foreground)]"
-                  title={`${i.count} tagged stories from ${i.id}`}
+                  title={`${i.count} tagged letters to ${i.id}`}
                 >
                   <div className="font-corpus text-sm">{i.id}</div>
                   <div className="text-xs opacity-60">{i.count}</div>
@@ -178,7 +189,7 @@ export default function Heatmap() {
                     <td
                       key={i.id}
                       className="relative p-0 text-center"
-                      title={`${v} of ${i.id}'s stories — click to ask`}
+                      title={`${v} of the letters to ${i.id} — click to ask`}
                     >
                       <button
                         type="button"
@@ -202,7 +213,7 @@ export default function Heatmap() {
             {rows.length === 0 && (
               <tr>
                 <td colSpan={data.informants.length + 2} className="px-3 py-4 text-sm text-[color:var(--muted-foreground)]">
-                  No terms match.
+                  No themes match.
                 </td>
               </tr>
             )}
@@ -211,11 +222,15 @@ export default function Heatmap() {
       </div>
 
       <footer className="mt-6 text-xs text-[color:var(--muted-foreground)]">
-        Generated {data.generated_at.slice(0, 10)} from <code>data/stories.json</code>.
-        Click a term to ask about it; click a cell to ask what that informant
-        said about it. Top {data.terms.length} head terms shown — extend{" "}
+        Generated {data.generated_at.slice(0, 10)} over the corpus. Click a
+        theme to ask about it; click a cell to ask what the letters to that
+        addressee say about it. Top {data.terms.length} themes shown — extend{" "}
         <code>HEATMAP_TOP_TERMS</code> in <code>build.ts</code> to widen.
+        Source: Cicero, Letters to Atticus (<em>ad Atticum</em>), via the
+        Perseus Digital Library.
       </footer>
+      </>
+      )}
     </main>
   );
 }

@@ -25,6 +25,18 @@ export const SOURCES = [
   "academica",
   "paradoxa-stoicorum",
   "rhetorica",
+  // Beyond Cicero — the archive is growing to a multi-author Roman corpus.
+  "meditations", // Marcus Aurelius, Meditations (English-only; see marcus-meditations.ts)
+  "res-gestae",  // Augustus, Res Gestae Divi Augusti (parallel Latin + English)
+  "caesar-gallic-war",   // Julius Caesar, De Bello Gallico (parallel Latin + English)
+  "caesar-civil-war",    // Julius Caesar, De Bello Civili (parallel Latin + English)
+  "seneca-epistulae",    // Seneca the Younger, Epistulae Morales ad Lucilium (parallel Latin + English)
+  "pliny-letters",       // Pliny the Younger, Letters (English-only; see pliny-letters.ts)
+  "quintilian-institutio", // Quintilian, Institutio Oratoria (parallel Latin + English)
+  // Reference / background corpus — not a figure's own words. Retrieved only
+  // when the reader toggles "Roman context" on (marked is_reference below).
+  "smith-antiquities",  // Smith's, A Smaller Dictionary of Greek & Roman Antiquities (1871)
+  "fowler-social-life", // W. Warde Fowler, Social Life at Rome in the Age of Cicero (1908)
 ] as const;
 export type Source = (typeof SOURCES)[number];
 
@@ -42,8 +54,11 @@ export type BuiltinPersona =
   | "tiro"
   | "atticus"
   | "caesar"
-  | "interpreter"
-  | "storyteller";
+  | "marcus-aurelius"
+  | "augustus"
+  | "seneca"
+  | "pliny-younger"
+  | "quintilian";
 
 export const BUILTIN_PERSONAS: ReadonlyArray<BuiltinPersona> = [
   "classicist",
@@ -51,8 +66,11 @@ export const BUILTIN_PERSONAS: ReadonlyArray<BuiltinPersona> = [
   "tiro",
   "atticus",
   "caesar",
-  "interpreter",
-  "storyteller",
+  "marcus-aurelius",
+  "augustus",
+  "seneca",
+  "pliny-younger",
+  "quintilian",
 ] as const;
 
 /**
@@ -73,8 +91,11 @@ export const PERSONA_TITLES: Record<BuiltinPersona, string> = {
   tiro: "Tiro",
   atticus: "Atticus",
   caesar: "Caesar",
-  interpreter: "The Interpreter",
-  storyteller: "The Storyteller",
+  "marcus-aurelius": "Marcus Aurelius",
+  augustus: "Augustus",
+  seneca: "Seneca",
+  "pliny-younger": "Pliny the Younger",
+  quintilian: "Quintilian",
 };
 
 export type Story = {
@@ -82,6 +103,8 @@ export type Story = {
   source: Source;
   source_url: string;            // Scaife reader URL for the passage
   title: string;                 // e.g. "In Catilinam I", "Letters to Atticus 1.5"
+  author: string;                // corpus author, e.g. "Cicero", "Marcus Aurelius" — scopes bounded-figure retrieval
+  is_reference: boolean;         // true = background/reference material (Smith's, Fowler), retrieved only when the reader opts in
   // Repurposed from the Bleek-Lloyd model to minimise downstream churn:
   informant: string | null;     // ADDRESSEE for letters (e.g. "Atticus"); null otherwise
   category: string | null;      // GENRE: "oration" | "letter" | "dialogue" | "treatise" | "rhetorica"

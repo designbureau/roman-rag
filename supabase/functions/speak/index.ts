@@ -37,7 +37,14 @@ const CORS: Record<string, string> = {
 // Personas are data-driven (authored in /admin). The runtime key is an
 // open string; the code ships default voices only for the built-ins.
 type Persona = string;
-type BuiltinPersona = "archivist" | "mantis" | "lloyd" | "bleek" | "interpreter" | "storyteller";
+type BuiltinPersona =
+  | "classicist"
+  | "cicero"
+  | "tiro"
+  | "atticus"
+  | "caesar"
+  | "marcus-aurelius"
+  | "augustus";
 
 type VoiceSettings = {
   stability: number;
@@ -60,82 +67,49 @@ type PersonaConfig = {
  * publicly-listed voices; users can swap them for cloned/custom voices
  * via the ELEVENLABS_VOICE_<PERSONA> env vars.
  */
+// Per-persona TTS defaults for the Roman ensemble. The settings encode each
+// voice's temperament (see the ElevenLabs voice-design notes); the
+// defaultVoiceId is a safe, known-accessible placeholder (George) so playback
+// works out of the box. The real per-persona voices are set as
+// persona_config.voice_id (via /admin) or as ELEVENLABS_VOICE_<PERSONA> Edge
+// secrets — either wins over this default (see resolveVoice).
+const PLACEHOLDER_VOICE_ID = "JBFqnCBsd6RMkjVDRZzb"; // George — warm British male
+
 const PERSONA_VOICES: Record<BuiltinPersona, PersonaConfig> = {
-  archivist: {
-    // George — middle-aged British male, warm and conversational.
-    defaultVoiceId: "JBFqnCBsd6RMkjVDRZzb",
-    envOverride: "ELEVENLABS_VOICE_ARCHIVIST",
-    settings: {
-      stability: 0.5,
-      similarity_boost: 0.75,
-      style: 0.15,
-      use_speaker_boost: true,
-      speed: 1.0,
-    },
+  classicist: {
+    defaultVoiceId: PLACEHOLDER_VOICE_ID,
+    envOverride: "ELEVENLABS_VOICE_CLASSICIST",
+    settings: { stability: 0.5, similarity_boost: 0.7, style: 0.35, use_speaker_boost: true, speed: 1.0 },
   },
-  mantis: {
-    // Clyde — older American man, world-weary and measured. Slightly slowed.
-    defaultVoiceId: "2EiwWnXFnvU5JabPnv8n",
-    envOverride: "ELEVENLABS_VOICE_MANTIS",
-    settings: {
-      stability: 0.65,
-      similarity_boost: 0.7,
-      style: 0.35,
-      use_speaker_boost: true,
-      speed: 0.9,
-    },
+  cicero: {
+    defaultVoiceId: PLACEHOLDER_VOICE_ID,
+    envOverride: "ELEVENLABS_VOICE_CICERO",
+    settings: { stability: 0.45, similarity_boost: 0.75, style: 0.45, use_speaker_boost: true, speed: 0.98 },
   },
-  lloyd: {
-    // Dorothy — British female, warm and articulate. A stable
-    // default-library ID; replaces "Lily" (pFZP5JQSXSShoTzS6t8h) which
-    // came back voice_not_found from /v1/text-to-speech as of late 2026.
-    defaultVoiceId: "ThT5KcBeYPX3keUQqHPh",
-    envOverride: "ELEVENLABS_VOICE_LLOYD",
-    settings: {
-      stability: 0.65,
-      similarity_boost: 0.75,
-      style: 0.1,
-      use_speaker_boost: true,
-      speed: 0.95,
-    },
+  tiro: {
+    defaultVoiceId: PLACEHOLDER_VOICE_ID,
+    envOverride: "ELEVENLABS_VOICE_TIRO",
+    settings: { stability: 0.68, similarity_boost: 0.72, style: 0.15, use_speaker_boost: true, speed: 0.96 },
   },
-  bleek: {
-    // Daniel — middle-aged British male, authoritative and precise.
-    defaultVoiceId: "onwK4e9ZLuTAKqWW03F9",
-    envOverride: "ELEVENLABS_VOICE_BLEEK",
-    settings: {
-      stability: 0.7,
-      similarity_boost: 0.7,
-      style: 0.05,
-      use_speaker_boost: true,
-      speed: 0.95,
-    },
+  atticus: {
+    defaultVoiceId: PLACEHOLDER_VOICE_ID,
+    envOverride: "ELEVENLABS_VOICE_ATTICUS",
+    settings: { stability: 0.6, similarity_boost: 0.72, style: 0.3, use_speaker_boost: true, speed: 0.98 },
   },
-  interpreter: {
-    // Adam — clear American male narrator. Placeholder until the user
-    // picks one; override via ELEVENLABS_VOICE_INTERPRETER.
-    defaultVoiceId: "pNInz6obpgDQGcFmaJgB",
-    envOverride: "ELEVENLABS_VOICE_INTERPRETER",
-    settings: {
-      stability: 0.55,
-      similarity_boost: 0.75,
-      style: 0.2,
-      use_speaker_boost: true,
-      speed: 1.0,
-    },
+  caesar: {
+    defaultVoiceId: PLACEHOLDER_VOICE_ID,
+    envOverride: "ELEVENLABS_VOICE_CAESAR",
+    settings: { stability: 0.65, similarity_boost: 0.75, style: 0.25, use_speaker_boost: true, speed: 1.0 },
   },
-  storyteller: {
-    // Alice — confident British female, warm. Placeholder until the
-    // user picks one; override via ELEVENLABS_VOICE_STORYTELLER.
-    defaultVoiceId: "Xb7hH8MSUJpSbSDYk0k2",
-    envOverride: "ELEVENLABS_VOICE_STORYTELLER",
-    settings: {
-      stability: 0.6,
-      similarity_boost: 0.8,
-      style: 0.3,
-      use_speaker_boost: true,
-      speed: 0.95,
-    },
+  "marcus-aurelius": {
+    defaultVoiceId: PLACEHOLDER_VOICE_ID,
+    envOverride: "ELEVENLABS_VOICE_MARCUS_AURELIUS",
+    settings: { stability: 0.6, similarity_boost: 0.7, style: 0.2, use_speaker_boost: true, speed: 0.9 },
+  },
+  augustus: {
+    defaultVoiceId: PLACEHOLDER_VOICE_ID,
+    envOverride: "ELEVENLABS_VOICE_AUGUSTUS",
+    settings: { stability: 0.72, similarity_boost: 0.7, style: 0.15, use_speaker_boost: true, speed: 0.9 },
   },
 };
 
@@ -421,7 +395,7 @@ Deno.serve(async (req) => {
   if (!rawText.trim()) return jsonErr("text is required", 400);
 
   const persona: Persona =
-    typeof body.persona === "string" && body.persona ? body.persona : "archivist";
+    typeof body.persona === "string" && body.persona ? body.persona : "classicist";
 
   // The Storyteller persona ends a turn with clickable
   // `[Title](<story:Title>)` suggestion links, usually preceded by a

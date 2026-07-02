@@ -50,7 +50,7 @@ const SIZE = 932;
 const MARGIN = 2;
 
 export function meta() {
-  return [{ title: "Topic bubbles — Bleek-Lloyd Archive" }];
+  return [{ title: "Theme bubbles — The Roman Archive" }];
 }
 
 export default function Graph() {
@@ -84,26 +84,36 @@ export default function Graph() {
     navigate(`/?ask=${encodeURIComponent(askAboutTerm(id))}`);
   };
 
+  const empty = data.nodes.length === 0;
+
   return (
     <main className="mx-auto max-w-6xl px-4 py-8 lg:py-12">
       <header className="mb-4">
-        <h1 className="font-display text-5xl">Topic bubbles</h1>
+        <h1 className="font-display text-5xl">Theme bubbles</h1>
         <p className="mt-2 max-w-2xl text-sm text-[color:var(--muted-foreground)]">
-          The {data.top_n} most-frequent topics in the archive, each sized by
-          how many stories mention it. Hover for the count; click a bubble to
-          ask the chat about that topic.
+          The most-frequent themes in the corpus, each sized by how many
+          letters touch on it. Hover for the count; click a bubble to ask the
+          chat about that theme.
         </p>
       </header>
 
       <SiteNav />
 
+      {empty ? (
+        <p className="rounded-md border border-dashed border-[color:var(--border)] p-6 text-sm text-[color:var(--muted-foreground)]">
+          Thematic analytics will appear once the full corpus is ingested and
+          theme-tagged. The current slice is the Letters to Atticus
+          (<em>ad Atticum</em>) only.
+        </p>
+      ) : (
+      <>
       <div className="relative rounded-md border border-[color:var(--border)] bg-[color:var(--background)]">
         {hovered && (
           <div className="pointer-events-none absolute left-3 top-3 z-10 rounded bg-[color:var(--foreground)] px-2 py-1 text-xs text-[color:var(--background)]">
             {hovered}
             <span className="opacity-70">
               {" · "}
-              {bubbles.find((b) => b.id === hovered)?.count} stories
+              {bubbles.find((b) => b.id === hovered)?.count} letters
             </span>
           </div>
         )}
@@ -130,7 +140,7 @@ export default function Graph() {
                 className="transition-opacity"
               >
                 <title>
-                  {b.id} · {b.count} stories
+                  {b.id} · {b.count} letters
                 </title>
                 <clipPath id={clipId}>
                   <circle r={b.r} />
@@ -172,10 +182,13 @@ export default function Graph() {
       </div>
 
       <footer className="mt-6 text-xs text-[color:var(--muted-foreground)]">
-        Generated {data.generated_at.slice(0, 10)} from the DBLC subject index.
-        Bubble size scales with how often each topic appears across the
-        archive. Hover for the count, click to ask.
+        Generated {data.generated_at.slice(0, 10)} over the corpus. Bubble size
+        scales with how often each theme appears across the correspondence.
+        Hover for the count, click to ask. Source: Cicero, Letters to Atticus
+        (<em>ad Atticum</em>), via the Perseus Digital Library.
       </footer>
+      </>
+      )}
     </main>
   );
 }

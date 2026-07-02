@@ -113,6 +113,8 @@ export function buildStories(
       source: ATTICUS.source,
       source_url: scaifeUrl(urn, passage),
       title: `Letters to Atticus ${book}.${letterRaw}`,
+      author: "Cicero",
+      is_reference: false,
       informant: ATTICUS.addressee, // addressee
       category: ATTICUS.genre, // genre
       cicero_ref: `${ATTICUS.abbrev} ${book}.${letterRaw}`,

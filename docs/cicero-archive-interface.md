@@ -1,4 +1,4 @@
-# An Interface to the Cicero Archive
+# An Interface to the Roman Archive
 
 *System description — DRAFT, to be written.*
 

@@ -1,4 +1,4 @@
-# roman-rag — the Cicero Archive
+# roman-rag — the Roman Archive
 
 A retrieval-augmented reading interface over **Cicero's complete works**,
 presented as a **Latin + English parallel text** and voiced through a **Roman

@@ -3,16 +3,16 @@
  * Used by the topic browse views to seed the chat input as a sentence.
  *
  * The heuristic skips "the" for:
- *   - |xam names (click consonants ǀ ǁ ǃ ǂ or their ASCII | / ! fallbacks)
+ *   - Names / Latin proper nouns (also any stray click marks, harmlessly)
  *   - Capitalised words (proper nouns rendered in title case)
- *   - Multi-word phrases ("personal history", "early race")
+ *   - Multi-word phrases ("personal history", "civil war")
  *   - Plurals (terms ending in `s`)
- *   - Gerunds / -ing nouns (`hunting`, `healing`)
+ *   - Gerunds / -ing nouns ("banishment" aside, e.g. "campaigning")
  *   - A small explicit set of mass / abstract / generic-singular nouns
- *     where "the X" overspecifies ("food", "death", "name").
+ *     where "the X" overspecifies ("exile", "death", "name").
  *
- * Otherwise it prepends "the" — concrete singular nouns ("the lion",
- * "the moon", "the eland", "the wind").
+ * Otherwise it prepends "the" — concrete singular nouns ("the consul",
+ * "the letter", "the province", "the triumph").
  */
 const NO_ARTICLE = new Set([
   // mass / abstract nouns
@@ -42,7 +42,7 @@ const NO_ARTICLE = new Set([
 export function withArticle(term: string): string {
   const t = term.trim();
   const skip =
-    /[ǀǁǃǂ|!]/.test(t) ||       // contains a click → |xam name
+    /[ǀǁǃǂ|!]/.test(t) ||       // stray click/marker → treat as a name
     /^[A-Z]/.test(t) ||           // capitalised → proper noun
     t.includes(" ") ||            // multi-word phrase
     t.endsWith("s") ||            // plural-likely
@@ -51,12 +51,12 @@ export function withArticle(term: string): string {
   return skip ? t : `the ${t}`;
 }
 
-/** "tell me about the lion" / "tell me about hunting" */
+/** "tell me about the consul" / "tell me about exile" */
 export function askAboutTerm(term: string): string {
   return `tell me about ${withArticle(term)}`;
 }
 
-/** "tell me what ǁkabbo said about the lion" */
+/** "tell me what the letters to Atticus say about the consulship" */
 export function askInformantAboutTerm(informant: string, term: string): string {
-  return `tell me what ${informant} said about ${withArticle(term)}`;
+  return `tell me what the letters to ${informant} say about ${withArticle(term)}`;
 }

@@ -12,6 +12,8 @@ export async function upsertStories(sb: Sql, stories: Story[]): Promise<void> {
       source: s.source,
       source_url: s.source_url,
       title: s.title,
+      author: s.author,
+      is_reference: s.is_reference,
       informant: s.informant,
       category: s.category,
       cicero_ref: s.cicero_ref,

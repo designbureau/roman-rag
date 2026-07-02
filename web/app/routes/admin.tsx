@@ -20,11 +20,11 @@ import { Link } from "react-router";
 import { SiteNav } from "~/components/site-nav";
 import { useAuth } from "~/lib/auth";
 import { supabase } from "~/lib/supabase";
-import { CHAT_FN_URL, SUPABASE_ANON_KEY } from "~/lib/config";
+import { CHAT_FN_URL, SUPABASE_ANON_KEY, AUTH_ENABLED } from "~/lib/config";
 import { MarkdownEditor } from "~/components/markdown-editor";
 
 export function meta() {
-  return [{ title: "Admin — Bleek-Lloyd Archive" }];
+  return [{ title: "Admin — The Roman Archive" }];
 }
 
 // Reserved row holding the editable global shared rules — not a persona.
@@ -32,8 +32,8 @@ const SHARED_RULES_KEY = "__shared__";
 const KEY_RE = /^[a-z][a-z0-9]*$/;
 
 type FewShot = { role: "user" | "assistant"; content: string };
-// A persona tier (the Storyteller age tiers). A blank prompt tracks the
-// code default for that key; an empty list means no tier selector.
+// A persona tier (reader-selectable variants of a voice). A blank prompt
+// tracks the code default for that key; an empty list means no tier selector.
 type AgeTier = {
   key: string;
   label: string;
@@ -72,6 +72,9 @@ type Row = {
   enabled: boolean;
   is_builtin: boolean;
   age_tiers: AgeTier[];
+  /** Whether this voice's retrieval also draws on the background/reference
+   *  corpus (Smith's Dictionary, Fowler) — a per-persona setting. */
+  include_reference: boolean;
 };
 
 function emptyRow(persona: string): Row {
@@ -87,6 +90,7 @@ function emptyRow(persona: string): Row {
     enabled: true,
     is_builtin: false,
     age_tiers: [],
+    include_reference: false,
   };
 }
 
@@ -103,11 +107,12 @@ function normaliseRow(r: Partial<Row> & { persona: string }): Row {
     enabled: r.enabled ?? true,
     is_builtin: r.is_builtin ?? false,
     age_tiers: parseAgeTiers(r.age_tiers),
+    include_reference: r.include_reference ?? false,
   };
 }
 
 const SELECT_COLS =
-  "persona, title, display_md, system_prompt_override, few_shots, temperature, voice_id, sort_order, enabled, is_builtin, age_tiers";
+  "persona, title, display_md, system_prompt_override, few_shots, temperature, voice_id, sort_order, enabled, is_builtin, age_tiers, include_reference";
 
 export default function Admin() {
   const { status, isAdmin, user } = useAuth();
@@ -117,8 +122,8 @@ export default function Admin() {
   // the __shared__ key), fetched from the chat function's GET endpoint.
   // Used by the "Load default" actions so admins edit the real text.
   const [defaults, setDefaults] = useState<Record<string, string>>({});
-  // Built-in tier sets per persona (Storyteller age tiers), from the chat
-  // GET endpoint — used by the "Load built-in tiers" action.
+  // Built-in tier sets per persona (reader-selectable variants), from the
+  // chat GET endpoint — used by the "Load built-in tiers" action.
   const [ageTierDefaults, setAgeTierDefaults] = useState<Record<string, AgeTier[]>>({});
 
   const reload = () => {
@@ -145,7 +150,9 @@ export default function Admin() {
   };
 
   useEffect(() => {
-    if (status !== "signed-in" || !isAdmin) return;
+    // When the auth layer is disabled, the admin is open (private prototype);
+    // otherwise it requires a signed-in admin.
+    if (AUTH_ENABLED && (status !== "signed-in" || !isAdmin)) return;
     fetch(CHAT_FN_URL, {
       headers: { Authorization: `Bearer ${SUPABASE_ANON_KEY}` },
     })
@@ -162,17 +169,21 @@ export default function Admin() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [status, isAdmin]);
 
-  if (status === "loading") return <Centered>Loading…</Centered>;
-  if (status !== "signed-in") return <Centered>Sign in to continue.</Centered>;
-  if (!isAdmin) {
-    return (
-      <Centered>
-        <p>This area is for administrators.</p>
-        <Link to="/" className="mt-3 inline-block text-sm underline">
-          ← back to chat
-        </Link>
-      </Centered>
-    );
+  // Auth-gated only when the auth layer is enabled. With it disabled the
+  // editor is open (the writes are still RLS-governed server-side).
+  if (AUTH_ENABLED) {
+    if (status === "loading") return <Centered>Loading…</Centered>;
+    if (status !== "signed-in") return <Centered>Sign in to continue.</Centered>;
+    if (!isAdmin) {
+      return (
+        <Centered>
+          <p>This area is for administrators.</p>
+          <Link to="/" className="mt-3 inline-block text-sm underline">
+            ← back to chat
+          </Link>
+        </Centered>
+      );
+    }
   }
 
   const sharedRow = rows[SHARED_RULES_KEY];
@@ -185,9 +196,9 @@ export default function Admin() {
       <header className="mb-6">
         <h1 className="font-display text-4xl">Persona editor</h1>
         <p className="mt-2 text-sm text-[color:var(--muted-foreground)]">
-          Signed in as {user?.email}. Author the voices readers can pick —
-          their title (the toggle tab), description, prompt, examples, voice,
-          and order.
+          {user?.email ? `Signed in as ${user.email}. ` : ""}Author the voices
+          readers can pick — their title (the toggle tab), description, prompt,
+          examples, voice, and order.
         </p>
       </header>
 
@@ -294,9 +305,9 @@ function SharedRulesEditor({
     <section className="rounded-md border-2 border-[color:var(--accent)] bg-[color:var(--accent)]/5 p-4">
       <h2 className="font-display text-2xl">Shared rules</h2>
       <p className="mt-1 text-sm text-[color:var(--muted-foreground)]">
-        Applied to <em>every</em> voice, on top of its own prompt — language
-        groups, no fabrication, rock-art attribution, factual biographies,
-        recitation mode, refusals.
+        Applied to <em>every</em> voice, on top of its own prompt — grounding
+        in the corpus, no fabrication of letters or speeches, faithful
+        citation, bounded knowledge, refusals.
       </p>
       <div className="mt-3 rounded-md border border-[color:var(--accent)] bg-[color:var(--background)] p-3 text-sm">
         <strong className="font-medium text-[color:var(--accent)]">Caution.</strong>{" "}
@@ -367,7 +378,7 @@ function NewPersonaForm({
 
   const keyError =
     key && !KEY_RE.test(key)
-      ? "Use lowercase letters/digits, starting with a letter (e.g. trickster)."
+      ? "Use lowercase letters/digits, starting with a letter (e.g. orator)."
       : existingKeys.includes(key)
         ? "That key is already taken."
         : key === SHARED_RULES_KEY
@@ -444,7 +455,7 @@ function NewPersonaForm({
           <input
             value={key}
             onChange={(e) => setKey(e.target.value.toLowerCase())}
-            placeholder="trickster"
+            placeholder="orator"
             className="mt-1 w-full rounded-md border border-[color:var(--border)] bg-[color:var(--background)] px-3 py-2 font-mono text-sm"
           />
           {keyError && <p className="mt-1 text-xs text-[color:var(--accent)]">{keyError}</p>}
@@ -454,7 +465,7 @@ function NewPersonaForm({
           <input
             value={title}
             onChange={(e) => setTitle(e.target.value)}
-            placeholder="The Trickster"
+            placeholder="The Orator"
             className="mt-1 w-full rounded-md border border-[color:var(--border)] bg-[color:var(--background)] px-3 py-2 text-sm"
           />
         </div>
@@ -520,6 +531,7 @@ function PersonaEditor({
   const [voiceId, setVoiceId] = useState(row.voice_id ?? "");
   const [sortOrder, setSortOrder] = useState(row.sort_order);
   const [enabled, setEnabled] = useState(row.enabled);
+  const [includeReference, setIncludeReference] = useState(row.include_reference);
   const [showAdvanced, setShowAdvanced] = useState(false);
   const [saveState, setSaveState] = useState<"idle" | "saving" | "saved" | "error">("idle");
   const [error, setError] = useState<string | null>(null);
@@ -554,6 +566,7 @@ function PersonaEditor({
       voice_id: voiceId.trim() || null,
       sort_order: sortOrder,
       enabled,
+      include_reference: includeReference,
       is_builtin: row.is_builtin,
       updated_at: new Date().toISOString(),
       updated_by: userId,
@@ -578,6 +591,7 @@ function PersonaEditor({
       voice_id: payload.voice_id,
       sort_order: sortOrder,
       enabled,
+      include_reference: includeReference,
     });
     setTimeout(() => setSaveState("idle"), 2000);
   };
@@ -627,6 +641,20 @@ function PersonaEditor({
             className="h-4 w-4"
           />
           Show in the chat toggle
+        </label>
+        <label className="flex items-end gap-2 pb-2 text-sm sm:col-span-2">
+          <input
+            type="checkbox"
+            checked={includeReference}
+            onChange={(e) => setIncludeReference(e.target.checked)}
+            className="h-4 w-4"
+          />
+          <span>
+            Roman context
+            <span className="ml-1.5 text-xs font-normal text-[color:var(--muted-foreground)]">
+              — draw on background reference (Smith's Dictionary, Fowler) about the Roman world
+            </span>
+          </span>
         </label>
       </div>
 
@@ -802,7 +830,7 @@ function FewShotEditor({
   );
 }
 
-// ── Persona tier editor (the Storyteller age tiers) ───────────────────────
+// ── Persona tier editor (reader-selectable variants) ──────────────────────
 // Drop incomplete tiers and guarantee exactly one default when any exist.
 function cleanTiers(tiers: AgeTier[]): AgeTier[] {
   const cleaned = tiers
@@ -865,10 +893,10 @@ function TierEditor({
         )}
       </div>
       <p className="mb-1 text-xs text-[color:var(--muted-foreground)]">
-        Optional. A toggle the reader picks (the Storyteller's age tiers are
-        the canonical use); the selected tier's text is appended to the
-        prompt. Leave a tier's prompt blank to track the built-in default.
-        Two or more tiers are needed for the toggle to appear.
+        Optional. A toggle the reader picks (for example, a plainer or a more
+        scholarly register of the same voice); the selected tier's text is
+        appended to the prompt. Leave a tier's prompt blank to track the
+        built-in default. Two or more tiers are needed for the toggle to appear.
       </p>
       <div className="space-y-2">
         {value.map((t, i) => (

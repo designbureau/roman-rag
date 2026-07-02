@@ -6,19 +6,16 @@
  * whitespace-separated token in a <span data-w="N">). We don't need
  * to walk text nodes — just iterate the already-wrapped spans.
  *
- * Matching: lowercase the token + canonicalise ASCII click renderings
- * (`|`, `||`, `!`, `≠`) to Unicode (ǀ ǁ ǃ ǂ), strip trailing
- * punctuation. The glossary-lookup.json keys are built with the same
- * canonicalisation, so we get hits regardless of whether the source
- * text uses ASCII or Unicode click consonants.
+ * Matching: lowercase the token and strip trailing punctuation before
+ * looking it up. The glossary-lookup.json keys are built with the same
+ * normalisation, so we get hits regardless of casing. (A legacy
+ * canonicalisation step also folds a few stray ASCII marks to Unicode;
+ * it is inert for Latin text and left in place harmlessly.)
  *
- * The lookup is restricted to click-bearing terms mined from the |xam
- * texts themselves (corpus glosses, the 1924 Mantis & Friends appendix,
- * the DBLC indexed-under structure). Clickless entries would false-match
- * common English words; Dorothea Bleek's 1956 multi-language dictionary
- * is excluded entirely — it spans 27 languages with no per-entry tag and
- * its OCR mangles the clicks, so it can't be trusted as |xam (Skotnes
- * feedback, June 2026). See docs/skotnes-feedback-remediation.md.
+ * The lookup is built from terms mined from the corpus itself, so it only
+ * tags vocabulary the glossary actually carries. The glossary is not yet
+ * populated for the Cicero corpus — it will light up once the wider
+ * corpus is ingested and lemma-tagged.
  */
 import type { Plugin } from "unified";
 import type { Element, Root } from "hast";

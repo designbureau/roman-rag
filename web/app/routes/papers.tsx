@@ -3,7 +3,7 @@ import { PAPERS } from "~/content/papers";
 import { SiteNav } from "~/components/site-nav";
 
 export function meta() {
-  return [{ title: "Papers — Bleek-Lloyd Archive" }];
+  return [{ title: "Papers — The Roman Archive" }];
 }
 
 export default function Papers() {
@@ -12,9 +12,9 @@ export default function Papers() {
       <header className="mb-8">
         <h1 className="font-display text-5xl">Papers</h1>
         <p className="mt-3 max-w-2xl text-sm text-[color:var(--muted-foreground)]">
-          Write-ups behind this project: the reading interface, the question
-          of the language's lost sound, and what technology can and cannot do
-          for the records of endangered and sleeping languages more broadly.
+          Write-ups behind this project: reading Cicero in translation, the
+          ethics of giving historical figures a synthetic voice, and what
+          retrieval-augmented reading can and cannot do for a classical corpus.
         </p>
       </header>
 

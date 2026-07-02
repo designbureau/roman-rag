@@ -6,7 +6,7 @@ import { SUPABASE_ANON_KEY } from "~/lib/config";
  * "Listen" control for the long-form paper pages, via ElevenLabs.
  *
  * The paper is split into sections (segments under the /speak input cap), each
- * synthesised by the shared /speak Edge Function (which strips |xam clicks,
+ * synthesised by the shared /speak Edge Function (which normalises the text,
  * drops bracketed citations, and resolves a narrator voice). Rather than one
  * giant blob, segments play through a single audio element as a queue: while
  * one section plays, the next is pre-fetched, so playback flows continuously
@@ -16,9 +16,9 @@ import { SUPABASE_ANON_KEY } from "~/lib/config";
  * Listen / Pause / Resume / Stop; a small label shows progress.
  */
 
-// Narrator voice. /speak resolves this persona to a voice; "archivist" is a
-// warm British male narrator, which suits the papers.
-const NARRATOR_PERSONA = "archivist";
+// Narrator voice. /speak resolves this persona to a voice; the Classicist is
+// a warm, measured narrator, which suits the papers.
+const NARRATOR_PERSONA = "classicist";
 // Keep each segment under /speak's 4000-char input cap, with headroom for the
 // click-stripping / pronunciation expansion it applies server-side.
 const MAX_SEG_CHARS = 3200;
