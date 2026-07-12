@@ -55,10 +55,12 @@ const SFX_STORAGE_KEY = "gallery-sfx-on";
 // Pacing for the ring's intro reveal (see the introStarted effect below):
 // each numeral+bust pair starts RING_STEP_MS after the previous one (they
 // overlap mid-animation rather than waiting for each to finish, which reads
-// as a cascade rather than a slideshow); the icon row and chat input each
-// wait a further beat after the last bust starts, so they land once the
-// ring itself has mostly settled instead of piling in at the same instant.
-const RING_STEP_MS = 180;
+// as a cascade rather than a slideshow); the name/date caption, then the
+// icon row, then the chat input each wait a further beat after the previous
+// step starts, so they land once the ring itself has mostly settled instead
+// of piling in at the same instant.
+const RING_STEP_MS = 320;
+const NAME_DELAY_MS = 250;
 const ICONS_DELAY_MS = 250;
 const CHAT_DELAY_MS = 200;
 
@@ -150,6 +152,7 @@ export default function GalleryRoute() {
   const [introStarted, setIntroStarted] = useState(false);
   const [introDone, setIntroDone] = useState(false);
   const [revealedCount, setRevealedCount] = useState(0);
+  const [nameRevealed, setNameRevealed] = useState(false);
   const [iconsRevealed, setIconsRevealed] = useState(false);
   const [chatRevealed, setChatRevealed] = useState(false);
 
@@ -164,6 +167,9 @@ export default function GalleryRoute() {
         await wait(RING_STEP_MS);
       }
       if (cancelled) return;
+      await wait(NAME_DELAY_MS);
+      if (cancelled) return;
+      setNameRevealed(true);
       await wait(ICONS_DELAY_MS);
       if (cancelled) return;
       setIconsRevealed(true);
@@ -295,38 +301,46 @@ export default function GalleryRoute() {
               />
             </div>
             {/* Overlaid on the full-screen canvas, not sharing layout space with
-              it — pointer-events-none so it never steals the ring's drag/click. */}
-            <div
-              className="fade-up pointer-events-none absolute inset-x-0 top-24 z-10 text-center"
-              key={`name-${figure.id}`}
-            >
-              {/* Bust height/framing varies per figure (see gallery-figures.ts
-                ring placements), so the tallest hair/headwear can reach up
-                into this caption's space. A shadow keeps the text legible
-                against pale stone instead of just the dark backdrop. */}
-              {/* pointer-events-auto against the parent's pointer-events-none —
-                that parent spans the full width so drag/click still passes
-                through to the ring on either side of the text, but without
-                this override the "none" would inherit onto these divs too,
-                making the caption itself unclickable/unselectable. w-fit
-                mx-auto (instead of relying on the parent's text-center)
-                shrinks each div to its own text instead of the full row, so
-                pointer-events-auto only claims the glyphs themselves. */}
-              <StaggerText
-                text={figure.name}
-                className="pointer-events-auto mx-auto block w-fit font-display text-2xl font-semibold uppercase text-[#E7DECC]"
-                // .font-display sets its own tight -0.022em letter-spacing,
-                // which beats the (removed) tracking-wide utility class via
-                // Tailwind's cascade layers — overridden inline instead, same
-                // as the ticker text in ring-chat.tsx.
-                style={{ textShadow: "0 2px 16px rgba(0,0,0,0.9)", letterSpacing: "0.06em" }}
-              />
-              <StaggerText
-                text={figure.years}
-                className="pointer-events-auto mx-auto mt-1.5 block w-fit text-[11px] uppercase tracking-[0.18em] text-[#A4874D]"
-                style={{ textShadow: "0 1px 10px rgba(0,0,0,0.9)" }}
-              />
-            </div>
+              it — pointer-events-none so it never steals the ring's drag/click.
+              Gated on nameRevealed (see introStarted effect above) so the
+              very first caption waits for the busts to finish their own
+              reveal instead of fading up immediately on mount; nameRevealed
+              never goes false again afterward, so every later figure switch
+              still fades this in right away via the key={`name-${id}`}
+              remount below, same as before the intro sequence existed. */}
+            {nameRevealed && (
+              <div
+                className="fade-up pointer-events-none absolute inset-x-0 top-24 z-10 text-center"
+                key={`name-${figure.id}`}
+              >
+                {/* Bust height/framing varies per figure (see gallery-figures.ts
+                  ring placements), so the tallest hair/headwear can reach up
+                  into this caption's space. A shadow keeps the text legible
+                  against pale stone instead of just the dark backdrop. */}
+                {/* pointer-events-auto against the parent's pointer-events-none —
+                  that parent spans the full width so drag/click still passes
+                  through to the ring on either side of the text, but without
+                  this override the "none" would inherit onto these divs too,
+                  making the caption itself unclickable/unselectable. w-fit
+                  mx-auto (instead of relying on the parent's text-center)
+                  shrinks each div to its own text instead of the full row, so
+                  pointer-events-auto only claims the glyphs themselves. */}
+                <StaggerText
+                  text={figure.name}
+                  className="pointer-events-auto mx-auto block w-fit font-display text-2xl font-semibold uppercase text-[#E7DECC]"
+                  // .font-display sets its own tight -0.022em letter-spacing,
+                  // which beats the (removed) tracking-wide utility class via
+                  // Tailwind's cascade layers — overridden inline instead, same
+                  // as the ticker text in ring-chat.tsx.
+                  style={{ textShadow: "0 2px 16px rgba(0,0,0,0.9)", letterSpacing: "0.06em" }}
+                />
+                <StaggerText
+                  text={figure.years}
+                  className="pointer-events-auto mx-auto mt-1.5 block w-fit text-[11px] uppercase tracking-[0.18em] text-[#A4874D]"
+                  style={{ textShadow: "0 1px 10px rgba(0,0,0,0.9)" }}
+                />
+              </div>
+            )}
             {/* Last step of the intro sequence — see introStarted effect
               above. A plain, unstyled wrapper: RingChat positions its own
               pieces (ticker, pause button, form) with `absolute`, which

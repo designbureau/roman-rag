@@ -1,4 +1,4 @@
-import { Suspense, useEffect, useLayoutEffect, useRef } from "react";
+import { Suspense, useEffect, useRef } from "react";
 import { Canvas, useFrame, useThree } from "@react-three/fiber";
 import gsap from "gsap";
 import * as THREE from "three";
@@ -107,59 +107,66 @@ function RingFigure({
   const offsetRef = useRef(index * step);
   const parallax = usePointerParallax();
   const materialsRef = useRef<THREE.Material[]>([]);
+  const initializedRef = useRef(false);
   const hasRevealedRef = useRef(false);
-
-  // Runs once on mount (before paint), while the loaded GLTF's meshes are
-  // already in the tree (assets are preloaded by the loading screen, see
-  // loading-screen.tsx, so Suspense here resolves synchronously) — collects
-  // every mesh material and, unless skipReveal, zeroes their opacity so the
-  // bust starts invisible instead of popping in before its reveal effect
-  // below gets a chance to run.
-  useLayoutEffect(() => {
-    const group = groupRef.current;
-    if (!group) return;
-    const materials: THREE.Material[] = [];
-    group.traverse((obj) => {
-      if (obj instanceof THREE.Mesh) {
-        const mats = Array.isArray(obj.material) ? obj.material : [obj.material];
-        materials.push(...mats);
-      }
-    });
-    materialsRef.current = materials;
-    if (skipReveal) return;
-    for (const m of materials) {
-      m.transparent = true;
-      m.opacity = 0;
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
-  useEffect(() => {
-    if (skipReveal || !revealed || hasRevealedRef.current) return;
-    hasRevealedRef.current = true;
-    const materials = materialsRef.current;
-    if (!materials.length) return;
-    const proxy = { t: 0 };
-    gsap.to(proxy, {
-      t: 1,
-      duration: 0.6,
-      ease: "power2.out",
-      onUpdate: () => {
-        for (const m of materials) m.opacity = proxy.t;
-      },
-      onComplete: () => {
-        for (const m of materials) {
-          m.opacity = 1;
-          m.transparent = false;
-          m.needsUpdate = true;
-        }
-      },
-    });
-  }, [revealed, skipReveal]);
 
   useFrame((_, delta) => {
     const g = groupRef.current;
     if (!g) return;
+
+    // BustModel's GLTF loads behind a Suspense boundary — even preloaded
+    // (cached) assets can take an extra React commit or two before the
+    // actual mesh lands in this group, so a one-shot mount effect can run
+    // before there's anything to traverse and never find it again. Doing
+    // it here instead retries every frame (cheap once `initializedRef`
+    // latches) until the mesh genuinely exists, then zeroes its materials'
+    // opacity so the bust starts invisible rather than popping in before
+    // the reveal tween below gets a chance to run.
+    if (!initializedRef.current) {
+      const materials: THREE.Material[] = [];
+      g.traverse((obj) => {
+        if (obj instanceof THREE.Mesh) {
+          const mats = Array.isArray(obj.material) ? obj.material : [obj.material];
+          materials.push(...mats);
+        }
+      });
+      if (materials.length) {
+        initializedRef.current = true;
+        materialsRef.current = materials;
+        if (!skipReveal) {
+          for (const m of materials) {
+            m.transparent = true;
+            m.opacity = 0;
+          }
+        }
+      }
+    }
+
+    // Intro sequence (gallery.tsx): fades this bust's materials in once its
+    // turn comes up, in step with its numeral in the nav above. Checked
+    // here (rather than a separate effect keyed on `revealed`) so it can
+    // never fire before the materials above are actually found.
+    if (!hasRevealedRef.current && !skipReveal && revealed && materialsRef.current.length) {
+      hasRevealedRef.current = true;
+      const materials = materialsRef.current;
+      const proxy = { t: 0 };
+      gsap.to(proxy, {
+        t: 1,
+        duration: 0.85,
+        ease: "power2.out",
+        onUpdate: () => {
+          for (const m of materials) m.opacity = proxy.t;
+        },
+        onComplete: () => {
+          for (const m of materials) {
+            m.opacity = 1;
+            m.transparent = false;
+            m.needsUpdate = true;
+          }
+        },
+      });
+    }
+
     let diff = (index - carousel) * step - offsetRef.current;
     diff = Math.atan2(Math.sin(diff), Math.cos(diff));
     offsetRef.current += diff * Math.min(1, delta * 4.2);
