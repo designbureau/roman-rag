@@ -49,7 +49,7 @@ const DEFAULT_TUNING: BustTuning = {
 // roughness gives the stone a slight sheen instead of a fully matte finish.
 const DEFAULT_MATERIAL: SharedMaterialTuning = {
   color: "#ffffff",
-  roughness: 0.4,
+  roughness: 0.65,
   metalness: 0,
 };
 

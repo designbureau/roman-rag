@@ -67,7 +67,7 @@ export function AuthGate({ children }: { children: React.ReactNode }) {
     <main className="mx-auto flex min-h-screen max-w-md flex-col justify-center px-4 py-10">
       <div className="rounded-md border border-[color:var(--border)] bg-[color:var(--background)] p-8 text-center">
         <h1 className="font-display text-3xl sm:text-4xl">
-          The Roman Archive
+          Voces Romae
         </h1>
 
         {SHOW_MAGIC_LINK && linkState.kind === "sent" ? (

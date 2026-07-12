@@ -63,7 +63,7 @@ export default function App() {
 
 export function meta() {
   return [
-    { title: "The Roman Archive" },
+    { title: "Voces Romae" },
     {
       name: "description",
       content:

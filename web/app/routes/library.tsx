@@ -35,7 +35,7 @@ const data = libraryData as LibraryPayload;
 const DEFAULT_COLLAPSED = new Set<string>();
 
 export function meta() {
-  return [{ title: "Library — The Roman Archive" }];
+  return [{ title: "Library — Voces Romae" }];
 }
 
 function readPrompt(title: string): string {

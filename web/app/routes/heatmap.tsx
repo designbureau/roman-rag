@@ -20,7 +20,7 @@ type HeatmapPayload = {
 const data = heatmapData as HeatmapPayload;
 
 export function meta() {
-  return [{ title: "Theme × addressee — The Roman Archive" }];
+  return [{ title: "Theme × addressee — Voces Romae" }];
 }
 
 export default function Heatmap() {

@@ -1,4 +1,5 @@
 import { useChat } from "@ai-sdk/react";
+import gsap from "gsap";
 import {
   forwardRef,
   useEffect,
@@ -65,6 +66,47 @@ function NowPlayingStrip({
   const containerRef = useRef<HTMLDivElement>(null);
   const columnRef = useRef<HTMLDivElement>(null);
   const wordElsRef = useRef<Array<HTMLDivElement | null>>([]);
+  // Per-word array of its own letter spans, separate from the outer div's
+  // opacity (still driven by opacityFor/React below) — GSAP only ever
+  // touches these, so it never fights a React re-render for ownership of
+  // the same style property.
+  const letterElsRef = useRef<Array<Array<HTMLSpanElement | null>>>([]);
+  const prevActiveRef = useRef(-1);
+
+  // Letter-reveal animation, à la a SplitText chars stagger: the word that
+  // just became active has its letters slide/fade in one after another
+  // rather than the whole word snapping straight to fully visible, and the
+  // word that was active a moment ago settles down slightly as it starts
+  // fading into the trailing window above.
+  useEffect(() => {
+    const prev = prevActiveRef.current;
+    if (activeIndex >= 0 && activeIndex !== prev) {
+      // Filter out nulls: word divs remount as `words` grows/shrinks with
+      // streamed content, and React's ref-callback cleanup (element -> null)
+      // can leave stale null entries in an index's letter array without
+      // shrinking it — passing those straight to gsap crashes trying to read
+      // `_gsap` off null.
+      const enter = (letterElsRef.current[activeIndex] ?? []).filter(
+        (el): el is HTMLSpanElement => el !== null,
+      );
+      if (enter.length) {
+        gsap.fromTo(
+          enter,
+          { opacity: 0, y: 14 },
+          { opacity: 1, y: 0, duration: 0.35, ease: "power3.out", stagger: 0.025 },
+        );
+      }
+      if (prev >= 0) {
+        const exit = (letterElsRef.current[prev] ?? []).filter(
+          (el): el is HTMLSpanElement => el !== null,
+        );
+        if (exit.length) {
+          gsap.to(exit, { y: 6, duration: 0.4, ease: "power2.out" });
+        }
+      }
+    }
+    prevActiveRef.current = activeIndex;
+  }, [activeIndex]);
 
   useLayoutEffect(() => {
     const container = containerRef.current;
@@ -123,7 +165,18 @@ function NowPlayingStrip({
               opacity: opacityFor(i, activeIndex),
             }}
           >
-            {w}
+            {w.split("").map((ch, j) => (
+              <span
+                key={j}
+                ref={(el) => {
+                  if (!letterElsRef.current[i]) letterElsRef.current[i] = [];
+                  letterElsRef.current[i][j] = el;
+                }}
+                className="inline-block"
+              >
+                {ch}
+              </span>
+            ))}
           </div>
         ))}
       </div>
@@ -356,10 +409,14 @@ const RingMicButton = forwardRef<
       disabled={disabled || state === "transcribing"}
       title={title}
       aria-label={title}
-      className={`inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-full border transition-colors disabled:opacity-50 ${
+      // Absolutely positioned inside the input's own pill (see its wrapping
+      // div in RingChat below) rather than sitting beside it as a separate
+      // chip — no border/bg of its own now, just an icon that tints on
+      // state, matching the input's inner padding on the right.
+      className={`absolute right-3 top-1/2 inline-flex h-7 w-7 -translate-y-1/2 shrink-0 items-center justify-center rounded-full transition-colors disabled:opacity-50 ${
         state === "recording"
-          ? "animate-pulse border-red-500/60 bg-red-500/20 text-red-400"
-          : "border-white/10 bg-white/[0.04] text-[#E3DAC6] hover:border-[color:var(--accent)]/50 hover:text-[color:var(--accent)]"
+          ? "animate-pulse bg-red-500/20 text-red-400"
+          : "text-[#9A8E74] hover:text-[color:var(--accent)]"
       }`}
     >
       {state === "transcribing" ? (
@@ -491,7 +548,7 @@ export function RingChat({ figure }: { figure: GalleryFigure }) {
       )}
       <form
         onSubmit={handleSubmit}
-        className="pointer-events-auto absolute inset-x-0 bottom-8 z-10 mx-auto flex w-full max-w-md items-center gap-2 px-6"
+        className="pointer-events-auto absolute inset-x-0 bottom-8 z-10 mx-auto flex w-full max-w-md items-center px-6"
       >
         <div className="relative min-w-0 flex-1">
           <input
@@ -500,20 +557,23 @@ export function RingChat({ figure }: { figure: GalleryFigure }) {
             placeholder={`Ask ${figure.first} anything…`}
             disabled={isLoading || configIssue}
             autoComplete="off"
-            className="w-full rounded-full border border-white/10 bg-white/[0.04] px-4 py-2.5 text-sm text-[#E3DAC6] placeholder:text-[#5F5849] focus-visible:outline-none focus-visible:border-[color:var(--accent)]/50"
+            className="w-full rounded-full border border-white/10 bg-white/[0.04] py-2.5 pl-4 pr-11 text-sm text-[#E3DAC6] placeholder:text-[#5F5849] focus-visible:outline-none focus-visible:border-[color:var(--accent)]/50"
           />
+          {/* Loading spinner sits left of the mic button, inside the same
+            pill, rather than at the far edge — the mic now occupies that
+            spot (see RingMicButton's own absolute positioning). */}
           {loading && (
             <span
-              className="pointer-events-none absolute right-4 top-1/2 h-3.5 w-3.5 -translate-y-1/2 animate-spin rounded-full border border-current border-t-transparent text-[#9A8E74]"
+              className="pointer-events-none absolute right-10 top-1/2 h-3.5 w-3.5 -translate-y-1/2 animate-spin rounded-full border border-current border-t-transparent text-[#9A8E74]"
               aria-hidden
             />
           )}
+          <RingMicButton
+            ref={micRef}
+            disabled={micDisabled}
+            onResult={(text) => void append({ role: "user", content: text })}
+          />
         </div>
-        <RingMicButton
-          ref={micRef}
-          disabled={micDisabled}
-          onResult={(text) => void append({ role: "user", content: text })}
-        />
       </form>
     </>
   );

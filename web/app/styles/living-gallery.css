@@ -17,6 +17,16 @@
   font-family: var(--font-sans);
 }
 
+/* The custom two-circle cursor (custom-cursor.tsx) replaces the native
+   pointer for this whole route — !important because globals.css's
+   `button:not(:disabled) { cursor: pointer }` rule is otherwise more
+   specific than a plain `.living-gallery` selector and would win back the
+   native arrow/pointer over individual buttons and links. */
+.living-gallery,
+.living-gallery * {
+  cursor: none !important;
+}
+
 .living-gallery .font-display {
   font-family: var(--font-display);
   letter-spacing: -0.01em;

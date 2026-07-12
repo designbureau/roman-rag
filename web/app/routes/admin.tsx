@@ -24,7 +24,7 @@ import { CHAT_FN_URL, SUPABASE_ANON_KEY, AUTH_ENABLED } from "~/lib/config";
 import { MarkdownEditor } from "~/components/markdown-editor";
 
 export function meta() {
-  return [{ title: "Admin — The Roman Archive" }];
+  return [{ title: "Admin — Voces Romae" }];
 }
 
 // Reserved row holding the editable global shared rules — not a persona.

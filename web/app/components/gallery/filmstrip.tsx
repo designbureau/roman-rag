@@ -1,4 +1,75 @@
+import { useLayoutEffect, useRef } from "react";
+import gsap from "gsap";
 import type { GalleryFigure } from "~/data/gallery-figures";
+
+// Same per-letter GSAP reveal as StaggerText (gallery.tsx) and the speech
+// ticker (ring-chat.tsx), but gated on `revealed` flipping true instead of
+// firing unconditionally on mount — the ring's intro sequence mounts every
+// numeral at once and reveals them left to right over time, so each one
+// needs to stay invisible until its own turn rather than animating in
+// immediately. Letters are held at opacity 0 via inline style ONLY while
+// hidden; once revealed the style stops touching opacity at all
+// (`undefined`, not 0/1), handing the property fully over to GSAP's direct
+// DOM writes so a later unrelated re-render (e.g. `active` changing color)
+// can't stomp the animated/settled value. `useLayoutEffect` (fires before
+// paint) is what makes that handoff invisible instead of a one-frame flash.
+function RevealNumeral({
+  text,
+  active,
+  revealed,
+  compact,
+  onSelect,
+}: {
+  text: string;
+  active: boolean;
+  revealed: boolean;
+  compact: boolean;
+  onSelect: () => void;
+}) {
+  const lettersRef = useRef<Array<HTMLSpanElement | null>>([]);
+  const firedRef = useRef(false);
+
+  useLayoutEffect(() => {
+    if (!revealed || firedRef.current) return;
+    firedRef.current = true;
+    const letters = lettersRef.current.filter((el): el is HTMLSpanElement => el !== null);
+    if (!letters.length) return;
+    gsap.fromTo(
+      letters,
+      { opacity: 0, y: 10 },
+      { opacity: 1, y: 0, duration: 0.35, ease: "power3.out", stagger: 0.04 },
+    );
+  }, [revealed]);
+
+  return (
+    <button
+      onClick={onSelect}
+      className={
+        compact
+          ? "font-display px-3 py-1 text-sm font-semibold transition-colors"
+          : "font-display px-4 py-2 text-base font-semibold transition-colors"
+      }
+      style={{
+        color: active ? "var(--accent)" : "#ffffff",
+        letterSpacing: "0.06em",
+        pointerEvents: revealed ? "auto" : "none",
+      }}
+    >
+      {text.split("").map((ch, i) => (
+        <span
+          key={i}
+          ref={(el) => {
+            lettersRef.current[i] = el;
+          }}
+          className="inline-block"
+          style={{ opacity: revealed ? undefined : 0 }}
+        >
+          {ch}
+        </span>
+      ))}
+    </button>
+  );
+}
 
 export function Filmstrip({
   figures,
@@ -6,6 +77,8 @@ export function Filmstrip({
   onSelect,
   label,
   compact,
+  revealedCount,
+  skipReveal,
 }: {
   figures: GalleryFigure[];
   activeId: string;
@@ -18,7 +91,18 @@ export function Filmstrip({
    *  needs to stay short enough that raising the name caption above it
    *  (see gallery.tsx) doesn't push into the tallest ring bust's chin. */
   compact?: boolean;
+  /** When set, numerals reveal left to right (index < revealedCount) via
+   *  RevealNumeral's letter stagger instead of all showing at once —
+   *  opt-in, used only by the ring's intro sequence (gallery.tsx); every
+   *  other call site omits this and keeps the old plain-button rendering. */
+  revealedCount?: number;
+  /** Bypasses the reveal animation once the intro has already played once —
+   *  the ring nav unmounts/remounts every time the user leaves and returns
+   *  to gallery mode, and without this every return trip would replay the
+   *  stagger from scratch. */
+  skipReveal?: boolean;
 }) {
+  const animated = revealedCount !== undefined && !skipReveal;
   return (
     <div
       className={
@@ -37,6 +121,19 @@ export function Filmstrip({
     >
       {figures.map((f, i) => {
         const active = f.id === activeId;
+        const text = label ? label(f, i) : f.first;
+        if (animated) {
+          return (
+            <RevealNumeral
+              key={f.id}
+              text={text}
+              active={active}
+              revealed={i < (revealedCount ?? 0)}
+              compact={!!compact}
+              onSelect={() => onSelect(i)}
+            />
+          );
+        }
         return (
           <button
             key={f.id}
@@ -55,7 +152,7 @@ export function Filmstrip({
               letterSpacing: "0.06em",
             }}
           >
-            {label ? label(f, i) : f.first}
+            {text}
           </button>
         );
       })}

@@ -31,7 +31,7 @@ const corpusTerms = data.terms.filter((t) =>
 );
 
 export function meta() {
-  return [{ title: "Glossary — The Roman Archive" }];
+  return [{ title: "Glossary — Voces Romae" }];
 }
 
 // Sort key: lowercased, punctuation-stripped, so alphabetical ordering

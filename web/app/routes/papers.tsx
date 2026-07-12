@@ -3,7 +3,7 @@ import { PAPERS } from "~/content/papers";
 import { SiteNav } from "~/components/site-nav";
 
 export function meta() {
-  return [{ title: "About — The Roman Archive" }];
+  return [{ title: "About — Voces Romae" }];
 }
 
 export default function Papers() {

@@ -50,7 +50,7 @@ const SIZE = 932;
 const MARGIN = 2;
 
 export function meta() {
-  return [{ title: "Theme bubbles — The Roman Archive" }];
+  return [{ title: "Theme bubbles — Voces Romae" }];
 }
 
 export default function Graph() {

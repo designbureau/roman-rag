@@ -1,4 +1,5 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import gsap from "gsap";
 import { Link } from "react-router";
 import type { Route } from "./+types/gallery";
 import "~/styles/living-gallery.css";
@@ -10,6 +11,8 @@ import { LiveAskPanel } from "~/components/gallery/live-ask-panel";
 import { Filmstrip } from "~/components/gallery/filmstrip";
 import { RingChat } from "~/components/gallery/ring-chat";
 import { AudioControls, BackgroundMusic, InfoIcon } from "~/components/gallery/audio-controls";
+import { CustomCursor } from "~/components/gallery/custom-cursor";
+import { GalleryLoadingScreen } from "~/components/gallery/loading-screen";
 import { GalleryTuningProvider } from "~/components/gallery/tuning-context";
 import { Button } from "~/components/ui/button";
 
@@ -30,7 +33,7 @@ export function links() {
 
 export function meta(_: Route.MetaArgs) {
   return [
-    { title: "The Roman Archive" },
+    { title: "Voces Romae" },
     {
       name: "description",
       content:
@@ -48,6 +51,59 @@ const ROMAN_NUMERALS = ["I", "II", "III", "IV", "V"];
 
 const MUSIC_STORAGE_KEY = "gallery-music-on";
 const SFX_STORAGE_KEY = "gallery-sfx-on";
+
+// Pacing for the ring's intro reveal (see the introStarted effect below):
+// each numeral+bust pair starts RING_STEP_MS after the previous one (they
+// overlap mid-animation rather than waiting for each to finish, which reads
+// as a cascade rather than a slideshow); the icon row and chat input each
+// wait a further beat after the last bust starts, so they land once the
+// ring itself has mostly settled instead of piling in at the same instant.
+const RING_STEP_MS = 180;
+const ICONS_DELAY_MS = 250;
+const CHAT_DELAY_MS = 200;
+
+// Same letter-by-letter GSAP reveal as the ring's speech ticker (see
+// NowPlayingStrip in ring-chat.tsx) — here it just fires once, on mount,
+// since the whole caption remounts per figure already (key={`name-${id}`}
+// at the call site below) rather than needing to track an active index.
+function StaggerText({
+  text,
+  className,
+  style,
+}: {
+  text: string;
+  className?: string;
+  style?: React.CSSProperties;
+}) {
+  const lettersRef = useRef<Array<HTMLSpanElement | null>>([]);
+
+  useEffect(() => {
+    const letters = lettersRef.current.filter((el): el is HTMLSpanElement => el !== null);
+    if (!letters.length) return;
+    gsap.fromTo(
+      letters,
+      { opacity: 0, y: 14 },
+      { opacity: 1, y: 0, duration: 0.35, ease: "power3.out", stagger: 0.025 },
+    );
+  }, [text]);
+
+  return (
+    <span className={className} style={style}>
+      {text.split("").map((ch, i) => (
+        <span
+          key={i}
+          ref={(el) => {
+            lettersRef.current[i] = el;
+          }}
+          className="inline-block"
+          style={ch === " " ? { whiteSpace: "pre" } : undefined}
+        >
+          {ch}
+        </span>
+      ))}
+    </span>
+  );
+}
 
 export default function GalleryRoute() {
   const [mode, setMode] = useState<Mode>("gallery");
@@ -73,6 +129,53 @@ export default function GalleryRoute() {
       window.localStorage.setItem(SFX_STORAGE_KEY, String(!v));
       return !v;
     });
+  // The loading screen's single "Sound" prompt sets both together, rather
+  // than exposing music/SFX separately the way the persistent top-right
+  // controls do — a first-run checklist item, not the fine-grained mixer.
+  const toggleSound = () => {
+    const on = !(musicOn && sfxOn);
+    window.localStorage.setItem(MUSIC_STORAGE_KEY, String(on));
+    window.localStorage.setItem(SFX_STORAGE_KEY, String(on));
+    setMusicOn(on);
+    setSfxOn(on);
+  };
+
+  // Entrance sequence for the ring's own UI, kicked off the instant the
+  // loading screen's "Enter" is clicked (see onEnter on GalleryLoadingScreen
+  // below) rather than waiting for its fade-out to finish — so the ring is
+  // already mid-reveal by the time the loading screen is gone. introDone
+  // latches permanently true once the sequence has played through once;
+  // GalleryRing/Filmstrip use it to skip re-animating on every later
+  // gallery-mode remount (leaving mode and coming back).
+  const [introStarted, setIntroStarted] = useState(false);
+  const [introDone, setIntroDone] = useState(false);
+  const [revealedCount, setRevealedCount] = useState(0);
+  const [iconsRevealed, setIconsRevealed] = useState(false);
+  const [chatRevealed, setChatRevealed] = useState(false);
+
+  useEffect(() => {
+    if (!introStarted) return;
+    let cancelled = false;
+    const wait = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
+    void (async () => {
+      for (let i = 0; i < GALLERY_FIGURES.length; i++) {
+        if (cancelled) return;
+        setRevealedCount(i + 1);
+        await wait(RING_STEP_MS);
+      }
+      if (cancelled) return;
+      await wait(ICONS_DELAY_MS);
+      if (cancelled) return;
+      setIconsRevealed(true);
+      await wait(CHAT_DELAY_MS);
+      if (cancelled) return;
+      setChatRevealed(true);
+      setIntroDone(true);
+    })();
+    return () => {
+      cancelled = true;
+    };
+  }, [introStarted]);
 
   // carousel is always kept in [0, GALLERY_FIGURES.length) by the handlers
   // below (modulo arithmetic in the ring's drag/click handlers).
@@ -117,6 +220,7 @@ export default function GalleryRoute() {
             "radial-gradient(ellipse 70% 60% at 50% -8%, rgba(201,168,106,0.16), transparent 60%), radial-gradient(ellipse at 50% 120%, rgba(0,0,0,0.6), transparent 55%), #14120E",
         }}
       >
+        <CustomCursor />
         {mode === "gallery" && (
           // Solid black backdrop, not the shared warm-gold page gradient
           // above (still used behind the stage view) — the ring's own
@@ -138,30 +242,40 @@ export default function GalleryRoute() {
                 onEnter={enter}
                 enterDisabled
                 sfxOn={sfxOn}
+                revealedCount={revealedCount}
+                skipReveal={introDone}
               />
             </div>
             <BackgroundMusic enabled={musicOn} />
             {/* Music/SFX toggles, top-right — the dev-only Leva tuning panel
               (tuning-context.tsx) also docks there, but it's hidden for now
-              (see that file); revisit placement together if it comes back. */}
-            <AudioControls
-              musicOn={musicOn}
-              onToggleMusic={toggleMusic}
-              sfxOn={sfxOn}
-              onToggleSfx={toggleSfx}
+              (see that file); revisit placement together if it comes back.
+              Fades in as the last step of the intro sequence, once every
+              numeral/bust has had its turn (see introStarted effect above). */}
+            <div
+              className={`transition-opacity duration-500 ${
+                iconsRevealed ? "opacity-100" : "pointer-events-none opacity-0"
+              }`}
             >
-              {/* Cross-link to the rest of the site, now that the ring is the
-                landing page — shares this row with the music/SFX icons
-                instead of its own bottom-right nav. */}
-              <Link
-                to="/papers"
-                title="About"
-                aria-label="About"
-                className="inline-flex h-7 w-7 items-center justify-center text-[#9A8E74] transition-colors hover:text-[#E3DAC6]"
+              <AudioControls
+                musicOn={musicOn}
+                onToggleMusic={toggleMusic}
+                sfxOn={sfxOn}
+                onToggleSfx={toggleSfx}
               >
-                <InfoIcon />
-              </Link>
-            </AudioControls>
+                {/* Cross-link to the rest of the site, now that the ring is the
+                  landing page — shares this row with the music/SFX icons
+                  instead of its own bottom-right nav. */}
+                <Link
+                  to="/papers"
+                  title="About"
+                  aria-label="About"
+                  className="inline-flex h-7 w-7 items-center justify-center text-[#9A8E74] transition-colors hover:text-[#E3DAC6]"
+                >
+                  <InfoIcon />
+                </Link>
+              </AudioControls>
+            </div>
             {/* Roman-numeral nav, chronological order (see ROMAN_NUMERALS) —
               jumps the ring to that figure without entering the single-figure
               stage, same as clicking a flanking bust. Top-center.
@@ -176,6 +290,8 @@ export default function GalleryRoute() {
                 onSelect={setCarousel}
                 label={(_, i) => ROMAN_NUMERALS[i]}
                 compact
+                revealedCount={revealedCount}
+                skipReveal={introDone}
               />
             </div>
             {/* Overlaid on the full-screen canvas, not sharing layout space with
@@ -196,24 +312,38 @@ export default function GalleryRoute() {
                 mx-auto (instead of relying on the parent's text-center)
                 shrinks each div to its own text instead of the full row, so
                 pointer-events-auto only claims the glyphs themselves. */}
-              <div
-                className="pointer-events-auto mx-auto w-fit font-display text-2xl font-semibold uppercase text-[#E7DECC]"
+              <StaggerText
+                text={figure.name}
+                className="pointer-events-auto mx-auto block w-fit font-display text-2xl font-semibold uppercase text-[#E7DECC]"
                 // .font-display sets its own tight -0.022em letter-spacing,
                 // which beats the (removed) tracking-wide utility class via
                 // Tailwind's cascade layers — overridden inline instead, same
                 // as the ticker text in ring-chat.tsx.
                 style={{ textShadow: "0 2px 16px rgba(0,0,0,0.9)", letterSpacing: "0.06em" }}
-              >
-                {figure.name}
-              </div>
-              <div
-                className="pointer-events-auto mx-auto mt-1.5 w-fit text-[11px] uppercase tracking-[0.18em] text-[#A4874D]"
+              />
+              <StaggerText
+                text={figure.years}
+                className="pointer-events-auto mx-auto mt-1.5 block w-fit text-[11px] uppercase tracking-[0.18em] text-[#A4874D]"
                 style={{ textShadow: "0 1px 10px rgba(0,0,0,0.9)" }}
-              >
-                {figure.years}
-              </div>
+              />
             </div>
-            <RingChat figure={figure} key={`chat-${figure.id}`} />
+            {/* Last step of the intro sequence — see introStarted effect
+              above. A plain, unstyled wrapper: RingChat positions its own
+              pieces (ticker, pause button, form) with `absolute`, which
+              still resolves against the nearest positioned ancestor further
+              up the tree, so this div doesn't need `position` itself. */}
+            <div
+              className={`transition-opacity duration-500 ${
+                chatRevealed ? "opacity-100" : "pointer-events-none opacity-0"
+              }`}
+            >
+              <RingChat figure={figure} key={`chat-${figure.id}`} />
+            </div>
+            <GalleryLoadingScreen
+              soundOn={musicOn && sfxOn}
+              onToggleSound={toggleSound}
+              onEnter={() => setIntroStarted(true)}
+            />
           </div>
         )}
 

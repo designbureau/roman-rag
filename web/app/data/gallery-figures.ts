@@ -147,7 +147,7 @@ export const GALLERY_FIGURES: GalleryFigure[] = [
     // frontAz, unlike the old scan's small corrective nudge.
     ring: {
       scaleAdjust: 0.78,
-      offset: [-0.01, -0.13, 0],
+      offset: [-0.01, -0.16, 0],
       rotation: [0, -87, 0],
     },
     stage: {
@@ -184,7 +184,7 @@ export const GALLERY_FIGURES: GalleryFigure[] = [
     personaKey: "seneca",
     // New PBR re-export (2026-07-06). See Caesar's comment — Seneca's
     // face measured narrower than Augustus's, scaled up to match.
-    ring: { scaleAdjust: 0.77, offset: [0, -0.12, 0.05], rotation: [0, 0, 0] },
+    ring: { scaleAdjust: 0.75, offset: [0, -0.19, 0.05], rotation: [0, 0, 0] },
     stage: { scaleAdjust: 2.08, offset: [-0.02, 0.93, 0], rotation: [0, 0, 0] },
     epithet:
       "Tutor to an emperor, and a philosopher of the plain life he never quite lived.",
@@ -221,7 +221,7 @@ export const GALLERY_FIGURES: GalleryFigure[] = [
     // reference (no tint), and his voluminous curls make the whole head
     // much wider than his face, so pure height normalization left the
     // face oversized; shrunk to match Augustus's.
-    ring: { scaleAdjust: 0.67, offset: [0, -0.13, 0], rotation: [0, 0, 0] },
+    ring: { scaleAdjust: 0.67, offset: [0, -0.17, 0], rotation: [0, 0, 0] },
     stage: { scaleAdjust: 1.85, offset: [-0.07, 0.95, 0], rotation: [0, 0, 0] },
     // Shifts the shared marble texture off a dark iron-stain fleck that
     // otherwise lands squarely between his eyebrows.

@@ -16,7 +16,7 @@ import { AUTH_ENABLED } from "~/lib/config";
 import { supabase } from "~/lib/supabase";
 
 export function meta(_: Route.MetaArgs) {
-  return [{ title: "Chat · The Roman Archive" }];
+  return [{ title: "Chat · Voces Romae" }];
 }
 
 const PERSONA_STORAGE_KEY = "cicero-persona";
@@ -209,7 +209,7 @@ export default function Index() {
       <header className="mb-8 flex flex-col gap-5 lg:mb-10">
         <div>
           <h1 className="font-display text-4xl sm:text-5xl lg:text-6xl">
-            The Roman Archive
+            Voces Romae
           </h1>
           <p className="mt-3 max-w-xl text-sm text-[color:var(--muted-foreground)]">
             A reading interface for the voices of ancient Rome — its orators

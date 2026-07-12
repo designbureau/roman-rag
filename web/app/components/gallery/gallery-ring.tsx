@@ -1,6 +1,6 @@
-import { Suspense, useEffect, useRef } from "react";
+import { Suspense, useEffect, useLayoutEffect, useRef } from "react";
 import { Canvas, useFrame, useThree } from "@react-three/fiber";
-import { ContactShadows } from "@react-three/drei";
+import gsap from "gsap";
 import * as THREE from "three";
 import { BustModel } from "./bust-model";
 import {
@@ -27,16 +27,49 @@ const BG = "#000000";
 // Vertical FOV is fixed regardless of canvas size, so the camera's
 // position/target — not the container's height — determines how much of a
 // bust (base at y=0 to head-top at y≈1.55, see BustModel's TARGET_HEIGHT) is
-// actually visible. Aimed slightly above the bust's true vertical center
-// (was 0.78) — tilts the camera up a touch, which pushes the busts down a
-// touch in the frame, leaving more headroom above them.
-const LOOK_AT = new THREE.Vector3(0, 0.88, 0);
+// actually visible. Aimed a touch lower than the bust's true vertical center
+// (was 0.88) — tilts the camera down slightly, which pushes the busts up a
+// touch in the frame.
+const LOOK_AT = new THREE.Vector3(0, 0.82, 0);
+
+// The Canvas's base fov (below) is a *vertical* FOV — three.js derives the
+// horizontal FOV from it using the canvas's own aspect ratio, so the same
+// vertical fov shows LESS horizontal width on a narrower/taller aspect. The
+// flanking busts already sit close to the frame edge at the aspect this was
+// tuned at (RADIUS's own comment above), so entering true OS fullscreen —
+// narrower than a windowed browser, which loses some height to its own
+// tabs/toolbar rather than width — was cropping them. BASE_ASPECT is that
+// windowed aspect (measured, not a round number, so the fix engages even for
+// the modest narrowing fullscreen actually produces — a rounder/narrower
+// reference like 16:9 wouldn't); CameraAim widens the vertical fov
+// (preserving the horizontal fov it implies) whenever the canvas gets
+// narrower than it, and leaves it alone otherwise so the windowed framing
+// this was tuned against stays untouched.
+const BASE_FOV = 26;
+const BASE_ASPECT = 1728 / 843;
 
 function CameraAim() {
-  const { camera } = useThree();
+  const { camera, size } = useThree();
   useEffect(() => {
     camera.lookAt(LOOK_AT);
   }, [camera]);
+  useEffect(() => {
+    if (!(camera instanceof THREE.PerspectiveCamera)) return;
+    const aspect = size.width / size.height;
+    const fov =
+      aspect < BASE_ASPECT
+        ? (2 *
+            Math.atan(
+              Math.tan((BASE_FOV * Math.PI) / 180 / 2) * (BASE_ASPECT / aspect),
+            ) *
+            180) /
+          Math.PI
+        : BASE_FOV;
+    if (Math.abs(camera.fov - fov) > 0.01) {
+      camera.fov = fov;
+      camera.updateProjectionMatrix();
+    }
+  }, [camera, size]);
   return null;
 }
 
@@ -50,12 +83,22 @@ function RingFigure({
   carousel,
   n,
   onClick,
+  revealed,
+  skipReveal,
 }: {
   figure: GalleryFigure;
   index: number;
   carousel: number;
   n: number;
   onClick: () => void;
+  /** Part of the ring's intro sequence (gallery.tsx) — this bust fades in
+   *  once its turn comes up, alongside its numeral in the nav above. */
+  revealed: boolean;
+  /** Bypasses the fade entirely once the intro has already played once —
+   *  RingFigure remounts fresh every time the user leaves and returns to
+   *  gallery mode (see mode toggling in gallery.tsx), and without this every
+   *  return trip would re-hide and re-fade the bust from scratch. */
+  skipReveal: boolean;
 }) {
   const tuning = useBustTuning(figure.id, "ring");
   const material = useSharedMaterial();
@@ -63,6 +106,56 @@ function RingFigure({
   const groupRef = useRef<THREE.Group>(null);
   const offsetRef = useRef(index * step);
   const parallax = usePointerParallax();
+  const materialsRef = useRef<THREE.Material[]>([]);
+  const hasRevealedRef = useRef(false);
+
+  // Runs once on mount (before paint), while the loaded GLTF's meshes are
+  // already in the tree (assets are preloaded by the loading screen, see
+  // loading-screen.tsx, so Suspense here resolves synchronously) — collects
+  // every mesh material and, unless skipReveal, zeroes their opacity so the
+  // bust starts invisible instead of popping in before its reveal effect
+  // below gets a chance to run.
+  useLayoutEffect(() => {
+    const group = groupRef.current;
+    if (!group) return;
+    const materials: THREE.Material[] = [];
+    group.traverse((obj) => {
+      if (obj instanceof THREE.Mesh) {
+        const mats = Array.isArray(obj.material) ? obj.material : [obj.material];
+        materials.push(...mats);
+      }
+    });
+    materialsRef.current = materials;
+    if (skipReveal) return;
+    for (const m of materials) {
+      m.transparent = true;
+      m.opacity = 0;
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  useEffect(() => {
+    if (skipReveal || !revealed || hasRevealedRef.current) return;
+    hasRevealedRef.current = true;
+    const materials = materialsRef.current;
+    if (!materials.length) return;
+    const proxy = { t: 0 };
+    gsap.to(proxy, {
+      t: 1,
+      duration: 0.6,
+      ease: "power2.out",
+      onUpdate: () => {
+        for (const m of materials) m.opacity = proxy.t;
+      },
+      onComplete: () => {
+        for (const m of materials) {
+          m.opacity = 1;
+          m.transparent = false;
+          m.needsUpdate = true;
+        }
+      },
+    });
+  }, [revealed, skipReveal]);
 
   useFrame((_, delta) => {
     const g = groupRef.current;
@@ -117,6 +210,8 @@ export function GalleryRing({
   onEnter,
   enterDisabled,
   sfxOn = true,
+  revealedCount,
+  skipReveal = false,
 }: {
   figures: GalleryFigure[];
   carousel: number;
@@ -128,6 +223,12 @@ export function GalleryRing({
   enterDisabled?: boolean;
   /** Gates the rotation clunk below — see AudioControls in gallery.tsx. */
   sfxOn?: boolean;
+  /** Intro sequence (gallery.tsx): busts at index < revealedCount fade in,
+   *  in step with their numeral in the nav above. */
+  revealedCount: number;
+  /** See RingFigure's own doc — bypasses the fade on remounts after the
+   *  intro has already played once. */
+  skipReveal?: boolean;
 }) {
   const dragActive = useRef(false);
   const dragMoved = useRef(false);
@@ -245,17 +346,10 @@ export function GalleryRing({
             carousel={carousel}
             n={n}
             onClick={() => cardClick(i)}
+            revealed={i < revealedCount}
+            skipReveal={skipReveal}
           />
         ))}
-        {/* Soft contact shadow beneath the ring — grounds the busts in space
-            instead of them reading as flat cutouts floating on black. */}
-        <ContactShadows
-          position={[0, 0, 0]}
-          opacity={0.55}
-          scale={10}
-          blur={2.5}
-          far={2}
-        />
       </Canvas>
     </div>
   );

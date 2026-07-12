@@ -24,7 +24,7 @@ const SOURCE_LABELS: Record<string, string> = {
 };
 
 export function meta() {
-  return [{ title: "Themes — The Roman Archive" }];
+  return [{ title: "Themes — Voces Romae" }];
 }
 
 export default function Topics() {
