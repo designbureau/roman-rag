@@ -1,11 +1,9 @@
-import { useRef } from "react";
 import { Link, useParams } from "react-router";
 import { SiteNav } from "~/components/site-nav";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import type { Route } from "./+types/papers.$slug";
 import { PAPERS, getPaper } from "~/content/papers";
-import { PaperListen } from "~/components/paper-listen";
 
 export function meta({ params }: Route.MetaArgs) {
   const paper = getPaper(params.slug);
@@ -21,7 +19,6 @@ export function meta({ params }: Route.MetaArgs) {
 export default function Paper() {
   const { slug } = useParams();
   const paper = slug ? getPaper(slug) : undefined;
-  const articleRef = useRef<HTMLElement>(null);
 
   if (!paper) {
     return (
@@ -57,12 +54,9 @@ export default function Paper() {
             {p.title}
           </Link>
         ))}
-        <span className="ml-auto">
-          <PaperListen targetRef={articleRef} />
-        </span>
       </nav>
 
-      <article ref={articleRef} className="paper-prose prose prose-lg max-w-none">
+      <article className="paper-prose prose prose-lg max-w-none">
         <ReactMarkdown
           remarkPlugins={[remarkGfm]}
           components={{

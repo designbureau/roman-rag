@@ -11,20 +11,16 @@ export type PersonaOption = { key: Persona; title: string };
  * before the persona_config fetch resolves, or if it fails. The source of
  * truth is the `persona_config` table (title + sort_order + enabled).
  */
-// The Roman ensemble — the seven code-backed voices, in canonical order.
+// The Roman ensemble — the six code-backed voices, in canonical order.
 // Mirrors PERSONA_PROMPTS in supabase/functions/chat/index.ts; persona_config
 // (title + sort_order + enabled) is the live source of truth once it loads.
 export const FALLBACK_PERSONAS: PersonaOption[] = [
   { key: "classicist", title: "The Classicist" },
   { key: "cicero", title: "Cicero" },
-  { key: "tiro", title: "Tiro" },
-  { key: "atticus", title: "Atticus" },
   { key: "caesar", title: "Caesar" },
   { key: "marcus-aurelius", title: "Marcus Aurelius" },
   { key: "augustus", title: "Augustus" },
   { key: "seneca", title: "Seneca" },
-  { key: "pliny-younger", title: "Pliny the Younger" },
-  { key: "quintilian", title: "Quintilian" },
 ];
 
 export function PersonaToggle({

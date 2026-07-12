@@ -34,22 +34,39 @@
 }
 
 :root {
-  /* Anthropic-borrowed palette. Hex values — predictable, brand-true. */
-  --color-slate-dark: #141413;
-  --color-ivory-light: #faf9f5;
-  --color-ivory-medium: #f0eee6;
-  --color-ivory-dark: #e8e6dc;
-  --color-oat: #e3dacc;
-  --color-cloud-light: #d1cfc5;
-  --color-cloud-medium: #b0aea5;
-  --color-cloud-dark: #87867f;
-  --color-slate-light: #5e5d59;
-  --color-slate-medium: #3d3d3a;
-  /* Roman register: imperial/Tyrian purple — the laticlave of the
-     senatorial order, apt for a consular's archive — over the same
-     warm-stone page. Replaces the original terracotta accent. */
-  --color-tyrian: #7a2e57;
-  --color-tyrian-strong: #5b1f40;
+  /* Dark register — same "no pure black/white" principle as the ivory
+     theme this replaces, and the same palette as the gallery (/gallery,
+     living-gallery.css) so the whole site reads as one dark object
+     instead of a dark showcase bolted onto a light site. The token
+     *names* below are historical (this used to be a light theme) — read
+     them by role, not by what "ivory"/"slate" suggests: slate-dark is
+     now the LIGHT pole (foreground text, code-block panel bg) and
+     ivory-light is now the DARK pole (page background, code-block
+     text), i.e. the two ends of the ramp were swapped in place so every
+     existing relative-contrast decision built on this ramp (headings
+     vs. body, code blocks inverted from the page, etc.) still holds,
+     just mirrored. */
+  --color-slate-dark: #f0e8d8;
+  --color-ivory-light: #14120e;
+  --color-ivory-medium: #201c16;
+  --color-ivory-dark: #2a251d;
+  --color-cloud-light: #3a362e;
+  --color-cloud-medium: #6b6558;
+  /* Secondary/muted text — lighter than the gallery's own taupe
+     (#9a8e74, living-gallery.css) since the gallery has bust imagery and
+     a vignette to lean on for contrast; this site is a plain dark page,
+     so secondary text (nav, subtitles, captions) needs to sit brighter
+     to stay comfortably readable. */
+  --color-cloud-dark: #b3a888;
+  /* Body-reading text (paper-prose's lead/body) — matches --foreground
+     exactly rather than a dimmer shade, so long-form reading text is
+     uniformly bright throughout instead of subtly muddier than headings. */
+  --color-slate-light: #f0e8d8;
+  --color-slate-medium: #f0e8d8;
+  /* Roman register: the gallery's own warm gold accent (living-gallery.css),
+     reused here so the whole site shares one accent instead of two. */
+  --color-tyrian: #c9a86a;
+  --color-tyrian-strong: #b8934f;
 
   /* Semantic aliases — the rest of the app keeps consuming these */
   --background: var(--color-ivory-light);
@@ -60,19 +77,46 @@
   --accent: var(--color-tyrian);
   --accent-strong: var(--color-tyrian-strong);
 
-  /* Dark editorial surface, e.g. inverted feature cards */
-  --surface-dark: var(--color-slate-dark);
-  --surface-oat: var(--color-oat);
+  /* Fixed poles for inverted-card patterns (e.g. code blocks in
+     .paper-prose below) — given their own explicit values rather than
+     aliasing the swapped ramp tokens above, since "surface-dark" naming
+     a light color (as the swap would otherwise produce) is confusing
+     regardless of which overall theme is active. */
+  --surface-dark: #14120e;
+  --surface-oat: #2a251d;
 }
 
 html,
 body {
+  /* Tells the browser to render native, unstyled form chrome (checkbox/
+     radio ticks, scrollbars) in its dark variant instead of always-light
+     — otherwise e.g. admin.tsx's plain <input type="checkbox"> renders a
+     jarring white square against this now-dark page. */
+  color-scheme: dark;
+  /* Native checkbox/radio tick color — otherwise browsers default to a
+     fixed blue regardless of --accent, which stood out against the gold
+     used everywhere else. */
+  accent-color: var(--accent);
   background: var(--background);
   color: var(--foreground);
   font-family: var(--font-sans);
   letter-spacing: -0.002em;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
+}
+
+/* Browsers' actual UA default for <button> is `cursor: default` (a plain
+   arrow), not pointer, despite the common assumption otherwise — so every
+   icon/button site-wide (including the gallery's, since this file isn't
+   scoped to .living-gallery) needs this explicitly to read as clickable
+   on hover. Disabled buttons get the opposite signal instead. */
+button:not(:disabled),
+[role="button"]:not([aria-disabled="true"]) {
+  cursor: pointer;
+}
+button:disabled,
+[role="button"][aria-disabled="true"] {
+  cursor: not-allowed;
 }
 
 .font-corpus {

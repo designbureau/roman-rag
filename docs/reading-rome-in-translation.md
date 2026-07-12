@@ -1,0 +1,15 @@
+# Reading Rome in Translation
+
+*On the originals, the public-domain English, and what a translation keeps and loses.*
+
+The Roman Archive presents each work in translation, and — where it survives — beside its original. Cicero's letters to Atticus appear as parallel text: the Latin of R.Y. Tyrrell and L.C. Purser on one side, the English of E.S. Shuckburgh on the other. Augustus's Res Gestae stands beside its Latin likewise. Marcus Aurelius's Meditations, written in Greek, reaches you for now in the English of Meric Casaubon alone. The arrangement can look neutral — two columns, one meaning — but no translation is a transparent pane of glass, and it is worth being honest about what the English gives you and what it quietly takes away.
+
+Start with what it gives. For a reader without fluent Latin or Greek, the translation is the difference between a work being legible and being a locked room. It carries the sense: who is being asked what, which deed is being claimed, which consolation is being reached for. And where the original sits alongside, a reader with a little of the language can check the English against it phrase by phrase — the slow, comparative reading these texts reward.
+
+Now the losses, which differ with each translator. Cicero's Latin is famously supple — long balanced periods that hold a thought in suspension and release it at the clausula, the rhythmic close a Roman ear heard as cadence. Shuckburgh's dignified Victorian English reaches for its own music; it is not Cicero's, and his puns mostly evaporate. Augustus's Latin is lapidary, cut for bronze — terse, official, exact with numbers — and an English that runs smooth can soften that granite. Marcus Aurelius wrote private Greek notes to himself, and Casaubon's 1634 rendering is itself a period piece: often more paraphrase than translation, magnificent and archaic, another mind set between you and the emperor's. Each translator has a date and a temperament, and none of them is the author.
+
+There is also the matter of the text itself. Works that survived by copying carry manuscripts that disagree; editors made choices, and a different editor would print a different word in places. A parallel display can make the original look more fixed than it is.
+
+What follows for how the Archive should be read? Three things. First, treat the English as a guide to the original, not a replacement — when a passage matters, look across. Second, remember the translation has a name and a century attached: the Englishness is Shuckburgh's or Casaubon's, not Cicero's or Marcus's. Third, expect the seams, and value them — a parallel corpus is most useful precisely where the two columns pull against each other, because that friction is where the act of translation becomes visible.
+
+The Archive does not try to hide the seams. It names every edition and translator, and shows the original beside the rendering where it has one. The aim is not to pretend the English is the author, but to put a reader close enough to the original to begin to hear what the translation cannot say.

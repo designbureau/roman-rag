@@ -116,7 +116,7 @@ export default function Topics() {
           return (
             <Link
               key={t.term}
-              to={`/?ask=${encodeURIComponent(askAboutTerm(t.term))}`}
+              to={`/chat?ask=${encodeURIComponent(askAboutTerm(t.term))}`}
               title={`${t.count} letters — ${breakdown}`}
               className="font-corpus text-[color:var(--foreground)] hover:underline focus-visible:outline-none focus-visible:underline"
               style={{ fontSize: `${sizeFor(t.count)}rem` }}

@@ -119,7 +119,7 @@ export function ChatPanel({
           className="flex-1 space-y-6 overflow-y-auto px-4 py-6"
         >
           {configIssue && (
-            <div className="rounded-md border border-yellow-300 bg-yellow-50 p-3 text-sm">
+            <div className="rounded-md border border-yellow-700/40 bg-yellow-950/40 p-3 text-sm text-yellow-200">
               {configIssue}
             </div>
           )}
@@ -232,7 +232,7 @@ export function ChatPanel({
 // on each glyph change. The interpunct (·) is the mark Roman inscriptions
 // set between words, so it reads naturally against the Latin corpus.
 const CLICK_GLYPHS = ["·", "··", "···", "··", "·"] as const;
-function ThinkingIndicator() {
+export function ThinkingIndicator() {
   const [i, setI] = useState(0);
   useEffect(() => {
     const id = setInterval(
@@ -261,7 +261,7 @@ function ThinkingIndicator() {
   );
 }
 
-function Message({
+export function Message({
   role,
   content,
   persona,
@@ -304,7 +304,7 @@ function Message({
   if (isUser) {
     return (
       <div className="flex justify-end">
-        <div className="max-w-[90%] sm:max-w-[80%] rounded-lg bg-[color:var(--foreground)] px-4 py-3 text-[color:var(--background)]">
+        <div className="user-bubble max-w-[90%] sm:max-w-[80%] rounded-lg bg-[color:var(--foreground)] px-4 py-3 text-[color:var(--background)]">
           <p>{content}</p>
         </div>
       </div>
@@ -313,7 +313,7 @@ function Message({
 
   return (
     <div className="flex justify-start">
-      <div className="max-w-[90%] sm:max-w-[80%] rounded-lg border border-[color:var(--border)] bg-[color:var(--background)] px-4 py-3">
+      <div className="chat-bubble max-w-[90%] sm:max-w-[80%] rounded-lg border border-[color:var(--border)] bg-[color:var(--background)] px-4 py-3">
         <div
           ref={proseRef}
           className="font-corpus text-base leading-relaxed prose-highlight [&_p]:my-3 [&_p:first-child]:mt-0 [&_p:last-child]:mb-0 [&_em]:italic"
@@ -893,7 +893,7 @@ function MicButton({
       aria-label={title}
       className={`inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-md border border-[color:var(--border)] transition-colors disabled:opacity-50 ${
         state === "recording"
-          ? "border-red-500 bg-red-50 text-red-600 animate-pulse"
+          ? "border-red-500/60 bg-red-500/20 text-red-400 animate-pulse"
           : "bg-[color:var(--background)] text-[color:var(--muted-foreground)] hover:text-[color:var(--foreground)] hover:bg-[color:var(--muted)]"
       }`}
     >

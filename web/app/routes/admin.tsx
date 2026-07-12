@@ -178,7 +178,7 @@ export default function Admin() {
       return (
         <Centered>
           <p>This area is for administrators.</p>
-          <Link to="/" className="mt-3 inline-block text-sm underline">
+          <Link to="/chat" className="mt-3 inline-block text-sm underline">
             ← back to chat
           </Link>
         </Centered>

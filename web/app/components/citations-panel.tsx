@@ -3,14 +3,10 @@ import { Badge } from "./ui/badge";
 const PERSONA_NAMES: Record<string, string> = {
   classicist: "the Classicist",
   cicero: "Cicero",
-  tiro: "Tiro",
-  atticus: "Atticus",
   caesar: "Caesar",
   "marcus-aurelius": "Marcus Aurelius",
   augustus: "Augustus",
   seneca: "Seneca",
-  "pliny-younger": "Pliny the Younger",
-  quintilian: "Quintilian",
 };
 
 export type RetrievedChunk = {

@@ -14,7 +14,7 @@ export const Switch = React.forwardRef<
     )}
     {...rest}
   >
-    <RadixSwitch.Thumb className="block h-4 w-4 translate-x-0.5 rounded-full bg-white shadow transition-transform data-[state=checked]:translate-x-4" />
+    <RadixSwitch.Thumb className="block h-4 w-4 translate-x-0.5 rounded-full bg-[color:var(--foreground)] shadow transition-transform data-[state=checked]:translate-x-4" />
   </RadixSwitch.Root>
 ));
 Switch.displayName = "Switch";

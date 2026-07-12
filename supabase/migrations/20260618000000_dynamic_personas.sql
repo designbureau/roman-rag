@@ -66,14 +66,10 @@ create index if not exists persona_config_enabled_sort_idx
 insert into persona_config (persona, title, temperature, sort_order, is_builtin) values
   ('classicist',      'The Classicist', 0.7,  0, true),
   ('cicero',          'Cicero',         0.75, 1, true),
-  ('tiro',            'Tiro',           0.7,  2, true),
-  ('atticus',         'Atticus',        0.75, 3, true),
-  ('caesar',          'Caesar',         0.7,  4, true),
-  ('marcus-aurelius', 'Marcus Aurelius',0.75, 5, true),
-  ('augustus',        'Augustus',       0.7,  6, true),
-  ('seneca',          'Seneca',         0.8,  7, true),
-  ('pliny-younger',   'Pliny the Younger', 0.75, 8, true),
-  ('quintilian',      'Quintilian',     0.7,  9, true)
+  ('caesar',          'Caesar',         0.7,  2, true),
+  ('marcus-aurelius', 'Marcus Aurelius',0.75, 3, true),
+  ('augustus',        'Augustus',       0.7,  4, true),
+  ('seneca',          'Seneca',         0.8,  5, true)
 on conflict (persona) do update set
   title      = excluded.title,
   temperature= excluded.temperature,
@@ -89,7 +85,15 @@ insert into persona_config (persona, title, sort_order, is_builtin, enabled)
 values ('__shared__', 'Shared rules (all voices)', -1, true, false)
 on conflict (persona) do nothing;
 
--- No admin-authored seed persona ships with the Cicero corpus. The seven
+-- No admin-authored seed persona ships with the Cicero corpus. The six
 -- built-ins above carry their prompts in code (null override = track code);
 -- the first fully data-driven Roman voice (e.g. a Phase-2 sallust/livy/
 -- biographer) will be authored in /admin once its own texts are ingested.
+--
+-- Tiro, Atticus, Pliny the Younger, and Quintilian shipped briefly as
+-- built-ins (Tiro/Atticus borrowed Cicero's corpus; Pliny/Quintilian had
+-- their own ingested Letters/Institutio Oratoria) but were dropped when the
+-- site narrowed to five featured first-person figures (the "Living Gallery"
+-- busts) plus the Classicist. Their persona_config rows and, for Pliny and
+-- Quintilian, their ingested stories/chunks were deleted directly against
+-- prod rather than through a migration.

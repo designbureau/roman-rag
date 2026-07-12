@@ -3,14 +3,14 @@ import { PAPERS } from "~/content/papers";
 import { SiteNav } from "~/components/site-nav";
 
 export function meta() {
-  return [{ title: "Papers — The Roman Archive" }];
+  return [{ title: "About — The Roman Archive" }];
 }
 
 export default function Papers() {
   return (
     <main className="mx-auto max-w-5xl px-4 py-8 lg:py-12">
       <header className="mb-8">
-        <h1 className="font-display text-5xl">Papers</h1>
+        <h1 className="font-display text-5xl">About</h1>
         <p className="mt-3 max-w-2xl text-sm text-[color:var(--muted-foreground)]">
           Write-ups behind this project: reading Cicero in translation, the
           ethics of giving historical figures a synthetic voice, and what

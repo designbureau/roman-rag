@@ -1,0 +1,111 @@
+/* Scoped theme for the /gallery route — a dim, gold-lit museum-at-night
+   register, distinct from the rest of the site's warm-ivory editorial look.
+   Living under `.living-gallery` means the shared semantic tokens
+   (--background, --foreground, --accent, --border, --muted) get overridden
+   just for this subtree, so components built against those tokens (Button,
+   etc.) pick up the new palette for free. */
+.living-gallery {
+  --background: #14120e;
+  --foreground: #f0e8d8;
+  --muted: rgba(255, 255, 255, 0.05);
+  --muted-foreground: #9a8e74;
+  --border: rgba(255, 255, 255, 0.1);
+  --accent: #c9a86a;
+  --accent-strong: #b8934f;
+  --font-display: "Cormorant Garamond", Georgia, serif;
+  --font-sans: "Archivo", ui-sans-serif, system-ui, sans-serif;
+  font-family: var(--font-sans);
+}
+
+.living-gallery .font-display {
+  font-family: var(--font-display);
+  letter-spacing: -0.01em;
+}
+
+/* Message bubbles reused from chat-panel.tsx render on `.font-corpus`
+   (var(--font-serif) elsewhere on the site) — the gallery's chat reads
+   sans-serif instead, so this overrides the base rule's font-family
+   rather than repointing --font-serif at Cormorant Garamond. Sized to
+   match the user's own message bubble (see .user-bubble below). */
+.living-gallery .font-corpus {
+  font-family: var(--font-sans);
+  font-size: 15px;
+  line-height: 1.4;
+}
+
+/* Assistant message bubble (see chat-panel.tsx's Message component) — the
+   gallery's chat floats directly on the dark backdrop instead of reading
+   as a boxed card. */
+.living-gallery .chat-bubble {
+  background: transparent;
+}
+
+/* User's own sent message (chat-panel.tsx's Message component) — matches
+   .font-corpus's size so both sides of the conversation read at the same
+   scale instead of the user bubble inheriting a different ambient size. */
+.living-gallery .user-bubble {
+  font-size: 15px;
+  line-height: 1.4;
+}
+
+@keyframes lg-blink {
+  0%,
+  49% {
+    opacity: 1;
+  }
+  50%,
+  100% {
+    opacity: 0;
+  }
+}
+.living-gallery .blink-cursor {
+  animation: lg-blink 1s step-end infinite;
+}
+
+@keyframes lg-fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.living-gallery .fade-up {
+  animation: lg-fade-up 0.5s ease both;
+}
+
+/* Audio control icons (audio-controls.tsx) — applied via inline `style` so
+   each bar/arc can carry its own animation-delay for a staggered loop
+   rather than all pieces moving in lockstep. */
+@keyframes lg-eq-bounce {
+  0%,
+  100% {
+    transform: scaleY(0.3);
+  }
+  50% {
+    transform: scaleY(1);
+  }
+}
+@keyframes lg-wave-pulse {
+  0%,
+  100% {
+    opacity: 0.35;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+/* Scrolls the music icon's wave path left by exactly one period (see
+   WAVE_PERIOD in audio-controls.tsx) — since the path repeats that same
+   period seamlessly, the loop point is invisible and it reads as a
+   continuously flowing wave rather than a pulse. */
+@keyframes lg-wave-scroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-12px);
+  }
+}

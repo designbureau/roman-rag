@@ -7,17 +7,19 @@ import { AUTH_ENABLED } from "~/lib/config";
 // analytics (/topics, /graph, /heatmap) and the Latin /glossary need the
 // theme-tagging pass over a fuller corpus; they stay routable (with empty
 // states) but unlinked until that data lands, then re-add them here.
+// /library and /chat are hidden the same way — still routable directly,
+// just not linked from the nav.
 const NAV_LINKS: { to: string; label: string }[] = [
-  { to: "/", label: "chat" },
-  { to: "/library", label: "library" },
-  { to: "/papers", label: "papers" },
+  { to: "/", label: "gallery" },
+  { to: "/papers", label: "about" },
 ];
 
-// Resting links are muted; hover goes black; the current page is accent.
+// Resting links are muted; hover goes full-strength foreground; the
+// current page is accent.
 function linkClass({ isActive }: { isActive: boolean }) {
   return isActive
     ? "text-[color:var(--accent)]"
-    : "text-[color:var(--muted-foreground)] hover:text-black";
+    : "text-[color:var(--muted-foreground)] hover:text-[color:var(--foreground)]";
 }
 
 export function SiteNav({ isAdmin = false }: { isAdmin?: boolean }) {

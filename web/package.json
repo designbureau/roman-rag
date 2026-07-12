@@ -11,7 +11,6 @@
   },
   "dependencies": {
     "@ai-sdk/react": "^1.0.0",
-    "@roman/shared": "workspace:*",
     "@radix-ui/react-popover": "^1.1.15",
     "@radix-ui/react-scroll-area": "^1.2.0",
     "@radix-ui/react-select": "^2.1.2",
@@ -22,6 +21,9 @@
     "@react-router/node": "^7.0.0",
     "@react-router/serve": "^7.0.0",
     "@react-spring/web": "^10.0.3",
+    "@react-three/drei": "^10.7.7",
+    "@react-three/fiber": "^9.0.0",
+    "@roman/shared": "workspace:*",
     "@supabase/supabase-js": "^2.45.4",
     "@tailwindcss/typography": "^0.5.20",
     "@types/hast": "^3.0.4",
@@ -34,6 +36,7 @@
     "d3-shape": "^3.2.0",
     "d3-zoom": "^3.0.0",
     "isbot": "^5.1.17",
+    "leva": "^0.10.1",
     "lucide-react": "^0.453.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
@@ -41,6 +44,7 @@
     "react-router": "^7.0.0",
     "remark-gfm": "^4.0.1",
     "tailwind-merge": "^2.5.4",
+    "three": "^0.170.0",
     "unist-util-visit": "^5.1.0"
   },
   "devDependencies": {
@@ -54,6 +58,7 @@
     "@types/node": "^22.7.5",
     "@types/react": "^19.0.0",
     "@types/react-dom": "^19.0.0",
+    "@types/three": "^0.185.0",
     "tailwindcss": "^4.0.0",
     "typescript": "^5.6.3",
     "vite": "^5.4.10",

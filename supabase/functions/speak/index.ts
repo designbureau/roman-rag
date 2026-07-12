@@ -40,8 +40,6 @@ type Persona = string;
 type BuiltinPersona =
   | "classicist"
   | "cicero"
-  | "tiro"
-  | "atticus"
   | "caesar"
   | "marcus-aurelius"
   | "augustus";
@@ -69,11 +67,11 @@ type PersonaConfig = {
  */
 // Per-persona TTS defaults for the Roman ensemble. The settings encode each
 // voice's temperament (see the ElevenLabs voice-design notes); the
-// defaultVoiceId is a safe, known-accessible placeholder (George) so playback
-// works out of the box. The real per-persona voices are set as
-// persona_config.voice_id (via /admin) or as ELEVENLABS_VOICE_<PERSONA> Edge
-// secrets — either wins over this default (see resolveVoice).
-const PLACEHOLDER_VOICE_ID = "JBFqnCBsd6RMkjVDRZzb"; // George — warm British male
+// defaultVoiceId is the site-wide default voice so playback works out of the
+// box. The real per-persona voices are set as persona_config.voice_id (via
+// /admin) or as ELEVENLABS_VOICE_<PERSONA> Edge secrets — either wins over
+// this default (see resolveVoice).
+const PLACEHOLDER_VOICE_ID = "EkK5I93UQWFDigLMpZcX";
 
 const PERSONA_VOICES: Record<BuiltinPersona, PersonaConfig> = {
   classicist: {
@@ -85,16 +83,6 @@ const PERSONA_VOICES: Record<BuiltinPersona, PersonaConfig> = {
     defaultVoiceId: PLACEHOLDER_VOICE_ID,
     envOverride: "ELEVENLABS_VOICE_CICERO",
     settings: { stability: 0.45, similarity_boost: 0.75, style: 0.45, use_speaker_boost: true, speed: 0.98 },
-  },
-  tiro: {
-    defaultVoiceId: PLACEHOLDER_VOICE_ID,
-    envOverride: "ELEVENLABS_VOICE_TIRO",
-    settings: { stability: 0.68, similarity_boost: 0.72, style: 0.15, use_speaker_boost: true, speed: 0.96 },
-  },
-  atticus: {
-    defaultVoiceId: PLACEHOLDER_VOICE_ID,
-    envOverride: "ELEVENLABS_VOICE_ATTICUS",
-    settings: { stability: 0.6, similarity_boost: 0.72, style: 0.3, use_speaker_boost: true, speed: 0.98 },
   },
   caesar: {
     defaultVoiceId: PLACEHOLDER_VOICE_ID,
@@ -296,7 +284,7 @@ function applyPronunciations(s: string): string {
 }
 
 // Fallback voice for admin-authored personas that haven't been given a
-// voice_id — George, a warm neutral narrator.
+// voice_id.
 const DEFAULT_VOICE: VoiceSettings = {
   stability: 0.5,
   similarity_boost: 0.75,
@@ -304,7 +292,7 @@ const DEFAULT_VOICE: VoiceSettings = {
   use_speaker_boost: true,
   speed: 1.0,
 };
-const DEFAULT_VOICE_ID = "JBFqnCBsd6RMkjVDRZzb";
+const DEFAULT_VOICE_ID = "EkK5I93UQWFDigLMpZcX";
 
 function isVoiceSettings(v: unknown): v is VoiceSettings {
   return (
