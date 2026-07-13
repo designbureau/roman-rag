@@ -74,6 +74,36 @@ export default function Paper() {
                 </a>
               );
             },
+            // The papers embed the gallery's motion studies via ordinary
+            // image syntax pointing at .mp4 files (react-markdown renders no
+            // raw HTML, so a literal <video> tag in the markdown would be
+            // dropped). Muted looping autoplay — they're silent studies —
+            // with the alt text as a caption. <video> and <span> are both
+            // phrasing content, so nesting inside react-markdown's <p>
+            // wrapper stays valid HTML, unlike <figure>/<figcaption>.
+            img: ({ src, alt }) => {
+              if (typeof src === "string" && src.endsWith(".mp4")) {
+                return (
+                  <span className="my-8 block">
+                    <video
+                      src={src}
+                      autoPlay
+                      loop
+                      muted
+                      playsInline
+                      preload="metadata"
+                      className="mx-auto block w-full max-w-[420px]"
+                    />
+                    {alt && (
+                      <span className="mt-3 block text-center text-sm italic text-[color:var(--muted-foreground)]">
+                        {alt}
+                      </span>
+                    )}
+                  </span>
+                );
+              }
+              return <img src={src} alt={alt} />;
+            },
           }}
         >
           {paper.markdown}

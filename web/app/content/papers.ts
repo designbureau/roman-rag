@@ -5,6 +5,7 @@
 // vite.config.ts, needed since docs/ sits outside the web/ Vite root) and is
 // rendered by routes/papers.$slug.tsx via react-markdown. The doc filename
 // matches the paper's slug below.
+import romanArchiveInterface from "../../../docs/roman-archive-interface.md?raw";
 import readingRomeInTranslation from "../../../docs/reading-rome-in-translation.md?raw";
 import givingTheDeadAVoice from "../../../docs/giving-the-dead-a-voice.md?raw";
 import ragForAClassicalArchive from "../../../docs/rag-for-a-classical-archive.md?raw";
@@ -22,13 +23,24 @@ export type PaperMeta = {
 
 export const PAPERS: PaperMeta[] = [
   {
+    slug: "roman-archive-interface",
+    title: "An Interface to the Roman Archive",
+    kind: "System description",
+    blurb:
+      "The full account of the system: a multi-author Roman corpus behind " +
+      "retrieval-grounded generation, with per-author scoping, a two-stratum " +
+      "corpus, bounded first-person personas, the speech pipeline, the " +
+      "exedra gallery, and the evaluation design and limitations.",
+    markdown: romanArchiveInterface,
+  },
+  {
     slug: "reading-rome-in-translation",
     title: "Reading Rome in Translation",
     kind: "Essay",
     blurb:
-      "The originals beside their public-domain English — Shuckburgh on Cicero, " +
-      "Casaubon on Marcus Aurelius, and more: what a translation preserves, and " +
-      "what it loses.",
+      "The originals beside their public-domain English: Shuckburgh's Cicero, " +
+      "Casaubon's Marcus Aurelius, and the rest, with what each translation " +
+      "preserves and what it loses.",
     markdown: readingRomeInTranslation,
   },
   {
@@ -36,7 +48,7 @@ export const PAPERS: PaperMeta[] = [
     title: "Giving the Dead a Voice",
     kind: "On synthetic personae for historical figures",
     blurb:
-      "The ethics of animating Rome's figures as retrieval-grounded personas — " +
+      "The ethics of animating Rome's figures as retrieval-grounded personas: " +
       "bounded knowledge, scoped to each author's own words, and never inventing " +
       "what they did not write.",
     markdown: givingTheDeadAVoice,
