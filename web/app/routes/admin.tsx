@@ -17,10 +17,16 @@
  */
 import { useEffect, useId, useRef, useState } from "react";
 import { Link } from "react-router";
+import { AuthGate } from "~/components/auth-gate";
 import { SiteNav } from "~/components/site-nav";
 import { useAuth } from "~/lib/auth";
 import { supabase } from "~/lib/supabase";
-import { CHAT_FN_URL, SUPABASE_ANON_KEY, AUTH_ENABLED } from "~/lib/config";
+import {
+  CHAT_FN_URL,
+  SUPABASE_ANON_KEY,
+  AUTH_ENABLED,
+  IS_DEV_BYPASS,
+} from "~/lib/config";
 import { MarkdownEditor } from "~/components/markdown-editor";
 
 export function meta() {
@@ -114,7 +120,18 @@ function normaliseRow(r: Partial<Row> & { persona: string }): Row {
 const SELECT_COLS =
   "persona, title, display_md, system_prompt_override, few_shots, temperature, voice_id, sort_order, enabled, is_builtin, age_tiers, include_reference";
 
-export default function Admin() {
+// The gate wraps only this route (the rest of the site is public): a
+// signed-out visitor to /admin gets the sign-in card, a signed-in one
+// reaches Admin below, which then checks the is_admin profile flag.
+export default function AdminRoute() {
+  return (
+    <AuthGate>
+      <Admin />
+    </AuthGate>
+  );
+}
+
+function Admin() {
   const { status, isAdmin, user } = useAuth();
   const [rows, setRows] = useState<Record<string, Row>>({});
   const [loaded, setLoaded] = useState(false);
@@ -150,9 +167,10 @@ export default function Admin() {
   };
 
   useEffect(() => {
-    // When the auth layer is disabled, the admin is open (private prototype);
+    // When the auth layer is disabled (or dev-bypassed), the admin is open;
     // otherwise it requires a signed-in admin.
-    if (AUTH_ENABLED && (status !== "signed-in" || !isAdmin)) return;
+    if (AUTH_ENABLED && !IS_DEV_BYPASS && (status !== "signed-in" || !isAdmin))
+      return;
     fetch(CHAT_FN_URL, {
       headers: { Authorization: `Bearer ${SUPABASE_ANON_KEY}` },
     })
@@ -169,21 +187,20 @@ export default function Admin() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [status, isAdmin]);
 
-  // Auth-gated only when the auth layer is enabled. With it disabled the
-  // editor is open (the writes are still RLS-governed server-side).
-  if (AUTH_ENABLED) {
-    if (status === "loading") return <Centered>Loading…</Centered>;
-    if (status !== "signed-in") return <Centered>Sign in to continue.</Centered>;
-    if (!isAdmin) {
-      return (
-        <Centered>
-          <p>This area is for administrators.</p>
-          <Link to="/chat" className="mt-3 inline-block text-sm underline">
-            ← back to chat
-          </Link>
-        </Centered>
-      );
-    }
+  // The AuthGate wrapper (AdminRoute above) has already handled loading and
+  // signed-out; what remains is the admin check on the signed-in user. With
+  // auth disabled or dev-bypassed the editor is open (writes are still
+  // RLS-governed server-side, so this client gate is convenience, not the
+  // boundary).
+  if (AUTH_ENABLED && !IS_DEV_BYPASS && !isAdmin) {
+    return (
+      <Centered>
+        <p>This area is for administrators.</p>
+        <Link to="/" className="mt-3 inline-block text-sm underline">
+          ← back to the gallery
+        </Link>
+      </Centered>
+    );
   }
 
   const sharedRow = rows[SHARED_RULES_KEY];
@@ -202,7 +219,7 @@ export default function Admin() {
         </p>
       </header>
 
-      <SiteNav isAdmin />
+      <SiteNav />
 
       {!loaded ? (
         <p className="text-sm text-[color:var(--muted-foreground)]">Loading personas…</p>

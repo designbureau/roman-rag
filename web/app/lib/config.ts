@@ -40,21 +40,18 @@ export const TRANSCRIBE_FN_URL =
   (SUPABASE_URL ? `${SUPABASE_URL}/functions/v1/transcribe` : "");
 
 /**
- * Master switch for the view-locking auth gate. While `false` the
- * gate renders children unconditionally everywhere (dev AND prod).
- * Flip back to `true` to require sign-in on the deployed build.
+ * Master switch for the auth gate. The site itself is public (gallery,
+ * chat, papers); the gate wraps only the /admin route, so with this
+ * `true` reaching the persona editor requires a signed-in user whose
+ * profile row has `is_admin = true` (see routes/admin.tsx). While
+ * `false` the gate renders children unconditionally and /admin is
+ * open — dev-prototype behaviour only.
  *
- * All the auth plumbing (Supabase client, AuthProvider, sign-in
- * methods) stays mounted and live regardless — this only controls
- * whether the gate component blocks rendering.
- *
- * Currently FALSE for the vertical slice: there is no auth/profiles
- * setup yet (the profiles + persona_config migrations are deferred),
- * so the site is open and the /admin route stays effectively disabled
- * (it needs a signed-in is_admin user). Flip back to `true` once the
- * auth layer lands.
+ * Sign-in is invite-only: Supabase signups are disabled in the
+ * dashboard and signInWithOtp passes shouldCreateUser: false, so a
+ * magic link is only ever issued to users created via the dashboard.
  */
-export const AUTH_ENABLED = false;
+export const AUTH_ENABLED = true;
 
 /**
  * Skip the auth gate when running under `pnpm dev` (Vite sets

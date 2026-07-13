@@ -4,6 +4,7 @@
   "buildCommand": "pnpm --filter @roman/web build",
   "outputDirectory": "web/build/client",
   "installCommand": "pnpm install --frozen-lockfile",
+  "rewrites": [{ "source": "/(.*)", "destination": "/index.html" }],
   "git": {
     "deploymentEnabled": {
       "main": true

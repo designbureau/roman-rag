@@ -8,11 +8,12 @@ import {
   type Persona,
   type PersonaOption,
 } from "~/components/persona-toggle";
+import { AuthGate } from "~/components/auth-gate";
 import { ChatPanel } from "~/components/chat-panel";
 import { SiteNav } from "~/components/site-nav";
 import { TierToggle, type Tier } from "~/components/storyteller-age";
 import { useAuth } from "~/lib/auth";
-import { AUTH_ENABLED } from "~/lib/config";
+import { AUTH_ENABLED, IS_DEV_BYPASS } from "~/lib/config";
 import { supabase } from "~/lib/supabase";
 
 export function meta(_: Route.MetaArgs) {
@@ -69,8 +70,20 @@ function writeStoredTier(persona: string, tier: string) {
   }
 }
 
-export default function Index() {
-  const { user, signOut, isAdmin, status } = useAuth();
+// The gate wraps the whole route: a signed-out visitor to /chat gets the
+// sign-in card, a signed-in one reaches Index below, which then checks the
+// is_admin profile flag. The gallery's ring chat remains the public chat
+// surface; this page is the admin reading view.
+export default function ChatRoute() {
+  return (
+    <AuthGate>
+      <Index />
+    </AuthGate>
+  );
+}
+
+function Index() {
+  const { user, signOut, isAdmin } = useAuth();
   const [params, setParams] = useSearchParams();
   // Persona list + display blurbs (admin-editable via /admin). Public read.
   // The toggle tabs and ordering come from persona_config.title/sort_order;
@@ -186,22 +199,19 @@ export default function Index() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [personaOptions, persona]);
 
-  // Auth-gated the same way as /admin: open when the auth layer is
-  // disabled (private prototype), otherwise restricted to signed-in
-  // admins while the archive is still admin-only.
-  if (AUTH_ENABLED) {
-    if (status === "loading") return <Centered>Loading…</Centered>;
-    if (status !== "signed-in") return <Centered>Sign in to continue.</Centered>;
-    if (!isAdmin) {
-      return (
-        <Centered>
-          <p>This area is for administrators.</p>
-          <Link to="/" className="mt-3 inline-block text-sm underline">
-            ← back to the gallery
-          </Link>
-        </Centered>
-      );
-    }
+  // Auth-gated the same way as /admin: the public chat surface is the
+  // gallery's ring chat; this full reading page stays admin-only. The
+  // AuthGate wrapper (ChatRoute below) has already handled loading and
+  // signed-out, so what remains is the admin check on the signed-in user.
+  if (AUTH_ENABLED && !IS_DEV_BYPASS && !isAdmin) {
+    return (
+      <Centered>
+        <p>This area is for administrators.</p>
+        <Link to="/" className="mt-3 inline-block text-sm underline">
+          ← back to the gallery
+        </Link>
+      </Centered>
+    );
   }
 
   return (
@@ -236,7 +246,7 @@ export default function Index() {
         </div>
       </header>
 
-      <SiteNav isAdmin={isAdmin} />
+      <SiteNav />
 
       <div className="mb-8 flex flex-col items-stretch gap-2">
         <PersonaToggle

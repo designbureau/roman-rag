@@ -130,7 +130,10 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         email,
         options: {
           emailRedirectTo: window.location.origin,
-          shouldCreateUser: true,
+          // Invite-only: never create a user from the sign-in form. A link
+          // is issued only for accounts that already exist (created via the
+          // Supabase dashboard), matching the disabled-signups setting there.
+          shouldCreateUser: false,
         },
       });
       if (error) return { ok: false, error: error.message };

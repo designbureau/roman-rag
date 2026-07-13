@@ -6,7 +6,6 @@ import {
   ScrollRestoration,
 } from "react-router";
 import { AuthProvider } from "./lib/auth";
-import { AuthGate } from "./components/auth-gate";
 import "./globals.css";
 
 export function Layout({ children }: { children: React.ReactNode }) {
@@ -49,14 +48,13 @@ export function Layout({ children }: { children: React.ReactNode }) {
 }
 
 export default function App() {
-  // AuthProvider sits OUTSIDE the gate so children (and the gate
-  // itself) can read auth state. The gate decides whether to render
-  // the Outlet or the sign-in card.
+  // AuthProvider is global so any route can read auth state (the admin
+  // link in SiteNav, the /admin route's own gate), but the site itself is
+  // public: AuthGate now wraps only the /admin route (see routes/admin.tsx),
+  // not the Outlet.
   return (
     <AuthProvider>
-      <AuthGate>
-        <Outlet />
-      </AuthGate>
+      <Outlet />
     </AuthProvider>
   );
 }

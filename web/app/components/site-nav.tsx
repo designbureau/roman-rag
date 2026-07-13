@@ -1,5 +1,6 @@
 import { NavLink } from "react-router";
-import { AUTH_ENABLED } from "~/lib/config";
+import { useAuth } from "~/lib/auth";
+import { AUTH_ENABLED, IS_DEV_BYPASS } from "~/lib/config";
 
 // The site-wide section nav. Kept in one place so every template renders
 // the same links, in the same order, in the same position.
@@ -22,7 +23,12 @@ function linkClass({ isActive }: { isActive: boolean }) {
     : "text-[color:var(--muted-foreground)] hover:text-[color:var(--foreground)]";
 }
 
-export function SiteNav({ isAdmin = false }: { isAdmin?: boolean }) {
+export function SiteNav() {
+  // Admin state comes straight from the auth context (AuthProvider is
+  // global in root.tsx), so the admin link appears for a signed-in admin
+  // on any page and stays hidden for everyone else. The route itself is
+  // gated regardless — hiding the link is tidiness, not the boundary.
+  const { isAdmin } = useAuth();
   return (
     <nav className="mb-8 flex flex-wrap gap-x-4 gap-y-1 pb-4 text-[12px] uppercase tracking-wide no-underline">
       {NAV_LINKS.map((l) => (
@@ -35,7 +41,7 @@ export function SiteNav({ isAdmin = false }: { isAdmin?: boolean }) {
           {l.label}
         </NavLink>
       ))}
-      {(isAdmin || !AUTH_ENABLED) && (
+      {(isAdmin || !AUTH_ENABLED || IS_DEV_BYPASS) && (
         <NavLink to="/admin" className={linkClass}>
           admin
         </NavLink>
