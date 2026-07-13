@@ -318,16 +318,14 @@ on: grounding, citation discipline, quotation caps, the prohibition on
 inventing texts, the separation of primary text from biographical tradition,
 and the separation of Republic from Empire.
 
-- **The Classicist** (default in code): a modern scholar reading across the
-  whole archive, candid about translation, transmission, and the difference
-  between what a text says and what the tradition says about its author. The
-  one voice with reference-layer access by default. *(Deployment note: the
-  Classicist is the code-level default and the server-side fallback for any
-  unavailable persona, but it is currently withheld from the public-facing
-  app, so the ensemble a public visitor sees is the five bounded first-person
-  figures. It remains active as the fallback and in non-public contexts; this
-  is a deployment choice, not an architectural one, and the reference-layer
-  access described here is unchanged.)*
+- **The Classicist** (hidden in the public version): a modern scholar
+  reading across the whole archive, candid about translation, transmission,
+  and the difference between what a text says and what the tradition says
+  about its author. The one voice with reference-layer access by default. A
+  public visitor sees only the five bounded first-person figures; the
+  Classicist remains the code-level default and the server-side fallback for
+  any unavailable persona, a deployment choice rather than an architectural
+  one.
 - **Cicero**: first person, bounded 106–43 BC, scoped to his own letters.
   Cites in-voice ("I wrote to Atticus that winter…"). Refuses his own death
   and everything after it.
