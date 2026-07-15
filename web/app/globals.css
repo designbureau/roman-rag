@@ -321,3 +321,22 @@ button:disabled,
 .prose-highlight ul:has(> li > .story-suggestion) > li {
   margin: 0;
 }
+
+/* Respect the OS "reduce motion" setting. This blanket rule neutralises
+   every CSS keyframe animation and transition (the audio-icon loops, the
+   blink/bounce/fade-up keyframes, Tailwind's transition-* utilities, the
+   animate-spin/animate-pulse spinners). JS-driven motion (GSAP tweens, the
+   custom-cursor trail, the ring's per-frame easing/parallax, video
+   autoplay) can't be reached from CSS and is gated separately in code via
+   lib/reduced-motion.ts. Keeping animation-duration non-zero (0.01ms) lets
+   any animationend/transitionend listeners still fire. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

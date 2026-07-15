@@ -1,9 +1,11 @@
 import { Link, useParams } from "react-router";
 import { SiteNav } from "~/components/site-nav";
+import { SkipLink } from "~/components/skip-link";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import type { Route } from "./+types/papers.$slug";
 import { PAPERS, getPaper } from "~/content/papers";
+import { useReducedMotion } from "~/lib/reduced-motion";
 
 export function meta({ params }: Route.MetaArgs) {
   const paper = getPaper(params.slug);
@@ -19,6 +21,7 @@ export function meta({ params }: Route.MetaArgs) {
 export default function Paper() {
   const { slug } = useParams();
   const paper = slug ? getPaper(slug) : undefined;
+  const reducedMotion = useReducedMotion();
 
   if (!paper) {
     return (
@@ -36,6 +39,7 @@ export default function Paper() {
 
   return (
     <main className="mx-auto max-w-[750px] px-4 py-8 lg:py-12">
+      <SkipLink targetId="paper-body" />
       <SiteNav />
 
       <nav className="mb-8 flex flex-wrap items-center gap-x-4 gap-y-1 text-sm">
@@ -60,7 +64,7 @@ export default function Paper() {
         (h1 ≈ 2.7em) overwhelm a 375px viewport under these long paper
         titles; the media query in globals.css caps the heading sizes
         further. */}
-      <article className="paper-prose prose sm:prose-lg max-w-none">
+      <article id="paper-body" tabIndex={-1} className="paper-prose prose sm:prose-lg max-w-none focus-visible:outline-none">
         <ReactMarkdown
           remarkPlugins={[remarkGfm]}
           components={{
@@ -81,19 +85,24 @@ export default function Paper() {
             // The papers embed the gallery's motion studies via ordinary
             // image syntax pointing at .mp4 files (react-markdown renders no
             // raw HTML, so a literal <video> tag in the markdown would be
-            // dropped). Muted looping autoplay — they're silent studies —
-            // with the alt text as a caption. <video> and <span> are both
-            // phrasing content, so nesting inside react-markdown's <p>
-            // wrapper stays valid HTML, unlike <figure>/<figcaption>.
+            // dropped). They carry `controls` so the motion is always
+            // pausable (WCAG 2.2.2), the alt text as both a caption and the
+            // video's accessible label, and autoplay/loop gated on reduced
+            // motion — under that preference they sit paused until the
+            // reader presses play. <video> and <span> are both phrasing
+            // content, so nesting inside react-markdown's <p> wrapper stays
+            // valid HTML, unlike <figure>/<figcaption>.
             img: ({ src, alt }) => {
               if (typeof src === "string" && src.endsWith(".mp4")) {
                 return (
                   <span className="my-8 block">
                     <video
                       src={src}
-                      autoPlay
-                      loop
+                      aria-label={alt || undefined}
+                      autoPlay={!reducedMotion}
+                      loop={!reducedMotion}
                       muted
+                      controls
                       playsInline
                       preload="metadata"
                       className="mx-auto block w-full max-w-[420px]"

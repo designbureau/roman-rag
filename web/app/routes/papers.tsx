@@ -1,6 +1,7 @@
 import { Link } from "react-router";
 import { PAPERS } from "~/content/papers";
 import { SiteNav } from "~/components/site-nav";
+import { SkipLink } from "~/components/skip-link";
 
 export function meta() {
   return [{ title: "About — Voces Romae" }];
@@ -9,6 +10,7 @@ export function meta() {
 export default function Papers() {
   return (
     <main className="mx-auto max-w-5xl px-4 py-8 lg:py-12">
+      <SkipLink targetId="papers-list" />
       <header className="mb-8">
         <h1 className="font-display text-5xl">About</h1>
         <p className="mt-3 max-w-2xl text-sm text-[color:var(--muted-foreground)]">
@@ -20,7 +22,7 @@ export default function Papers() {
 
       <SiteNav />
 
-      <ul className="space-y-4">
+      <ul id="papers-list" tabIndex={-1} className="space-y-4 focus-visible:outline-none">
         {PAPERS.map((p) => (
           <li key={p.slug}>
             <Link

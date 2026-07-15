@@ -1,4 +1,5 @@
 import { useEffect, useRef } from "react";
+import { prefersReducedMotion } from "~/lib/reduced-motion";
 
 // Two-circle cursor: a small dot pinned exactly to the pointer, and a
 // larger ring that eases toward it every frame — the ring's lag behind the
@@ -44,10 +45,17 @@ export function CustomCursor() {
     window.addEventListener("mousemove", onMove);
     window.addEventListener("mouseleave", onLeave);
 
+    // Under reduced motion the ring stops trailing: it's pinned 1:1 to the
+    // pointer like the dot, so the custom cursor still renders (design
+    // intact) but there's no lagging motion to trigger vestibular
+    // discomfort. The hover scale stays — it's a state change, not travel.
+    const reduced = prefersReducedMotion();
+
     let raf = 0;
     const tick = () => {
-      ring.current.x += (mouse.current.x - ring.current.x) * 0.18;
-      ring.current.y += (mouse.current.y - ring.current.y) * 0.18;
+      const ease = reduced ? 1 : 0.18;
+      ring.current.x += (mouse.current.x - ring.current.x) * ease;
+      ring.current.y += (mouse.current.y - ring.current.y) * ease;
       const opacity = visible.current ? 1 : 0;
       if (dotRef.current) {
         dotRef.current.style.opacity = String(opacity);

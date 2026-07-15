@@ -27,6 +27,19 @@
   cursor: none !important;
 }
 
+/* Keyboard focus indicator for the whole gallery. The native cursor is
+   hidden here (above), so a strong, consistent focus ring is the only way
+   a keyboard user can see where they are. A single scoped rule covers
+   every control (numerals, audio toggles, mic/pause, the loading-screen
+   prompts, the chat input) rather than per-component focus utilities.
+   :focus-visible (not :focus) so it shows for keyboard/AT, not on mouse
+   click. */
+.living-gallery :focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
 .living-gallery .font-display {
   font-family: var(--font-display);
   letter-spacing: -0.01em;

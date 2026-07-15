@@ -127,6 +127,9 @@ export function GalleryLoadingScreen({
   // and `active` is still momentarily false — without it, that instant
   // would read as "loading finished" and skip straight to the checklist.
   const startedRef = useRef(false);
+  // Focus management for the modal overlay (see role="dialog" below).
+  const containerRef = useRef<HTMLDivElement>(null);
+  const enterRef = useRef<HTMLButtonElement>(null);
 
   useEffect(() => {
     if (active) startedRef.current = true;
@@ -184,10 +187,45 @@ export function GalleryLoadingScreen({
     setTimeout(() => setDismissed(true), 500);
   };
 
+  // Move focus to the Enter button the moment the checklist appears, so a
+  // keyboard user lands inside the dialog on its primary action rather than
+  // wherever focus happened to be.
+  useEffect(() => {
+    if (ready) enterRef.current?.focus();
+  }, [ready]);
+
+  // Simple focus trap: while the overlay is up it's a modal dialog over the
+  // ring, so Tab is kept within it (the ring's own controls are mounted
+  // behind and would otherwise be reachable). Shift+Tab wraps backwards.
+  const onKeyDownTrap = (e: React.KeyboardEvent) => {
+    if (e.key !== "Tab") return;
+    const root = containerRef.current;
+    if (!root) return;
+    const focusables = root.querySelectorAll<HTMLElement>(
+      'button:not([disabled]):not([tabindex="-1"]), [href], input, [tabindex]:not([tabindex="-1"])',
+    );
+    const first = focusables[0];
+    const last = focusables[focusables.length - 1];
+    if (!first || !last) return;
+    const activeEl = document.activeElement;
+    if (e.shiftKey && activeEl === first) {
+      e.preventDefault();
+      last.focus();
+    } else if (!e.shiftKey && activeEl === last) {
+      e.preventDefault();
+      first.focus();
+    }
+  };
+
   if (dismissed) return null;
 
   return (
     <div
+      ref={containerRef}
+      role="dialog"
+      aria-modal="true"
+      aria-label="Welcome to Voices of Rome"
+      onKeyDown={onKeyDownTrap}
       className={`pointer-events-auto absolute inset-0 z-30 flex flex-col items-center justify-center gap-12 overflow-hidden bg-black px-6 text-center transition-opacity duration-500 ${
         fading ? "opacity-0" : "opacity-100"
       }`}
@@ -305,6 +343,7 @@ export function GalleryLoadingScreen({
         </div>
       </div>
       <button
+        ref={enterRef}
         type="button"
         onClick={handleEnter}
         tabIndex={ready ? 0 : -1}

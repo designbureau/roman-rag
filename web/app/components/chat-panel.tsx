@@ -173,6 +173,7 @@ export function ChatPanel({
             value={input}
             onChange={handleInputChange}
             placeholder={`Ask ${personaTitle}…`}
+            aria-label={`Ask ${personaTitle}`}
             className="min-w-0 flex-1 rounded-md border border-[color:var(--border)] bg-[color:var(--background)] px-3 py-2 text-base focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-[color:var(--accent)]"
             disabled={isLoading || !!configIssue}
             suppressHydrationWarning
@@ -188,6 +189,7 @@ export function ChatPanel({
           <Button
             type="submit"
             disabled={isLoading || !input.trim() || !!configIssue}
+            aria-label="Send"
             className="shrink-0"
           >
             {isLoading ? "…" : "Send"}
@@ -242,11 +244,7 @@ export function ThinkingIndicator() {
     return () => clearInterval(id);
   }, []);
   return (
-    <div
-      className="flex h-4 items-center justify-start"
-      role="status"
-      aria-label="Thinking"
-    >
+    <div className="flex h-4 items-center justify-start" role="status">
       <span
         key={i}
         aria-hidden

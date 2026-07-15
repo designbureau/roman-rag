@@ -1,6 +1,7 @@
 import { useLayoutEffect, useRef } from "react";
 import gsap from "gsap";
 import type { GalleryFigure } from "~/data/gallery-figures";
+import { prefersReducedMotion } from "~/lib/reduced-motion";
 
 // Same per-letter GSAP reveal as StaggerText (gallery.tsx) and the speech
 // ticker (ring-chat.tsx), but gated on `revealed` flipping true instead of
@@ -15,12 +16,14 @@ import type { GalleryFigure } from "~/data/gallery-figures";
 // paint) is what makes that handoff invisible instead of a one-frame flash.
 function RevealNumeral({
   text,
+  ariaLabel,
   active,
   revealed,
   compact,
   onSelect,
 }: {
   text: string;
+  ariaLabel: string;
   active: boolean;
   revealed: boolean;
   compact: boolean;
@@ -32,6 +35,9 @@ function RevealNumeral({
   useLayoutEffect(() => {
     if (!revealed || firedRef.current) return;
     firedRef.current = true;
+    // Under reduced motion the inline `opacity: revealed ? undefined : 0`
+    // already makes the letters visible once revealed; skip the tween.
+    if (prefersReducedMotion()) return;
     const letters = lettersRef.current.filter((el): el is HTMLSpanElement => el !== null);
     if (!letters.length) return;
     gsap.fromTo(
@@ -44,6 +50,8 @@ function RevealNumeral({
   return (
     <button
       onClick={onSelect}
+      aria-label={ariaLabel}
+      aria-current={active ? "true" : undefined}
       className={
         compact
           ? "font-display px-2 py-1 text-sm font-semibold transition-colors sm:px-3"
@@ -55,6 +63,8 @@ function RevealNumeral({
         pointerEvents: revealed ? "auto" : "none",
       }}
     >
+      {/* The button's aria-label ("View Cicero") is the accessible name,
+        so these per-letter spans are only ever read visually. */}
       {text.split("").map((ch, i) => (
         <span
           key={i}
@@ -104,7 +114,8 @@ export function Filmstrip({
 }) {
   const animated = revealedCount !== undefined && !skipReveal;
   return (
-    <div
+    <nav
+      aria-label="Figures"
       className={
         compact
           ? // pointer-events-auto + w-fit mx-auto (instead of the full-width
@@ -131,6 +142,7 @@ export function Filmstrip({
             <RevealNumeral
               key={f.id}
               text={text}
+              ariaLabel={`View ${f.name}`}
               active={active}
               revealed={i < (revealedCount ?? 0)}
               compact={!!compact}
@@ -142,6 +154,8 @@ export function Filmstrip({
           <button
             key={f.id}
             onClick={() => onSelect(i)}
+            aria-label={`View ${f.name}`}
+            aria-current={active ? "true" : undefined}
             className={
               compact
                 ? "font-display px-2 py-1 text-sm font-semibold transition-colors sm:px-3"
@@ -160,6 +174,6 @@ export function Filmstrip({
           </button>
         );
       })}
-    </div>
+    </nav>
   );
 }

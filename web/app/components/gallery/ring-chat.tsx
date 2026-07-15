@@ -14,6 +14,7 @@ import {
   TRANSCRIBE_FN_URL,
 } from "~/lib/config";
 import { useRingSpeech } from "./use-ring-speech";
+import { prefersReducedMotion } from "~/lib/reduced-motion";
 import type { GalleryFigure } from "~/data/gallery-figures";
 
 // Mirrors supabase/functions/speak/index.ts's stripMarkdown exactly, so the
@@ -80,6 +81,12 @@ function NowPlayingStrip({
   // fading into the trailing window above.
   useEffect(() => {
     const prev = prevActiveRef.current;
+    // Under reduced motion the words simply appear/disappear via the
+    // outer div's opacity (see opacityFor) with no per-letter tween.
+    if (prefersReducedMotion()) {
+      prevActiveRef.current = activeIndex;
+      return;
+    }
     if (activeIndex >= 0 && activeIndex !== prev) {
       // Filter out nulls: word divs remount as `words` grows/shrinks with
       // streamed content, and React's ref-callback cleanup (element -> null)
@@ -501,15 +508,16 @@ export function RingChat({ figure }: { figure: GalleryFigure }) {
 
   // Push-to-talk: hold spacebar to record, release to send — same start/
   // stop RingMicButton's own click uses (see its imperative handle above).
-  // Ignored while the text input has focus so spacebar still just types a
-  // space there, and ignored while the mic is otherwise disabled (loading/
-  // misconfigured), matching the button's own disabled state.
+  // Only fires when nothing interactive is focused (activeElement is the
+  // body): otherwise a keyboard user who has tabbed to a numeral, audio
+  // toggle, pause, or the mic button would trigger recording instead of
+  // activating that control with Space. Also ignored while the mic is
+  // disabled (loading/misconfigured), matching the button's own state.
   useEffect(() => {
-    const isTypingTarget = (el: EventTarget | null) =>
-      el instanceof HTMLInputElement || el instanceof HTMLTextAreaElement;
     const onKeyDown = (e: KeyboardEvent) => {
       if (e.code !== "Space" || e.repeat || micDisabled) return;
-      if (isTypingTarget(e.target) || isTypingTarget(document.activeElement)) return;
+      const active = document.activeElement;
+      if (active && active !== document.body) return;
       e.preventDefault();
       micRef.current?.start();
     };
@@ -555,9 +563,10 @@ export function RingChat({ figure }: { figure: GalleryFigure }) {
             value={input}
             onChange={handleInputChange}
             placeholder={`Ask ${figure.first} anything…`}
+            aria-label={`Ask ${figure.first} anything`}
             disabled={isLoading || configIssue}
             autoComplete="off"
-            className="w-full rounded-full border border-white/10 bg-white/[0.04] py-2.5 pl-4 pr-11 text-sm text-[#E3DAC6] placeholder:text-[#5F5849] focus-visible:outline-none focus-visible:border-[color:var(--accent)]/50"
+            className="w-full rounded-full border border-white/20 bg-white/[0.04] py-2.5 pl-4 pr-11 text-sm text-[#E3DAC6] placeholder:text-[#8A7F68] focus-visible:border-[color:var(--accent)]/50"
           />
           {/* Loading spinner sits left of the mic button, inside the same
             pill, rather than at the far edge — the mic now occupies that

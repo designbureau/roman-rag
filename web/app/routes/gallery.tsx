@@ -15,6 +15,7 @@ import { CustomCursor } from "~/components/gallery/custom-cursor";
 import { GalleryLoadingScreen } from "~/components/gallery/loading-screen";
 import { GalleryTuningProvider } from "~/components/gallery/tuning-context";
 import { Button } from "~/components/ui/button";
+import { prefersReducedMotion } from "~/lib/reduced-motion";
 
 export function links() {
   return [
@@ -80,6 +81,9 @@ function StaggerText({
   const lettersRef = useRef<Array<HTMLSpanElement | null>>([]);
 
   useEffect(() => {
+    // Under reduced motion the letters are left in their natural
+    // (already-visible) state — no slide/fade tween.
+    if (prefersReducedMotion()) return;
     const letters = lettersRef.current.filter((el): el is HTMLSpanElement => el !== null);
     if (!letters.length) return;
     gsap.fromTo(
@@ -153,11 +157,19 @@ export default function GalleryRoute() {
   const [introDone, setIntroDone] = useState(false);
   const [revealedCount, setRevealedCount] = useState(0);
   const [nameRevealed, setNameRevealed] = useState(false);
-  const [iconsRevealed, setIconsRevealed] = useState(false);
   const [chatRevealed, setChatRevealed] = useState(false);
 
   useEffect(() => {
     if (!introStarted) return;
+    // Reduced motion: no staggered cascade. Reveal the whole ring, nav,
+    // icons, and chat at once so nothing animates in.
+    if (prefersReducedMotion()) {
+      setRevealedCount(GALLERY_FIGURES.length);
+      setNameRevealed(true);
+      setChatRevealed(true);
+      setIntroDone(true);
+      return;
+    }
     let cancelled = false;
     const wait = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
     void (async () => {
@@ -170,10 +182,10 @@ export default function GalleryRoute() {
       await wait(NAME_DELAY_MS);
       if (cancelled) return;
       setNameRevealed(true);
-      await wait(ICONS_DELAY_MS);
-      if (cancelled) return;
-      setIconsRevealed(true);
-      await wait(CHAT_DELAY_MS);
+      // The audio controls are no longer part of the reveal cascade (they
+      // render immediately for WCAG 1.4.2); this beat now just spaces the
+      // chat input after the name.
+      await wait(ICONS_DELAY_MS + CHAT_DELAY_MS);
       if (cancelled) return;
       setChatRevealed(true);
       setIntroDone(true);
@@ -232,15 +244,31 @@ export default function GalleryRoute() {
           // above (still used behind the stage view) — the ring's own
           // canvas is transparent (see gallery-ring.tsx), so without this
           // the gradient would bleed through at the letterboxed edges.
-          <div className="relative h-full w-full bg-black">
+          <main className="relative h-full w-full bg-black">
+            {/* The gallery is otherwise headingless (the visual title lives
+              in the loading screen); this gives assistive tech a document
+              title and the route an h1. */}
+            <h1 className="sr-only">Voices of Rome</h1>
+            {/* Screen-reader narration of the ring: the WebGL busts convey
+              nothing to AT on their own, so this polite live region
+              announces the centred figure whenever the carousel moves. */}
+            <p aria-live="polite" className="sr-only">
+              {figure.name}, {figure.years}
+            </p>
             {/* Explicit z-0: this is a full-bleed WebGL canvas (see
               gallery-ring.tsx), and every overlay below is given z-10 so
               stacking is guaranteed rather than relying on DOM order among
               same-stack-level positioned siblings — that implicit ordering
               made the canvas the topmost hit-target for anything not
               covered by an overlay's own hitbox (e.g. tools outside this
-              app that pick a DOM element under the cursor to annotate). */}
-            <div className="absolute inset-0 z-0">
+              app that pick a DOM element under the cursor to annotate).
+              role="img" + aria-label give the otherwise-opaque canvas a
+              text alternative naming who is on screen and how to move. */}
+            <div
+              className="absolute inset-0 z-0"
+              role="img"
+              aria-label={`${figure.name}, ${figure.years}. A ring of five Roman busts; ${figure.first} is centred. Use the numbered buttons above or the left and right arrow keys to move between figures.`}
+            >
               <GalleryRing
                 figures={GALLERY_FIGURES}
                 carousel={carousel}
@@ -256,13 +284,12 @@ export default function GalleryRoute() {
             {/* Music/SFX toggles, top-right — the dev-only Leva tuning panel
               (tuning-context.tsx) also docks there, but it's hidden for now
               (see that file); revisit placement together if it comes back.
-              Fades in as the last step of the intro sequence, once every
-              numeral/bust has had its turn (see introStarted effect above). */}
-            <div
-              className={`transition-opacity duration-500 ${
-                iconsRevealed ? "opacity-100" : "pointer-events-none opacity-0"
-              }`}
-            >
+              Rendered immediately (not gated behind the intro reveal): music
+              can start playing the moment the gallery is entered, so its
+              mute must be visible and operable from that instant rather than
+              a few seconds later when the reveal cascade finishes (WCAG
+              1.4.2 Audio Control). */}
+            <div>
               <AudioControls
                 musicOn={musicOn}
                 onToggleMusic={toggleMusic}
@@ -358,11 +385,11 @@ export default function GalleryRoute() {
               onToggleSound={toggleSound}
               onEnter={() => setIntroStarted(true)}
             />
-          </div>
+          </main>
         )}
 
         {mode === "figure" && (
-          <div className="flex h-full w-full flex-col">
+          <main className="flex h-full w-full flex-col">
             <div
               className="grid min-h-0 flex-1 gap-x-12 overflow-hidden px-14 pb-6 pt-3"
               style={{ gridTemplateColumns: "7fr 5fr" }}
@@ -387,7 +414,7 @@ export default function GalleryRoute() {
                     figure and can end up sized before a credit line's late
                     reflow, clipping the bust against overflow-hidden. */}
                   <div
-                    className="mx-auto mt-3 max-w-[300px] text-[10px] leading-relaxed text-[#5F5849]"
+                    className="mx-auto mt-3 max-w-[300px] text-[10px] leading-relaxed text-[#8A7F68]"
                     style={{ visibility: figure.credit ? "visible" : "hidden" }}
                   >
                     {figure.credit || "placeholder"}
@@ -431,7 +458,7 @@ export default function GalleryRoute() {
                 label={(_, i) => ROMAN_NUMERALS[i]}
               />
             </div>
-          </div>
+          </main>
         )}
       </div>
     </GalleryTuningProvider>

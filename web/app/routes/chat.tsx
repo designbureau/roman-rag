@@ -11,6 +11,7 @@ import {
 import { AuthGate } from "~/components/auth-gate";
 import { ChatPanel } from "~/components/chat-panel";
 import { SiteNav } from "~/components/site-nav";
+import { SkipLink } from "~/components/skip-link";
 import { TierToggle, type Tier } from "~/components/storyteller-age";
 import { useAuth } from "~/lib/auth";
 import { AUTH_ENABLED, IS_DEV_BYPASS } from "~/lib/config";
@@ -216,6 +217,7 @@ function Index() {
 
   return (
     <main className="mx-auto max-w-6xl px-3 py-6 sm:px-4 sm:py-8 lg:py-12">
+      <SkipLink targetId="chat-main" />
       <header className="mb-8 flex flex-col gap-5 lg:mb-10">
         <div>
           <h1 className="font-display text-4xl sm:text-5xl lg:text-6xl">
@@ -248,7 +250,7 @@ function Index() {
 
       <SiteNav />
 
-      <div className="mb-8 flex flex-col items-stretch gap-2">
+      <div id="chat-main" tabIndex={-1} className="mb-8 flex flex-col items-stretch gap-2 focus-visible:outline-none">
         <PersonaToggle
           value={persona}
           onChange={setPersona}

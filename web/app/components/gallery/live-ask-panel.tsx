@@ -99,9 +99,10 @@ export function LiveAskPanel({
             value={input}
             onChange={handleInputChange}
             placeholder={`Ask ${figure.first} anything…`}
+            aria-label={`Ask ${figure.first} anything`}
             disabled={isLoading || configIssue}
             autoComplete="off"
-            className="min-w-0 flex-1 rounded-full border border-white/10 bg-white/[0.04] px-4 py-2.5 text-sm text-[#E3DAC6] placeholder:text-[#5F5849] focus-visible:outline-none focus-visible:border-[color:var(--accent)]/50"
+            className="min-w-0 flex-1 rounded-full border border-white/20 bg-white/[0.04] px-4 py-2.5 text-sm text-[#E3DAC6] placeholder:text-[#8A7F68] focus-visible:border-[color:var(--accent)]/50"
           />
           <Button
             type="submit"

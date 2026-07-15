@@ -11,6 +11,7 @@ import {
   useSharedMaterial,
 } from "./tuning-context";
 import { usePointerParallax } from "./use-pointer-parallax";
+import { prefersReducedMotion } from "~/lib/reduced-motion";
 import type { GalleryFigure } from "~/data/gallery-figures";
 
 // Small enough that even the flanking (off=1) busts stay fully inside the
@@ -132,6 +133,11 @@ function RingFigure({
   const materialsRef = useRef<THREE.Material[]>([]);
   const initializedRef = useRef(false);
   const hasRevealedRef = useRef(false);
+  // Read once — the ring loop below runs 60x/s per bust, so this avoids a
+  // matchMedia call every frame. Under reduced motion the bust snaps to
+  // visible instead of fading, the carousel jumps to its slot instead of
+  // easing, and the pointer parallax is off.
+  const reducedRef = useRef(prefersReducedMotion());
 
   useFrame((_, delta) => {
     const g = groupRef.current;
@@ -172,33 +178,45 @@ function RingFigure({
     if (!hasRevealedRef.current && !skipReveal && revealed && materialsRef.current.length) {
       hasRevealedRef.current = true;
       const materials = materialsRef.current;
-      const proxy = { t: 0 };
-      gsap.to(proxy, {
-        t: 1,
-        duration: 0.85,
-        ease: "power2.out",
-        onUpdate: () => {
-          for (const m of materials) m.opacity = proxy.t;
-        },
-        onComplete: () => {
-          for (const m of materials) {
-            m.opacity = 1;
-            m.transparent = false;
-            m.needsUpdate = true;
-          }
-        },
-      });
+      if (reducedRef.current) {
+        // Snap visible, no fade.
+        for (const m of materials) {
+          m.opacity = 1;
+          m.transparent = false;
+          m.needsUpdate = true;
+        }
+      } else {
+        const proxy = { t: 0 };
+        gsap.to(proxy, {
+          t: 1,
+          duration: 0.85,
+          ease: "power2.out",
+          onUpdate: () => {
+            for (const m of materials) m.opacity = proxy.t;
+          },
+          onComplete: () => {
+            for (const m of materials) {
+              m.opacity = 1;
+              m.transparent = false;
+              m.needsUpdate = true;
+            }
+          },
+        });
+      }
     }
 
     let diff = (index - carousel) * step - offsetRef.current;
     diff = Math.atan2(Math.sin(diff), Math.cos(diff));
-    offsetRef.current += diff * Math.min(1, delta * 4.2);
+    // Reduced motion: jump straight to the target slot rather than easing
+    // the carousel step frame by frame.
+    offsetRef.current += reducedRef.current ? diff : diff * Math.min(1, delta * 4.2);
     const off = offsetRef.current;
     g.position.set(Math.sin(off) * RADIUS, 0, Math.cos(off) * RADIUS - RADIUS);
     // Parallax only on the centered bust — applying it to the flanking
     // busts too made the whole ring shiver in unison, which read as noise
-    // rather than the centered figure "looking back" at the cursor.
-    const active = index === carousel;
+    // rather than the centered figure "looking back" at the cursor. Off
+    // entirely under reduced motion.
+    const active = index === carousel && !reducedRef.current;
     g.rotation.y =
       off - (figure.frontAz * Math.PI) / 180 + (active ? parallax.current.yaw : 0);
     g.rotation.x = active ? parallax.current.pitch : 0;
