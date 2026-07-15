@@ -56,9 +56,16 @@ const BASE_ASPECT = 1728 / 843;
 // between BASE_ASPECT and here degrades gracefully (fullscreen desktop,
 // tablets), and anything narrower crops the flanks instead of shrinking
 // the centre. Raising this value means less compensation and a bigger
-// centred face (at BASE_ASPECT there would be none at all); 1.3 puts the
-// face at roughly three-quarters of a phone's width, sized for the hand.
+// centred face (at BASE_ASPECT there would be none at all).
 const MIN_COMPENSATED_ASPECT = 1.3;
+// Below the clamp an explicit zoom takes over: the clamp alone bottoms out
+// at roughly three-quarters of a phone's width for the centred face, so an
+// extra magnification ramps in linearly with aspect, reaching MOBILE_ZOOM
+// at PHONE_ASPECT (portrait-phone shape) and holding there for anything
+// narrower. At 2 the face runs edge to edge as a close-up portrait, the
+// flanking busts fully off-screen.
+const PHONE_ASPECT = 0.46;
+const MOBILE_ZOOM = 2;
 
 function CameraAim() {
   const { camera, size } = useThree();
@@ -67,16 +74,19 @@ function CameraAim() {
   }, [camera]);
   useEffect(() => {
     if (!(camera instanceof THREE.PerspectiveCamera)) return;
-    const aspect = Math.max(size.width / size.height, MIN_COMPENSATED_ASPECT);
-    const fov =
-      aspect < BASE_ASPECT
-        ? (2 *
-            Math.atan(
-              Math.tan((BASE_FOV * Math.PI) / 180 / 2) * (BASE_ASPECT / aspect),
-            ) *
-            180) /
-          Math.PI
-        : BASE_FOV;
+    const aspect = size.width / size.height;
+    const clamped = Math.max(aspect, MIN_COMPENSATED_ASPECT);
+    let tanHalf = Math.tan((BASE_FOV * Math.PI) / 180 / 2);
+    if (clamped < BASE_ASPECT) tanHalf *= BASE_ASPECT / clamped;
+    if (aspect < MIN_COMPENSATED_ASPECT) {
+      const k = Math.min(
+        1,
+        (MIN_COMPENSATED_ASPECT - aspect) /
+          (MIN_COMPENSATED_ASPECT - PHONE_ASPECT),
+      );
+      tanHalf /= 1 + (MOBILE_ZOOM - 1) * k;
+    }
+    const fov = (2 * Math.atan(tanHalf) * 180) / Math.PI;
     if (Math.abs(camera.fov - fov) > 0.01) {
       camera.fov = fov;
       camera.updateProjectionMatrix();
