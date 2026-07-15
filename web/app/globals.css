@@ -204,6 +204,19 @@ button:disabled,
     padding-left: 0.45em;
     padding-right: 0.45em;
   }
+  /* The papers' long titles and section heads overwhelm a phone viewport
+     even at the base prose scale — cap them. */
+  .paper-prose h1 {
+    font-size: 1.7rem;
+    line-height: 1.2;
+  }
+  .paper-prose h2 {
+    font-size: 1.3rem;
+    line-height: 1.25;
+  }
+  .paper-prose h3 {
+    font-size: 1.1rem;
+  }
 }
 .paper-prose a {
   text-underline-offset: 0.18em;

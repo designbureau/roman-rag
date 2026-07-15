@@ -55,8 +55,10 @@ const BASE_ASPECT = 1728 / 843;
 // clamp computes the fov as if the canvas were this wide, so anything
 // between BASE_ASPECT and here degrades gracefully (fullscreen desktop,
 // tablets), and anything narrower crops the flanks instead of shrinking
-// the centre.
-const MIN_COMPENSATED_ASPECT = 1.0;
+// the centre. Raising this value means less compensation and a bigger
+// centred face (at BASE_ASPECT there would be none at all); 1.3 puts the
+// face at roughly three-quarters of a phone's width, sized for the hand.
+const MIN_COMPENSATED_ASPECT = 1.3;
 
 function CameraAim() {
   const { camera, size } = useThree();

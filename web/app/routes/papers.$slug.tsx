@@ -56,7 +56,11 @@ export default function Paper() {
         ))}
       </nav>
 
-      <article className="paper-prose prose prose-lg max-w-none">
+      {/* Base prose scale on phones, prose-lg from sm up — the lg headings
+        (h1 ≈ 2.7em) overwhelm a 375px viewport under these long paper
+        titles; the media query in globals.css caps the heading sizes
+        further. */}
+      <article className="paper-prose prose sm:prose-lg max-w-none">
         <ReactMarkdown
           remarkPlugins={[remarkGfm]}
           components={{
