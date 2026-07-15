@@ -190,6 +190,21 @@ button:disabled,
   font-family: var(--font-sans);
   font-size: 0.9em;
 }
+/* On phones the scroll-in-place above is a last resort with no visible
+   affordance (the clipped column just looks cut off), so first shrink the
+   tables to fit: the widest paper table is only ~15% over a 375px viewport,
+   and smaller type plus tighter cell padding brings it inside. Anything
+   still wider scrolls as before. */
+@media (max-width: 640px) {
+  .paper-prose table {
+    font-size: 0.75em;
+  }
+  .paper-prose th,
+  .paper-prose td {
+    padding-left: 0.45em;
+    padding-right: 0.45em;
+  }
+}
 .paper-prose a {
   text-underline-offset: 0.18em;
 }

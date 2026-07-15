@@ -46,7 +46,7 @@ function RevealNumeral({
       onClick={onSelect}
       className={
         compact
-          ? "font-display px-3 py-1 text-sm font-semibold transition-colors"
+          ? "font-display px-2 py-1 text-sm font-semibold transition-colors sm:px-3"
           : "font-display px-4 py-2 text-base font-semibold transition-colors"
       }
       style={{
@@ -115,7 +115,11 @@ export function Filmstrip({
             // row here, even one only visibly occupied in the center,
             // would otherwise sit on top of them across its whole
             // transparent width and swallow their hover/clicks.
-            "pointer-events-auto mx-auto flex w-fit flex-nowrap items-center gap-2"
+            // Below sm the numerals sit left (ml-2, tighter gap) so they
+            // share the header row with AudioControls at the right instead
+            // of colliding with it under a centred layout on a 375px
+            // viewport.
+            "pointer-events-auto ml-2 flex w-fit flex-nowrap items-center gap-0.5 sm:mx-auto sm:gap-2"
           : "flex flex-shrink-0 flex-nowrap items-center justify-center gap-2.5 px-11 pb-5 pt-4.5"
       }
     >
@@ -140,7 +144,7 @@ export function Filmstrip({
             onClick={() => onSelect(i)}
             className={
               compact
-                ? "font-display px-3 py-1 text-sm font-semibold transition-colors"
+                ? "font-display px-2 py-1 text-sm font-semibold transition-colors sm:px-3"
                 : "font-display px-4 py-2 text-base font-semibold transition-colors"
             }
             // .font-display sets its own tight -0.022em letter-spacing, which

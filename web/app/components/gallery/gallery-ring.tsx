@@ -47,6 +47,16 @@ const LOOK_AT = new THREE.Vector3(0, 0.82, 0);
 // this was tuned against stays untouched.
 const BASE_FOV = 26;
 const BASE_ASPECT = 1728 / 843;
+// How far the horizontal-FOV preservation is allowed to go. Below this
+// aspect the compensation stops: preserving the full five-bust span on a
+// portrait phone (aspect ≈ 0.46) shrinks the centred face to a sliver, and
+// on a screen that narrow the right trade is the opposite one — let the
+// flanking busts crop at the edges and keep the centred face large. The
+// clamp computes the fov as if the canvas were this wide, so anything
+// between BASE_ASPECT and here degrades gracefully (fullscreen desktop,
+// tablets), and anything narrower crops the flanks instead of shrinking
+// the centre.
+const MIN_COMPENSATED_ASPECT = 1.0;
 
 function CameraAim() {
   const { camera, size } = useThree();
@@ -55,7 +65,7 @@ function CameraAim() {
   }, [camera]);
   useEffect(() => {
     if (!(camera instanceof THREE.PerspectiveCamera)) return;
-    const aspect = size.width / size.height;
+    const aspect = Math.max(size.width / size.height, MIN_COMPENSATED_ASPECT);
     const fov =
       aspect < BASE_ASPECT
         ? (2 *
