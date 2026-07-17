@@ -74,7 +74,7 @@ const MOBILE_ZOOM = 1.5;
 // space in the lower half for the spoken-word ticker to sit in. Ramped by
 // the same `k` as the zoom, so tablets get a proportional, smaller lift and
 // desktop is untouched.
-const MOBILE_LOOK_AT_Y = 0.64;
+const MOBILE_LOOK_AT_Y = 0.72;
 
 function CameraAim() {
   const { camera, size } = useThree();
