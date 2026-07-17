@@ -535,7 +535,7 @@ export function RingChat({ figure }: { figure: GalleryFigure }) {
 
   return (
     <>
-      <div className="pointer-events-none absolute inset-x-0 bottom-36 z-10 px-6 sm:bottom-28">
+      <div className="pointer-events-none absolute inset-x-0 bottom-28 z-10 px-6 sm:bottom-28">
         <NowPlayingStrip words={words} activeIndex={speech.activeWordIndex} />
       </div>
       {/* Transport control for the narration — same row as the ticker, out
@@ -549,7 +549,7 @@ export function RingChat({ figure }: { figure: GalleryFigure }) {
           }
           title={speech.status === "playing" ? "Pause" : "Resume"}
           aria-label={speech.status === "playing" ? "Pause narration" : "Resume narration"}
-          className="pointer-events-auto absolute bottom-36 right-6 z-10 inline-flex h-8 w-8 items-center justify-center rounded-full border border-white/10 bg-white/[0.04] text-[#E3DAC6] transition-colors hover:border-[color:var(--accent)]/50 hover:text-[color:var(--accent)] sm:bottom-28"
+          className="pointer-events-auto absolute bottom-28 right-6 z-10 inline-flex h-8 w-8 items-center justify-center rounded-full border border-white/10 bg-white/[0.04] text-[#E3DAC6] transition-colors hover:border-[color:var(--accent)]/50 hover:text-[color:var(--accent)]"
         >
           {speech.status === "playing" ? <PauseIcon /> : <PlayIcon />}
         </button>

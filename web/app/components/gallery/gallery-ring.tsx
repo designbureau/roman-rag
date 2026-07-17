@@ -69,6 +69,12 @@ const MIN_COMPENSATED_ASPECT = 1.3;
 // close-up that 2 gives.
 const PHONE_ASPECT = 0.46;
 const MOBILE_ZOOM = 1.5;
+// On a portrait phone the camera also aims lower than the desktop 0.82,
+// which tilts down and lifts the head higher in the frame — opening black
+// space in the lower half for the spoken-word ticker to sit in. Ramped by
+// the same `k` as the zoom, so tablets get a proportional, smaller lift and
+// desktop is untouched.
+const MOBILE_LOOK_AT_Y = 0.64;
 
 function CameraAim() {
   const { camera, size } = useThree();
@@ -77,23 +83,28 @@ function CameraAim() {
   }, [camera]);
   useEffect(() => {
     if (!(camera instanceof THREE.PerspectiveCamera)) return;
+    if (!size.width || !size.height) return;
     const aspect = size.width / size.height;
+    // 0 at/above the compensation threshold (desktop), ramping to 1 at
+    // portrait-phone aspect. Drives both the zoom and the vertical aim.
+    const k = Math.max(
+      0,
+      Math.min(
+        1,
+        (MIN_COMPENSATED_ASPECT - aspect) / (MIN_COMPENSATED_ASPECT - PHONE_ASPECT),
+      ),
+    );
     const clamped = Math.max(aspect, MIN_COMPENSATED_ASPECT);
     let tanHalf = Math.tan((BASE_FOV * Math.PI) / 180 / 2);
     if (clamped < BASE_ASPECT) tanHalf *= BASE_ASPECT / clamped;
-    if (aspect < MIN_COMPENSATED_ASPECT) {
-      const k = Math.min(
-        1,
-        (MIN_COMPENSATED_ASPECT - aspect) /
-          (MIN_COMPENSATED_ASPECT - PHONE_ASPECT),
-      );
-      tanHalf /= 1 + (MOBILE_ZOOM - 1) * k;
-    }
+    if (k > 0) tanHalf /= 1 + (MOBILE_ZOOM - 1) * k;
     const fov = (2 * Math.atan(tanHalf) * 180) / Math.PI;
     if (Math.abs(camera.fov - fov) > 0.01) {
       camera.fov = fov;
       camera.updateProjectionMatrix();
     }
+    const lookY = LOOK_AT.y - (LOOK_AT.y - MOBILE_LOOK_AT_Y) * k;
+    camera.lookAt(0, lookY, 0);
   }, [camera, size]);
   return null;
 }
