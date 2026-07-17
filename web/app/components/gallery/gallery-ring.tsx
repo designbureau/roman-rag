@@ -64,10 +64,11 @@ const MIN_COMPENSATED_ASPECT = 1.3;
 // at roughly three-quarters of a phone's width for the centred face, so an
 // extra magnification ramps in linearly with aspect, reaching MOBILE_ZOOM
 // at PHONE_ASPECT (portrait-phone shape) and holding there for anything
-// narrower. 1.3 nudges the face up to ~85% of the width without cropping
-// it into a full-bleed close-up (that would be 2).
+// narrower. 1.5 fills more of a tall phone's height (closing the empty
+// bands above and below the face) while still short of the full-bleed
+// close-up that 2 gives.
 const PHONE_ASPECT = 0.46;
-const MOBILE_ZOOM = 1.3;
+const MOBILE_ZOOM = 1.5;
 
 function CameraAim() {
   const { camera, size } = useThree();

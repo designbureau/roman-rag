@@ -318,7 +318,7 @@ export default function GalleryRoute() {
               numerals center, but that leaves empty transparent space on
               either side; Filmstrip's own compact row re-enables
               pointer-events-auto on just itself. */}
-            <div className="pointer-events-none absolute inset-x-0 bottom-12 top-auto z-10 sm:bottom-auto sm:top-6">
+            <div className="pointer-events-none absolute inset-x-0 bottom-5 top-auto z-10 sm:bottom-auto sm:top-6">
               <Filmstrip
                 figures={GALLERY_FIGURES}
                 activeId={figure.id}
@@ -339,7 +339,7 @@ export default function GalleryRoute() {
               remount below, same as before the intro sequence existed. */}
             {nameRevealed && (
               <div
-                className="fade-up pointer-events-none absolute inset-x-0 top-24 z-10 text-center"
+                className="fade-up pointer-events-none absolute inset-x-0 top-14 z-10 text-center sm:top-24"
                 key={`name-${figure.id}`}
               >
                 {/* Bust height/framing varies per figure (see gallery-figures.ts
