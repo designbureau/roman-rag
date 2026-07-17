@@ -249,7 +249,12 @@ function RingFigure({
 // Drag threshold (px) before the ring steps to the next/prev figure — the
 // carousel is stepped, not a free spin, matching the design's feel of
 // flipping through discrete portraits rather than orbiting a continuous ring.
+// Mouse keeps the incremental drag (drag further, step further); touch is
+// one figure per swipe (see the handlers below) at a lower threshold, since
+// a phone flick otherwise covers several thresholds' worth of travel in one
+// gesture and overshoots by a head or two.
 const DRAG_STEP_PX = 60;
+const SWIPE_STEP_PX = 40;
 
 export function GalleryRing({
   figures,
@@ -281,6 +286,11 @@ export function GalleryRing({
   const dragActive = useRef(false);
   const dragMoved = useRef(false);
   const dragX0 = useRef(0);
+  // Touch drags step at most once per swipe; this latches after that step so
+  // a long/fast flick can't rack up several. Mouse drags leave it false and
+  // keep the incremental behaviour.
+  const swipeStepped = useRef(false);
+  const isTouch = useRef(false);
   const n = figures.length;
   const lighting = useLighting();
 
@@ -323,16 +333,32 @@ export function GalleryRing({
       onPointerDown={(e) => {
         dragActive.current = true;
         dragMoved.current = false;
+        swipeStepped.current = false;
+        isTouch.current = e.pointerType === "touch";
         dragX0.current = e.clientX;
+        // Capture so the drag keeps tracking even if the finger/cursor
+        // drifts off this element mid-gesture.
+        try {
+          e.currentTarget.setPointerCapture(e.pointerId);
+        } catch {
+          // Some environments reject capture (e.g. synthetic events); the
+          // drag still works without it.
+        }
       }}
       onPointerMove={(e) => {
         if (!dragActive.current) return;
         const dx = e.clientX - dragX0.current;
-        if (Math.abs(dx) > DRAG_STEP_PX) {
-          dragMoved.current = true;
-          onSetCarousel(dx > 0 ? (carousel - 1 + n) % n : (carousel + 1) % n);
-          dragX0.current = e.clientX;
-        }
+        const threshold = isTouch.current ? SWIPE_STEP_PX : DRAG_STEP_PX;
+        if (Math.abs(dx) <= threshold) return;
+        // Touch: one step per swipe. Once stepped, wait for the next
+        // pointerdown before stepping again — a fast flick can't overshoot.
+        if (isTouch.current && swipeStepped.current) return;
+        dragMoved.current = true;
+        swipeStepped.current = true;
+        onSetCarousel(dx > 0 ? (carousel - 1 + n) % n : (carousel + 1) % n);
+        // Mouse keeps its incremental feel by re-arming from the new
+        // position; touch doesn't re-arm (guarded above).
+        dragX0.current = e.clientX;
       }}
       onPointerUp={() => {
         dragActive.current = false;
