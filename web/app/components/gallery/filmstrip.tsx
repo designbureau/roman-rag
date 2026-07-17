@@ -130,7 +130,7 @@ export function Filmstrip({
             // own row at the bottom (below the chat) rather than sharing the
             // top header with the audio icons, so there's nothing to sit
             // clear of any more.
-            "pointer-events-auto mx-auto flex w-fit flex-nowrap items-center gap-1 sm:gap-2"
+            "pointer-events-auto mx-auto flex w-fit flex-nowrap items-center gap-3 sm:gap-4"
           : "flex flex-shrink-0 flex-nowrap items-center justify-center gap-2.5 px-11 pb-5 pt-4.5"
       }
     >
