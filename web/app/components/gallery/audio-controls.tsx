@@ -192,7 +192,7 @@ export function AudioControls({
   children?: React.ReactNode;
 }) {
   return (
-    <div className="pointer-events-auto absolute right-3 top-6 z-10 flex items-center gap-1.5 sm:right-6 sm:gap-3">
+    <div className="pointer-events-auto absolute bottom-3 left-1/2 z-10 flex -translate-x-1/2 items-center gap-4 sm:bottom-auto sm:left-auto sm:right-6 sm:top-6 sm:translate-x-0 sm:gap-3">
       <ControlButton
         on={musicOn}
         onClick={onToggleMusic}

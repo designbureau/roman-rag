@@ -311,12 +311,14 @@ export default function GalleryRoute() {
             </div>
             {/* Roman-numeral nav, chronological order (see ROMAN_NUMERALS) —
               jumps the ring to that figure without entering the single-figure
-              stage, same as clicking a flanking bust. Top-center.
-              pointer-events-none — full-width so the numerals center, but
-              that leaves empty transparent space on either side of them
-              overlapping AudioControls at the same row; Filmstrip's own
-              compact row re-enables pointer-events-auto on just itself. */}
-            <div className="pointer-events-none absolute inset-x-0 top-6 z-10">
+              stage, same as clicking a flanking bust. On desktop it sits
+              top-centre; on mobile it drops to the bottom (just under the
+              chat input) where a thumb can reach it, leaving the top for the
+              face and caption. pointer-events-none — full-width so the
+              numerals center, but that leaves empty transparent space on
+              either side; Filmstrip's own compact row re-enables
+              pointer-events-auto on just itself. */}
+            <div className="pointer-events-none absolute inset-x-0 bottom-12 top-auto z-10 sm:bottom-auto sm:top-6">
               <Filmstrip
                 figures={GALLERY_FIGURES}
                 activeId={figure.id}

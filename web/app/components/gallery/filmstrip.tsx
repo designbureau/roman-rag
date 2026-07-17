@@ -126,11 +126,11 @@ export function Filmstrip({
             // row here, even one only visibly occupied in the center,
             // would otherwise sit on top of them across its whole
             // transparent width and swallow their hover/clicks.
-            // Below sm the numerals sit left (ml-2, tighter gap) so they
-            // share the header row with AudioControls at the right instead
-            // of colliding with it under a centred layout on a 375px
-            // viewport.
-            "pointer-events-auto ml-2 flex w-fit flex-nowrap items-center gap-0.5 sm:mx-auto sm:gap-2"
+            // Centred at both breakpoints: on mobile the numerals are their
+            // own row at the bottom (below the chat) rather than sharing the
+            // top header with the audio icons, so there's nothing to sit
+            // clear of any more.
+            "pointer-events-auto mx-auto flex w-fit flex-nowrap items-center gap-1 sm:gap-2"
           : "flex flex-shrink-0 flex-nowrap items-center justify-center gap-2.5 px-11 pb-5 pt-4.5"
       }
     >
