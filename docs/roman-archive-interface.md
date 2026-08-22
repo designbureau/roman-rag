@@ -1,4 +1,4 @@
-# An Interface to the Roman Archive
+# An interface to the Roman archive
 
 ### A retrieval-augmented reading interface to a multi-author corpus of Roman prose
 
@@ -12,38 +12,28 @@ July 2026
 
 ## Abstract
 
-The prose of the Roman late Republic and early Empire is among the most
-thoroughly edited, translated, and studied bodies of text in existence, and
-almost none of it is read outside the discipline. The texts are in the public
-domain; the standard English translations are a century or more old; the
-editions carry a scholarly apparatus that assumes Latin. Nothing stands
-between a curious reader and Cicero's letters except the genre they are
-published in: the classical edition, built by and for specialists.
+Roman prose from the late Republic and early Empire is among the most edited,
+translated and studied writing we have, yet little of it is read outside the
+discipline. The texts are public domain, the standard free translations are
+often more than a century old, and the editions assume a reader with Latin.
+Cicero's letters are available. The classical edition is the awkward bit.
 
-This paper describes a retrieval-augmented reading interface to a multi-author
-Roman corpus: Cicero's letters to Atticus as a Latin–English parallel text,
-Caesar's war commentaries, Augustus's *Res Gestae*, Seneca's *Epistulae
-Morales*, and Marcus Aurelius's *Meditations*, with Pliny the Younger's
-letters and Quintilian's *Institutio Oratoria* ingested and awaiting
-embedding (3,439 passages scraped, 3,102 of them live behind retrieval),
-supported by a background reference layer drawn from Smith's *Dictionary of
-Greek and Roman Antiquities* and W. Warde Fowler's *Social Life at Rome*.
-Generation is grounded in retrieval throughout. A scholarly framing voice (the
-Classicist) reads across the whole archive; five bounded first-person
-personas (Cicero, Caesar, Augustus, Seneca, Marcus Aurelius) are each scoped
-by retrieval filter to their own works and by prompt to their own lifetimes.
-Every substantive claim must trace to a retrieved passage; no persona composes
-new letters, speeches, or sayings; each figure's knowledge ends at their own
-death. The interface presents the corpus through a conversational reading
-surface, a source-grouped library, and a three-dimensional gallery: an
-exedra of sculpted busts that can be addressed by voice and answer aloud.
+I built a retrieval-augmented interface over Cicero's letters to Atticus as
+Latin–English parallel text, Caesar's war commentaries, Augustus's *Res
+Gestae*, Seneca's *Epistulae Morales* and Marcus Aurelius's *Meditations*.
+Pliny's letters and Quintilian's *Institutio Oratoria* have also been ingested
+and await embedding: 3,439 passages were scraped, with 3,102 currently live
+behind retrieval. Smith's *Dictionary of Greek and Roman Antiquities* and W.
+Warde Fowler's *Social Life at Rome* form a separate reference layer.
 
-The system is offered as a worked application of retrieval-grounded reading to
-a canonical, translation-mediated corpus, and as a study in the constraint
-that gives such a system its integrity: the model may only voice what the
-record contains. A companion concern, the ethics of giving the dead a
-synthetic voice at all, is treated in a separate essay and summarised in
-§3.9.
+A Classicist can read across the collection. Cicero, Caesar, Augustus, Seneca
+and Marcus Aurelius answer in the first person, but retrieval limits each one
+to his own works and the prompt limits his knowledge to his lifetime. Every
+substantive claim needs a retrieved passage. Nobody gets to compose a lost
+letter or a convenient new aphorism. Readers can use a conversational surface,
+a source-grouped library or a 3D exedra of sculpted busts that answer aloud.
+The separate ethics essay asks whether giving the dead this kind of synthetic
+voice is a good idea in the first place.
 
 ---
 
@@ -54,10 +44,9 @@ Cicero's letters to Atticus and did something readers had not been able to do
 for over a millennium: he heard Cicero speak in his own voice, unguarded,
 day by day. His response is famous. He wrote Cicero a letter (*Familiares*
 24.3), reproaching him, as one might a friend, for the restlessness of his
-final years. The rediscovery of the letters is conventionally taken as a
-founding act of Renaissance humanism, and Petrarch's reply is its emblem: the
-first instinct of a reader who truly hears a voice in an archive is to answer
-it.
+final years. The rediscovery is often treated as a founding act of Renaissance
+humanism. Petrarch's instinct was more personal: he heard a voice in an archive
+and wrote back.
 
 This project takes that instinct literally. It is a retrieval-augmented
 generation (RAG) system over a multi-author corpus of Roman prose in which
@@ -77,52 +66,42 @@ what a general reader can legally and freely be given is not the text as
 scholarship now has it. It is the public-domain stratum: editions and
 translations fixed between the 1630s and the 1920s. An interface over this
 material is therefore an interface over particular editors and translators,
-with particular dates and temperaments, and the system treats honesty about
-that mediation as a design requirement (§4).
+with particular dates and temperaments, and the system names that mediation
+throughout (§4).
 
-The paper is organised as follows. Section 2 gives background on the corpus,
-its transmission, and the editions ingested. Section 3 describes the system:
-architecture, ingestion, retrieval, personas, the speech pipeline, and the
-gallery interface. Section 4 examines what it means to run retrieval over an
-edited, translated Rome. Section 5 situates the work against related
-research. Section 6 sets out the evaluation design and reports the one small
-retrieval smoke test run to date. Section 7 states limitations, and Section 8
-concludes.
+The evaluation section includes the one small retrieval smoke test run so far;
+the larger study remains to be done.
 
-### Contributions
+### What the work adds
 
-The core RAG pipeline (query embedding, dense vector search, context
-assembly, conditioned generation) is established method and is not claimed as
-a contribution. The contributions are in the application:
+The RAG pipeline is established method. The work lies in how it is applied:
 
-1. **A worked application of retrieval-grounded reading to a multi-author
-   classical corpus, with per-author scoping as a correctness property.**
+1. Retrieval-grounded reading across several classical authors, with author
+   scoping treated as a correctness property.
    Each first-person persona's retrieval is filtered to its own author's
    works, so Marcus Aurelius cannot reason from Cicero's letters and Augustus
    cannot borrow Seneca's aphorisms. This is the structural analogue of the
    language-group filtering developed for the ǀxam archive: provenance
    enforced at retrieval time rather than requested politely at generation
    time.
-2. **A two-stratum corpus design separating primary texts from reference
-   material.** Encyclopaedic background (Smith's *Dictionary*, Fowler) is
+2. A two-stratum corpus separates primary texts from reference
+   material. Encyclopaedic background (Smith's *Dictionary*, Fowler) is
    ingested and embedded but flagged `is_reference`, excluded from retrieval
    by default, surfaced only to the scholarly persona or on explicit request,
    and marked `[BACKGROUND]` in the model's context so the personas cannot
    mistake a Victorian dictionary entry for a Roman's own words.
-3. **A bounded first-person persona ensemble over a shared retrieval
-   substrate, with temporal knowledge bounds enforced in prompt and few-shot.**
+3. A bounded first-person ensemble shares one retrieval
+   substrate, with temporal knowledge limits enforced in the prompt and few-shot examples.
    Five historical figures, each with a hard knowledge cutoff at their own
    death, an in-voice citation register, and an explicit refusal repertoire.
    The design treats persona as a reading device rather than character
    simulation, a point developed in the companion essay on the ethics of the
    practice.
-4. **A parallel-text ingestion method for the Perseus canonical corpora,
-   validated empirically.** Whole-letter alignment of the Latin and English
+4. Parallel-text ingestion for the Perseus canonical corpora,
+   validated empirically. Whole-letter alignment of the Latin and English
    editions of *ad Atticum* by book-and-letter key, with case-normalised
    sub-letter suffixes, achieves 92.8% parallel coverage (414 of 446 Latin
    letters), with the remainder ingested single-sided rather than dropped.
-
----
 
 ## 2. Background
 
@@ -336,7 +315,7 @@ and the separation of Republic from Empire.
   memory, and all outside what this Caesar can know.
 - **Augustus**: first person, scoped to the *Res Gestae*, a persona whose
   entire evidential base is forty sections of official self-account, which
-  makes the honesty rule bite hardest ("my record says what I chose to
+  makes the constraint bite hardest ("my record says what I chose to
   record").
 - **Seneca**: first person, scoped to the *Epistulae Morales*, the warmest
   register in the ensemble (temperature 0.8).
@@ -459,7 +438,7 @@ readers and to the record:
   fabrication: a sentence that sounds exactly like Cicero, attributed to
   him, that he never wrote. The no-invention rule is the first shared rule,
   rehearsed in few-shots, and structurally supported by retrieval scoping.
-- **Bounded lives, honest ignorance.** Each figure refuses questions past
+- **Bounded lives, visible ignorance.** Each figure refuses questions past
   their death or outside their corpus, in voice (Caesar, asked about the
   Philippics: "that day closed my account"). A persona that cannot admit
   ignorance will eventually produce a confident falsehood.
@@ -652,7 +631,7 @@ taxonomy and the two corpus-specific ablations are new here.
 NLI-based faithfulness (Rashkin et al. 2023); RAGAS reference-free metrics
 (Es et al. 2024); and a human rubric scoring five dimensions: factual
 grounding, citation correctness, persona and temporal-bound fidelity, refusal
-appropriateness, and translation-mediation honesty (does the voice present
+appropriateness, and translation-mediation disclosure (does the voice present
 Casaubon's phrasing as Marcus's own words?). Bound-testing is adversarial by
 design: a fixed battery of trap questions (Caesar on the Philippics, Cicero
 on his own death, Augustus on Actium *as a defeat*, Marcus on Christianity)
@@ -718,28 +697,21 @@ tension deliberately rather than resolving it.
 
 ## 8. Conclusion
 
-This paper has described a retrieval-augmented reading interface to a
-multi-author corpus of Roman prose: a grounded conversational layer, a
-bounded first-person ensemble scoped by retrieval to each author's own
-works, a two-stratum corpus that keeps Victorian scholarship distinct from
-Roman testimony, and a sculptural gallery in which the archive's figures
-answer aloud, within and only within what they wrote.
+The interface gives a multi-author Roman corpus a conversational layer, five
+bounded first-person voices, a separate stratum for Victorian reference works
+and a sculptural gallery that answers aloud. Retrieval keeps each author tied
+to his own writing.
 
-The through-line with the companion ǀxam system is the method: grounded
-generation, retrieval-time scoping, and provenance kept in view throughout
-the interface. What this corpus adds is the opposite boundary condition. The
-ǀxam archive tested the method against scarcity: a sleeping language, a
-fragile record, duties to a living community. Rome tests it against
-abundance: a model that already "knows" Caesar from parametric memory must
-be held to forty retrieved sections and a death-day, and the temptation the
-system must refuse is completion from everywhere rather than invention from
-nothing. That the same small set of constraints (retrieve, scope, bound,
-cite, refuse) serves both extremes suggests the pattern will generalise to
-the archives in between.
+The method is the same one used for the companion ǀxam archive: retrieve,
+scope, bound, cite and refuse. The ǀxam collection tests it against scarcity
+and duties to a living community. Rome brings the opposite problem. A model
+already "knows" Caesar from the rest of its training, so the system has to hold
+it to the retrieved text and his own lifetime. The shared method looks useful
+for archives between those extremes, although that remains a claim to test.
 
-Petrarch answered a manuscript with a letter because the voice in it seemed
-to ask for one. Six centuries on, a reply can be returned, provided the
-voice returning it is never allowed to say more than the manuscript did.
+Petrarch answered a manuscript with a letter because the voice in it seemed to
+ask for one. Six centuries later, software can return a reply. Its licence to
+speak should still end where the manuscript does.
 
 ---
 

@@ -1,4 +1,4 @@
-# What RAG Can and Cannot Do for a Classical Archive
+# What RAG can and cannot do for a classical archive
 
 *On retrieval-augmented reading of Roman texts: grounding, per-author
 scoping, citation discipline, and the limits.*
@@ -7,17 +7,15 @@ scoping, citation discipline, and the limits.*
 
 ## 1. The method, briefly
 
-Retrieval-augmented generation (RAG) pairs a language model with a search
-over a fixed body of text: the model answers only after retrieving the
-relevant passages, and grounds what it says in them (Lewis et al. 2020). In
-this Archive the search is a dense vector search: each passage is embedded
-once, the question is embedded at ask-time, and the nearest passages by
-cosine similarity are handed to the model as evidence, with instructions to
-answer from them and to cite them. The retrieved passages are shown beside
-the answer, with their canonical references (*Att.* 1.16, *B.G.* 5.44,
-*Med.* 4.23), so a reader can verify rather than trust.
+Retrieval-augmented generation (RAG) lets a language model search a fixed body
+of text before it answers (Lewis et al. 2020). In this Archive, each passage is
+embedded once and each question is embedded when asked. A dense vector search
+finds the nearest passages by cosine similarity, then gives them to the model
+as evidence. Those passages appear beside the answer with their canonical
+references (*Att.* 1.16, *B.G.* 5.44, *Med.* 4.23). The reader does not have
+to take the model's word for it.
 
-Stated a little more precisely: each passage *p* is mapped once to a vector
+More precisely, each passage *p* is mapped once to a vector
 *e(p)* by an embedding model, and stored. At ask-time the query *q* is mapped
 by the same model to *e(q)*, and the system returns the *k* passages whose
 vectors are nearest *e(q)* by cosine similarity (a top-*k* dense retrieval;
@@ -32,11 +30,11 @@ which is why arguments that live across many passages fall outside its reach
 & Zaragoza 2009), has the mirror-image profile, and the two are usually best
 combined (§5).
 
-Applied to a classical archive (Cicero's letters, Caesar's commentaries,
+For a classical archive (Cicero's letters, Caesar's commentaries,
 Augustus's *Res Gestae*, Seneca's letters, Marcus Aurelius's *Meditations*,
 with Pliny and Quintilian to follow), the approach has real strengths and
-real limits, and it is easy to oversell both. This essay tries to price it
-accurately.
+real limits, and it is easy to oversell both. The interesting bit is knowing
+which is which.
 
 ## 2. Why a classical corpus suits retrieval unusually well
 
@@ -97,16 +95,15 @@ The Archive applies the same mechanism to a second boundary: primary versus
 reference. Background material (Smith's *Dictionary of Greek and Roman
 Antiquities*, Fowler's *Social Life at Rome*) is embedded but flagged, held
 out of retrieval by default, and marked `[BACKGROUND]` when the scholarly
-persona draws on it. The lesson generalises: in a RAG system over any corpus
-with internal provenance structure, provenance should be enforced at
-retrieval time, as a filter, rather than requested at generation time, as an
-instruction. A model cannot leak what it was never shown.
+persona draws on it. The same principle applies to any corpus with internal
+provenance. Enforce the boundary during retrieval with a filter; do not leave
+it as a generation-time request. A model cannot leak a passage it never
+received.
 
 ## 5. What retrieval misses
 
-Now the limits, which are just as important. Retrieval finds what is
-lexically or semantically near the query, and it can miss what a scholar
-would see:
+Retrieval finds what sits lexically or semantically near a query. It can miss
+what a scholar would see:
 
 - **Arguments that live across documents.** Cicero's slide from confidence to
   despair across the letters of 59–58 BC is real and documented, but it is a
@@ -173,22 +170,21 @@ lemmatised search and Latin-aware embeddings: the Classical Language Toolkit
 2023), any of which could let retrieval see the Latin column rather than
 only the translators' English. Deep networks have been used to restore and
 attribute Greek inscriptions in genuinely philological work (Assael et al.
-2022). Against that backdrop, this Archive's contribution is the reading
-architecture rather than any retrieval technique: grounding, scoping, and
-citation discipline arranged so that a general reader can question a
-classical corpus and check every answer.
+2022). This Archive does not add a retrieval technique to that body of work.
+It puts grounding, scoping and citations together in a reading interface where
+a general reader can question a classical corpus and check each answer.
 
 ## 8. Summary
 
-RAG turns a classical archive into something you can question directly and
-verify as you go: a genuine gain over both unaided model memory and ordinary
-search, and one that classical corpora, with their stable texts and canonical
-references, are unusually well placed to collect. It fences a fluent model
-off from the vast secondary tradition and holds it to the primary record. But
-it is a reading aid, not a reader. It can put the right passages in front of
-you and hold itself to them; the weighing of those passages (the trajectory
-across a correspondence, the meaning of a silence, the judgement that is the
-actual work of reading) it leaves, rightly, to you.
+RAG gives readers a direct way to question a classical archive and verify the
+answer as they go. Stable texts and canonical references make this corpus
+particularly well suited to it. Retrieval also keeps a fluent model away from
+the vast secondary tradition and ties it to the primary record.
+
+It remains a reading aid. It can find passages and stay accountable to them.
+It cannot weigh a whole correspondence, notice the force of a silence or make
+the judgement that turns evidence into a reading. Happily, that part is still
+ours.
 
 ---
 

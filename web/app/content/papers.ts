@@ -24,7 +24,7 @@ export type PaperMeta = {
 export const PAPERS: PaperMeta[] = [
   {
     slug: "roman-archive-interface",
-    title: "An Interface to the Roman Archive",
+    title: "An interface to the Roman archive",
     kind: "System description",
     blurb:
       "The full account of the system: a multi-author Roman corpus behind " +
@@ -35,32 +35,32 @@ export const PAPERS: PaperMeta[] = [
   },
   {
     slug: "reading-rome-in-translation",
-    title: "Reading Rome in Translation",
+    title: "Reading Rome in translation",
     kind: "Essay",
     blurb:
-      "The originals beside their public-domain English: Shuckburgh's Cicero, " +
-      "Casaubon's Marcus Aurelius, and the rest, with what each translation " +
-      "preserves and what it loses.",
+      "The Roman Archive uses public-domain translations from several " +
+      "centuries. Here is what their English preserves, what it changes, " +
+      "and why the translator matters to retrieval.",
     markdown: readingRomeInTranslation,
   },
   {
     slug: "giving-the-dead-a-voice",
-    title: "Giving the Dead a Voice",
+    title: "Giving the dead a voice",
     kind: "On synthetic personae for historical figures",
     blurb:
-      "The ethics of animating Rome's figures as retrieval-grounded personas: " +
-      "bounded knowledge, scoped to each author's own words, and never inventing " +
-      "what they did not write.",
+      "What it means to let readers address Roman authors in the first " +
+      "person, and the constraints needed to keep a reading device from " +
+      "turning into historical forgery.",
     markdown: givingTheDeadAVoice,
   },
   {
     slug: "rag-for-a-classical-archive",
-    title: "What RAG Can and Cannot Do for a Classical Archive",
+    title: "What RAG can and cannot do for a classical archive",
     kind: "Survey and synthesis",
     blurb:
-      "Retrieval-augmented reading across a multi-author Roman archive: grounding, " +
-      "per-author scoping, citation discipline, and the limits of texts that are " +
-      "edited, translated, and partial.",
+      "Where retrieval helps a reader explore a Roman archive, where it " +
+      "falls short, and why author filters and visible citations matter as " +
+      "much as the model.",
     markdown: ragForAClassicalArchive,
   },
 ];

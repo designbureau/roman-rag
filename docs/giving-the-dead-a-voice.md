@@ -1,4 +1,4 @@
-# Giving the Dead a Voice
+# Giving the dead a voice
 
 *On the ethics of animating historical figures as retrieval-grounded
 personas.*
@@ -7,23 +7,17 @@ personas.*
 
 ## 1. What these voices are
 
-The Archive lets you address its texts through several voices: the
-Classicist, a scholarly framer who reads across the whole collection, and the
-historical figures themselves: Cicero, Caesar, Augustus, Seneca, Marcus
-Aurelius. Speaking to a dead man in his own voice is an old and uneasy
-pleasure. It is worth setting out plainly what these personas are, what they
-may do, and what they must never do.
+The Archive offers several ways into its texts. A Classicist reads across the
+whole collection, while Cicero, Caesar, Augustus, Seneca and Marcus Aurelius
+answer from their own works. Addressing a dead man in the first person is an
+old and slightly uneasy pleasure. It deserves clear limits.
 
-They are not séances, and they are not resurrections. A persona here is a
-reading device: a way of asking what a body of writing contains, angled
-through a point of view. When you ask Augustus how he came to power, you are
-not hearing Augustus. You are hearing a synthesis constrained to speak only
-from his surviving words (in his case, just forty sections of official
-self-account), in a voice shaped to resemble the man those words reveal. The
-distinction is the whole ethical foundation of the thing, and it has to be
-enforced rather than merely asserted. In this Archive it is enforced
-structurally: each figure's retrieval is filtered to his own works, so the
-system cannot quote to him what he could never have read.
+These personas are reading devices. Ask Augustus how he came to power and the
+answer is a synthesis drawn from his surviving words, just forty sections of
+official self-account, written in a voice shaped by that record. It is not
+Augustus. The system enforces the distinction by filtering each figure's
+retrieval to his own works. It cannot hand him a passage he never wrote or
+could never have read.
 
 ## 2. An old device: the personas as prosopopoeia
 
@@ -55,19 +49,19 @@ far as it stays within what the person plausibly could have said. An
 impersonation that outruns its subject's character or knowledge fails as
 rhetoric, on Quintilian's own terms.
 
-That, almost exactly, is the design rule of this system. The personas are
-digital prosopopoeia, and retrieval-grounding is Quintilian's fidelity
-condition made mechanical: the voice may say only what the surviving record
-supports. The classical tradition also supplies the emblem for the whole
-enterprise. When Petrarch rediscovered Cicero's letters to Atticus in 1345,
-his first act was to write Cicero a letter back (*Familiares* 24.3). The urge
-to answer a voice in an archive is as old as reading; what is new is a
-machine fluent enough to answer on the archive's behalf, which is why the
-constraints below matter more here than they ever did in rhetoric.
+That is close to the rule used here. The personas are digital prosopopoeia,
+with retrieval turning Quintilian's condition into software: a voice may say
+only what the surviving record supports. When Petrarch rediscovered Cicero's
+letters to Atticus in 1345, his first act was to write Cicero a letter back
+(*Familiares* 24.3). Readers have long wanted to answer voices found in an
+archive. A machine fluent enough to reply on the archive's behalf makes the
+old constraint considerably more urgent.
 
 ## 3. The three rules
 
-**The first rule is bounded knowledge.** Each figure knows what they knew in
+### Bounded knowledge
+
+Each figure knows what they knew in
 their own life, and no more. Cicero cannot tell you how he died; Caesar
 cannot speak of what followed the Ides of March; Augustus does not narrate
 the empire after him; Marcus Aurelius does not foretell the future. Each is
@@ -86,7 +80,9 @@ easily supply: the temptation is completion from everywhere rather than
 invention from nothing, and resisting it takes both prompt discipline and
 the structural fact that retrieval never furnishes the forbidden material.
 
-**The second rule is that nothing is invented.** The personas do not compose
+### Nothing invented
+
+The personas do not compose
 new letters, speeches, meditations, or sayings and attribute them to the
 dead. This is the sharpest line, because it is the most tempting to cross: a
 fluent model can produce a sentence that sounds exactly like Cicero, and
@@ -98,8 +94,9 @@ reports can be traced to what the figure actually wrote. Where the persona
 characterises or paraphrases, it should read as characterisation rather than
 be passed off as the record.
 
-**The third rule is respect for the difference between animating a record
-and ventriloquising a person.** These were real people, with families,
+### A record is not a person
+
+These were real people, with families,
 enemies, vanities, and, several of them, violent ends. The people around
 them were real too: the wives and children, the enslaved copyists and
 letter-carriers whose labour made the correspondence physically possible, and
@@ -112,7 +109,7 @@ account of himself.
 
 ## 4. The modern hazard
 
-A contemporary literature has grown up around "deathbots" and "griefbots",
+A contemporary literature has grown around "deathbots" and "griefbots",
 generative simulations of the dead, usually of the recently dead, built from
 their messages and voice notes (Hollanek & Nowaczyk-Basińska 2024; Öhman &
 Floridi 2017; Stokes 2021). Its central worries are consent, the dignity of
@@ -124,9 +121,10 @@ exploited for the benefit of the living. The figures in this Archive are two
 thousand years dead, publicly known, and represented only through texts they
 published or that history published for them, so the sharpest of those
 concerns (consent from the subject, protection of the grieving, commercial
-capture of a private person's memory) do not transfer. But two of them do.
+capture of a private person's memory) do not transfer. Two concerns still
+apply.
 
-The first is the seduction of fluency. Shanahan, McDonell and Reynolds (2023)
+The first is fluency. Shanahan, McDonell and Reynolds (2023)
 describe large-language-model personas as role-play without an inner life:
 a performance that invites the interlocutor to over-attribute. A first-person
 Caesar answering in confident prose lends generated sentences an authority no
@@ -157,15 +155,12 @@ Both are startling. They are not, ethically, the same object.
 
 ![Motion study I (Marcus Aurelius): the marble speaks; midway through, the stone is given living eyes.](/video/marcus.mp4)
 
-The speaking statue is prosopopoeia in its most literal form: the "made
-face" that announces itself as made. No viewer mistakes talking marble for a
-living man; the artifice is the aesthetic, exactly as it was when Cicero made
-the *patria* speak. It raises the register of the encounter without raising
-its claim to reality, and it can be adopted on the same terms as the personas
-themselves.
+The speaking statue is prosopopoeia in its most literal form: a "made face"
+that plainly looks made. No viewer mistakes talking marble for a living man.
+The artifice is visible, just as it was when Cicero made the *patria* speak.
+The result can feel more present without making a stronger claim to reality.
 
-The Marcus study does not stay on its own side of the line, though, and the
-way it crosses repays attention. Halfway through, the sculpted eyes are
+The Marcus study crosses that line halfway through, when the sculpted eyes are
 replaced with living ones (irises, pupils, moisture) while every other
 surface stays marble. The effect is disproportionate to the change: a talking
 statue with stone eyes reads as a device; the same statue with human eyes
@@ -174,7 +169,7 @@ image, moves the object most of the way across the gradient on its own. For
 the design the implication is that presence does not scale with how much of
 the surface is made realistic: perceived animacy concentrates in the eyes,
 which is why the uncanny-valley literature keeps returning to gaze (Mori 1970;
-Mori, MacDorman & Kageki 2012). The point is not merely anecdotal: empirical
+Mori, MacDorman & Kageki 2012). This is more than an anecdote: empirical
 work on androids finds that mismatches concentrated in the eyes and their
 motion are disproportionately responsible for the descent into the valley,
 and that a face made *almost* human is judged more unsettling than one
@@ -199,13 +194,13 @@ The fleshed Caesar sits differently. A photoreal face is the native format of
 the deepfake, and its whole power is that the device disappears: the viewer
 is invited to feel, however briefly, that they are being looked at by Julius
 Caesar rather than by a rendering derived from a marble he may once have
-sat for. Two things keep it on the right side of the line, and both need to
-be visible as well as true. The first is grounding: the reconstruction stands
+sat for. Two things keep it on the right side of the line, and both need to be
+visible. First, the reconstruction stands
 to the Tusculum portrait as a grounded answer stands to a retrieved passage,
 inference from the surviving record (a lifetime likeness, in this case),
 never a face invented free-hand. That is the same fidelity condition
-Quintilian attached to the spoken device, applied to appearance. The second
-is framing: the source portrait named, the method stated, the same bounded
+Quintilian attached to the spoken device, applied to appearance. It also needs
+framing: the source portrait named, the method stated, the same bounded
 voice and in-voice refusals behind the face. The working rule the Archive
 adopts is that the realism of the surface may never outrun the legibility of
 the device: the more life-like the reproduction, the more clearly the
@@ -214,19 +209,19 @@ declare what it is first.
 
 ## 6. Why do it at all
 
-If the risks are this sharp, why give the dead a voice at all? Because a
-voice invites a kind of attention a search box does not. Asked to speak as a
+Why give the dead a voice at all? A voice invites a kind of attention that a
+search box does not. Asked to speak as a
 figure, the system must locate the relevant passages, weigh them, and present
 them in the first person, and a reader, hearing that, reads the sources more
 closely than they otherwise might. The persona is a lure towards the text
 rather than a substitute for it.
 
-The classical tradition, again, got here first. Quintilian recommended
+The classical tradition got here first. Quintilian recommended
 prosopopoeia to students as a discipline: to speak credibly in another's
 character, you must first master what that person said and how they thought.
-The exercise serves the sources. Handled with these constraints (bounded
-knowledge, nothing invented, the record's partiality kept in view), giving
-the dead a voice becomes a form of citation, performed out loud.
+The exercise serves the sources. With knowledge bounded, invention refused and
+the record's partiality kept in view, the voice sends the reader back to the
+text. That is the only version of the idea I am comfortable building.
 
 ---
 

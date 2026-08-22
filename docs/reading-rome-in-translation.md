@@ -1,4 +1,4 @@
-# Reading Rome in Translation
+# Reading Rome in translation
 
 *On the originals, the public-domain English, and what a translation keeps
 and loses.*
@@ -7,37 +7,30 @@ and loses.*
 
 ## 1. The arrangement
 
-The Roman Archive presents each work in translation, and, where it survives
-in the corpus, beside its original. Cicero's letters to Atticus appear as
-parallel text: the Latin of L. C. Purser's Oxford edition (1903) on one side,
-the English of E. S. Shuckburgh (1899–1900) on the other. Caesar's
-commentaries and Seneca's letters carry their Latin likewise; Augustus's
-*Res Gestae* stands beside the Latin recovered from its inscriptions. Marcus
-Aurelius's *Meditations*, written in Greek, reaches you for now in the
-English of Meric Casaubon alone.
+The Roman Archive shows each work in translation and, where the corpus has it,
+beside the original. Cicero's letters to Atticus pair the Latin from L. C.
+Purser's 1903 Oxford edition with E. S. Shuckburgh's English from 1899–1900.
+Caesar's commentaries and Seneca's letters also include the Latin. Augustus's
+*Res Gestae* sits beside the text recovered from its inscriptions. Marcus
+Aurelius wrote the *Meditations* in Greek, but the Archive currently has only
+Meric Casaubon's English.
 
-The arrangement looks neutral (two columns, one meaning), but no translation
-is a transparent pane of glass, and a reading interface that retrieves and
-quotes from the English column owes its readers a clear account of what that
-column is. This essay gives that account: what the English gives, who each
-translator was, what each rendering loses, and what sits beneath the Latin
-column itself.
+Two parallel columns can make this arrangement look more neutral than it is.
+The Archive retrieves and quotes from the English, so readers should know whose
+English they are reading, what it preserves and what it changes. The Latin
+column has its own editorial history too.
 
 ## 2. What the English gives
 
-For a reader without fluent Latin or Greek, the translation is the difference
-between a work being legible and being a locked room. It carries the sense:
-who is being asked what, which deed is being claimed, which consolation is
-being reached for. And where the original sits alongside, a reader with a
-little of the language can check the English against it phrase by phrase,
-the slow, comparative reading these texts reward, and the reading the
-parallel display is built to invite.
+For a reader without fluent Latin or Greek, the translation makes the work
+legible. It carries the sense: who asks what, which deed is being claimed and
+which consolation the writer reaches for. Where the original appears beside
+it, a reader with a little of the language can compare the two phrase by
+phrase. That slow reading is exactly what the parallel display is for.
 
-There is a further, structural point. The Archive's retrieval runs over the
-English (the embeddings are of the translation, not the original), so the
-translation is not merely what you read; it is what the system searches. The
-translator's choices set the boundary of what a query can find. That makes
-the question "whose English is this?" a technical question as well as a
+The Archive also searches the English. Its embeddings represent the
+translation, not the original, so a translator's choices affect what a query
+can find. "Whose English is this?" is a technical question as well as a
 literary one.
 
 Translation studies has a name for the tell-tale residue this leaves.
@@ -50,16 +43,15 @@ For a reader this is a matter of texture; for a retrieval system it is a
 matter of recall. A query embedded in ordinary modern English is being
 matched against text whose vocabulary and phrasing were pulled, to a
 measurable degree, toward a Latin or Greek original and toward the idiom of
-the translator's own century. The mediation the rest of this essay describes
+the translator's own century. The mediation described below
 in literary terms is, from the system's side, a bias in the embedding space
 itself.
 
 ## 3. Each translator has a date and a temperament
 
-The Archive's translations were not chosen by literary judgement; they were
-chosen by copyright. What is freely available is the public-domain stratum,
-and that stratum has a shape: it runs from the 1630s to the 1920s, with one
-modern exception. It is worth knowing who these people were:
+Copyright, rather than literary judgement, determined the translations in the
+Archive. The freely available set runs from the 1630s to the 1920s, with one
+modern exception. The translators are worth knowing:
 
 - **Meric Casaubon (1634)** made the first English translation of the
   *Meditations*, a generation before Pepys. It is a magnificent period piece:
@@ -166,22 +158,20 @@ translator's interpretation, with a date.
 
 ## 6. How the Archive should be read
 
-Three practices follow:
+Three reading habits help:
 
-1. **Treat the English as a guide to the original rather than a
-   replacement.** When a passage matters, look across the columns; the
+1. Treat the English as a guide to the original. When a passage matters, look
+   across the columns; the
    friction between them is where the act of translation becomes visible,
    and the parallel corpus is most useful precisely there.
-2. **Keep the translator's name attached.** The Archive shows it on every
+2. Keep the translator's name attached. The Archive shows it on every
    citation. "Casaubon's Marcus" and "Shuckburgh's Cicero" are accurate
    descriptions; "Marcus" and "Cicero" alone, for an English quotation, are
    not quite.
-3. **Expect the seams, and value them.** A smooth surface would be a false
-   one. The Archive does not try to hide the seams: it names every edition
+3. Expect the seams. The Archive does not try to hide them: it names every edition
    and translator, shows the original where it has one, and lets the reader
-   see that reading Rome in English is reading Rome through other centuries'
-   eyes. Read knowingly, that becomes a second subject of the encounter
-   rather than a defect of it.
+   see that reading Rome in English also means reading it through other
+   centuries. That is part of the work, not a defect to be smoothed away.
 
 ---
 
